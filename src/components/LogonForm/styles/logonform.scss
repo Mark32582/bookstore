@@ -1,0 +1,26 @@
+.hide-logon{
+    display:none;
+}
+.form-container-sign-on{
+    display:flex;
+    align-items: flex-end;
+    justify-content: flex-end ;
+    z-index: 10;
+    width:100%;
+    
+}
+.logon-form{
+    display:flex;
+    font-family: 'Courier New', Courier, monospace;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width:fit-content;
+    padding:4px 8px 8px;
+    border-radius: 0 0 0 10px;
+    z-index: inherit;
+}
+input{
+    margin:0 2px;
+    font-family: 'Courier New', Courier, monospace;
+}

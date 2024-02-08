@@ -1,0 +1,15 @@
+{
+  "name": "sassy",
+  "version": "1.0.0",
+  "description": "A small SCSS/SASS library that adds essential functionality and makes working with maps easier.",
+  "main": "index.scss",
+  "author": "Casey Dwayne <opensource@caseydwayne.com> (http://caseydwayne.com)",
+	"bin": "./bin/test.bat",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caseydwayne/sassy.git"
+  },
+  "license": "DBAA, see license.txt",
+	"keywords": "sass, maps, scss, tool, debugger, unit test",
+  "private": false
+}

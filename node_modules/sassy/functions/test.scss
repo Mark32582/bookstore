@@ -1,0 +1,19 @@
+///--------------------------------------------------------------------------///
+
+///
+/// @method test
+/// a simple test function to check that sassy is here
+/// @param args... {arglist} the arguments to pass in
+/// @return message {string} is sassy here?
+///
+
+@function sassy_test( $args... ){  
+  $m: 'Sassy is here!';
+  $l: length($args);
+  @if $l > 0 {
+    $m: $m + ' Received #{$l} argument(s)';
+  }  
+  @return $m;
+}
+
+///--------------------------------------------------------------------------///

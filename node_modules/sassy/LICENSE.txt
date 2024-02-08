@@ -1,0 +1,13 @@
+You may
+
+ - use this software in personal, educational, and commercial projects
+ - modify private copies
+ 
+You may not
+
+ - re-package or re-brand Sassy as your own
+ - publish similar/competitive software using the "Sassy" name
+ 
+The author, Casey Dwayne, assumes no liability from use of this software. The software is provided AS-IS, with no warranty expressed or implied.
+
+Essentially DBAA and use at your own risk. Enjoy!

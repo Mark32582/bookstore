@@ -1,0 +1,22 @@
+///--------------------------------------------------------------------------///
+
+/// creates a new test map
+@function _testmap( $name, $result, $expect, $verdict:false ){
+  
+  $t: _get( total );
+  
+  $test: (
+    uid: $t,
+    name: $name, 
+    result: $result,
+    expect: $expect,
+    verdict: $verdict
+  );
+  
+  $tests: _add( $test );
+  
+  @return $test;
+
+}
+
+///--------------------------------------------------------------------------///

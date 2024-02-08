@@ -1,0 +1,26 @@
+:root {
+  --background-color: rgba(0, 0, 0, 0.8);
+  --hover-focus-color: rgb(118, 4, 4);
+  --button-text-color: rgba(255, 255, 255, 0.2);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Courier New", Courier, monospace;
+  background-color: blanchedalmond
+}
+
+@import "./components/AdminDashboard/styles/dashboard.scss";
+@import "./components/Cart/styles/cart.scss";
+@import "./components//Checkout/styles/checkout.scss";
+@import "./components/Grid/styles/grid.scss";
+@import "./components/HomePage/styles/homepage.scss";
+@import "./components//LogonForm/styles/logonform.scss";
+@import "./components/Navigation/styles/navigation.scss";
+@import "./components/RegisterForm/styles/registerform.scss";
+@import "./components/Registration/styles/registration.scss";
+@import "./components/UserProfile/styles/userprofile.scss";
+@import "./components/Verification/styles/verification.scss";

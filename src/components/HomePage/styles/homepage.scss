@@ -1,0 +1,19 @@
+html {
+    overflow-y: hidden;
+    min-height: 800px;
+}
+body {
+    overflow: hidden;
+    min-height: 800px;
+}
+.carousel{
+    height:350px;
+    border:1px solid black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:8px 24px 0 ;
+}
+.body-content{
+    margin: 16px 24px;
+}

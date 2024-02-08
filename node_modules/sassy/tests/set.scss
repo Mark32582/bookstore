@@ -1,0 +1,18 @@
+///--------------------------------------------------------------------------///
+
+/// set test
+$n: set;
+
+$m: ( a: map );
+$m: set( $m, b, magic );
+$r: get( $m, b ) == magic;
+$t: test( $n, $r, true, 'shallow' );
+@include result( $t );
+
+$m: ( a: ( deep: map ) );
+$m: set( $m, a deep, magic );
+$r: get( $m, a deep ) == magic;
+$t: test( $n, $r, true, 'deep' );
+@include result( $t );
+
+///--------------------------------------------------------------------------///

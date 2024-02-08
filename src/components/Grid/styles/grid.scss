@@ -1,0 +1,12 @@
+.grid-container{
+    margin:24px;
+
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.grid-tiles{
+    padding:16px;
+    min-height:200px;
+    border: 1px solid black;
+    
+}

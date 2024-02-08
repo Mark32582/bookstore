@@ -1,0 +1,25 @@
+.hide-cart {
+  display: none;
+}
+.cart-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  z-index: 10;
+}
+.cart {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px 8px;
+  border-radius: 0 0 0 25px;
+  font-family: "Courier New", Courier, monospace;
+  z-index: inherit;
+
+  &-headline {
+    padding: 0 8px;
+  }
+  &-contents {
+    display: grid;
+    padding: 8px;
+  }
+}
