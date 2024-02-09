@@ -7,11 +7,12 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const LogonForm = (props) => {
-  const { signOn, setSignOn, setVerified, employee, setEmployee} = props;
+  const { signOn, setSignOn, setVerified, employee, setEmployee } = props;
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState();
+  const [error, setError] = useState();
 
   const onLogin = (e) => {
     e.preventDefault();
@@ -23,22 +24,27 @@ const LogonForm = (props) => {
         //   setEmployee(true);
         // }
         setTimeout(() => {
+          setError(undefined);
+        }, 500);
+        setTimeout(() => {
+          setSignOn(!signOn);
+        }, 750);
+        setTimeout(() => {
           navigate("/");
         }, 1000);
-        setSignOn(!signOn);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        setError("Invalid Username or Password");
       });
   };
 
   const fetchPost = async () => {
     await getDocs(collection(db, "users")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data()
-        
+        ...doc.data(),
+
         // id: doc.id,
       }));
       setUsers(newData[0]);
@@ -52,6 +58,7 @@ const LogonForm = (props) => {
     <div className={classNames({ "hide-logon": !signOn })}>
       <div className="form-container-sign-on">
         <form className="logon-form">
+          {error ? <div className="error"> {error} </div> : null}
           <input
             id="email"
             type="email"
