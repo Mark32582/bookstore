@@ -7,7 +7,7 @@ import { db } from "../../config/fireBaseConfig";
 
 const RegisterForm = (props) => {
   const navigate = useNavigate();
-  
+
   // update this to one state object
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
@@ -22,7 +22,7 @@ const RegisterForm = (props) => {
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState();
   const [employee, setEmployee] = useState(false);
-  const { setVerified } = props;
+  const { verified, setVerified } = props;
 
   const fetchPost = async () => {
     await getDocs(collection(db, "users")).then((querySnapshot) => {
@@ -32,39 +32,43 @@ const RegisterForm = (props) => {
       }));
       setUsers(newData);
       setRewardNum(users?.length + 1);
-      
     });
   };
 
   const addUser = async (e) => {
-    e.preventDefault();  
-   
+    e.preventDefault();
+
     try {
-        const docRef = await addDoc(collection(db, "users"), {
-          fName: fName,
-          lName: lName,
-          streetNumber: streetNum,
-          address: address,
-          city: city,
-          state: state,
-          zip: zip,
-          phone:phone,
-          email: email,
-          rewardNumber: rewardNum,
-          rewards: 0,
-          employee: false
-         
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
-}
+      const docRef = await addDoc(collection(db, "users"), {
+        fName: fName,
+        lName: lName,
+        streetNumber: streetNum,
+        address: address,
+        city: city,
+        state: state,
+        zip: zip,
+        phone: phone,
+        email: email,
+        rewardNumber: rewardNum,
+        rewards: 0,
+        employee: false,
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
 
   useEffect(() => {
     fetchPost();
   }, []);
-  
+
+  useEffect(() => {
+    if (verified) {
+      navigate("/");
+    }
+  }, [verified, navigate]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -74,24 +78,22 @@ const RegisterForm = (props) => {
         const user = userCredential.user;
         console.log(user);
         const docRef = addDoc(collection(db, "users"), {
-            
-            
-            fName: fName,
-            lName: lName,
-            streetNumber: streetNum,
-            address: address,
-            city: city,
-            state: state,
-            zip: zip,
-            phone:phone,
-            email: email,
-            rewardNumber: rewardNum,
-            rewards: 0,
-            employee:employee, 
-          });
-        
+          fName: fName,
+          lName: lName,
+          streetNumber: streetNum,
+          address: address,
+          city: city,
+          state: state,
+          zip: zip,
+          phone: phone,
+          email: email,
+          rewardNumber: rewardNum,
+          rewards: 0,
+          employee: employee,
+        });
+
         setVerified(true);
-        docRef()
+        docRef();
         setTimeout(() => {
           setEmployee(employee);
         }, 500);

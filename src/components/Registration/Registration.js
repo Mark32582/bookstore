@@ -18,6 +18,7 @@ const Registration = (props) => {
       <Navigation
         name={name}
         verified={verified}
+        setVerified={setVerified}
         displayCart={displayCart}
         setDisplayCart={setDisplayCart}
         signOn={signOn}
@@ -25,7 +26,11 @@ const Registration = (props) => {
       />
 
       <LogonForm signOn={signOn} setName={setName} setVerified={setVerified} />
-      <RegisterForm setVerified={setVerified} setName={setName} />
+      <RegisterForm
+        verified={verified}
+        setVerified={setVerified}
+        setName={setName}
+      />
     </div>
   );
 };
