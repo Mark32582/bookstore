@@ -38,8 +38,15 @@ function App() {
             element={
               <Dashboard
                 name={name}
+                setName={setName}
                 verified={verified}
                 setVerified={setVerified}
+                employee={employee}
+                setEmployee={setEmployee}
+                displayCart={displayCart}
+                setDisplayCart={setDisplayCart}
+                signOn={signOn}
+                setSignOn={setSignOn}
               />
             }
           />
@@ -57,6 +64,8 @@ function App() {
                 setDisplayCart={setDisplayCart}
                 signOn={signOn}
                 setSignOn={setSignOn}
+                employee={employee}
+                setEmployee={setEmployee}
               />
             }
           />

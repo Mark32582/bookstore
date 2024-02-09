@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
@@ -21,8 +21,10 @@ const RegisterForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState();
-  const [employee, setEmployee] = useState(false);
-  const { verified, setVerified } = props;
+  const [type, setType] = useState("customer");
+  const [checked, setChecked] = useState(false);
+
+  const { verified, setVerified, employee, setEmployee } = props;
 
   const fetchPost = async () => {
     await getDocs(collection(db, "users")).then((querySnapshot) => {
@@ -69,6 +71,16 @@ const RegisterForm = (props) => {
     }
   }, [verified, navigate]);
 
+  useEffect(()=>{
+    if (checked){
+        setType("employee");
+    }
+    if (!checked){
+        setType("customer");
+    }
+
+  },[checked])
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -89,14 +101,11 @@ const RegisterForm = (props) => {
           email: email,
           rewardNumber: rewardNum,
           rewards: 0,
-          employee: employee,
+          type: type,
         });
-
         setVerified(true);
         docRef();
-        setTimeout(() => {
-          setEmployee(employee);
-        }, 500);
+        checked && setEmployee(true)
         setTimeout(() => {
           navigate("/");
         }, 1000);
@@ -111,6 +120,10 @@ const RegisterForm = (props) => {
       });
   };
 
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+console.log(type)
   return (
     <div>
       <main>
@@ -120,10 +133,9 @@ const RegisterForm = (props) => {
               <h1 className="title">Register today, Read Tomorrow!</h1>
               <p className="signupMsg">Please sign up</p>
               <form className="register-form">
-                {" "}
                 <div>
                   <label className="inputs">
-                    First Name:{" "}
+                    First Name:
                     <input
                       type="text"
                       label="fName"
@@ -134,7 +146,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label className="inputs">
-                    Last Name:{" "}
+                    Last Name:
                     <input
                       type="text"
                       label="fName"
@@ -145,7 +157,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label className="inputs">
-                    Street Number:{" "}
+                    Street Number:
                     <input
                       type="number"
                       label="streetNum"
@@ -156,7 +168,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label className="inputs">
-                    Address:{" "}
+                    Address:
                     <input
                       type="text"
                       label="address"
@@ -167,7 +179,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label className="inputs">
-                    City:{" "}
+                    City:
                     <input
                       type="text"
                       label="city"
@@ -178,7 +190,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label className="inputs">
-                    State:{" "}
+                    State:
                     <input
                       type="text"
                       label="state"
@@ -189,7 +201,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label className="inputs">
-                    Zip:{" "}
+                    Zip:
                     <input
                       type="number"
                       label="zip"
@@ -200,7 +212,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label className="inputs">
-                    Phone:{" "}
+                    Phone:
                     <input
                       type="text"
                       label="phone"
@@ -211,7 +223,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label htmlFor="email-address" className="inputs">
-                    Email address
+                    Email address:
                     <input
                       type="email"
                       label="Email address"
@@ -223,7 +235,7 @@ const RegisterForm = (props) => {
                 </div>
                 <div>
                   <label htmlFor="password" className="inputs">
-                    Password
+                    Password:
                     <input
                       type="password"
                       label="Create password"
@@ -233,6 +245,19 @@ const RegisterForm = (props) => {
                     />
                   </label>
                 </div>
+                {employee && (
+                  <div>
+                    <label htmlFor="type" className="switch">
+                      Employee:
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={handleChange}
+                        label="isEmployee"
+                      />
+                    </label>
+                  </div>
+                )}
                 <button
                   type="submit"
                   onClick={onSubmit}

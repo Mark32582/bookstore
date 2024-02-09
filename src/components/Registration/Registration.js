@@ -12,6 +12,8 @@ const Registration = (props) => {
     signOn,
     setSignOn,
     setName,
+    employee,
+    setEmployee,
   } = props;
   return (
     <div>
@@ -30,6 +32,8 @@ const Registration = (props) => {
         verified={verified}
         setVerified={setVerified}
         setName={setName}
+        employee={employee}
+        setEmployee={setEmployee}
       />
     </div>
   );
