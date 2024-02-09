@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Before starting guidelines
+Please cd into the bookstore directory
+
+You will need to add the config file for Firebase ask a moderator for this information and make sure you do not upload this config to Github
+
+in the terminal type `npm i`
+let this run until finished 
+in the terminal type `npm i classnames`
+
+if you have followed all these steps you can now launch the framework
+
 ## Available Scripts
 
 In the project directory, you can run:
