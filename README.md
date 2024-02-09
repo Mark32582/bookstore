@@ -10,6 +10,7 @@ You will need to add the config file for Firebase ask a moderator for this infor
 in the terminal type `npm i`
 let this run until finished 
 in the terminal type `npm i classnames`
+in the terminal type `npm i firebase`
 
 if you have followed all these steps you can now launch the framework
 
