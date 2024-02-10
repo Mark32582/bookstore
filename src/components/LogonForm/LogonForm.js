@@ -3,26 +3,33 @@ import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
 import { useNavigate } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const LogonForm = (props) => {
-  const { signOn, setSignOn, setVerified, employee, setEmployee } = props;
+  const {
+    signOn,
+    setSignOn,
+    setVerified,
+    employee,
+    setEmployee,
+    users: globalUsers,
+    setUsers: setGlobalUsers,
+  } = props;
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState();
+  //   const [users, setUsers] = useState();
   const [error, setError] = useState();
+  const [userId, setUserId] = useState();
 
   const onLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
+        setUserId(userCredential.user.uid);
         setVerified(true);
-        // if (employee === users?.employee) {
-        //   setEmployee(true);
-        // }
         setTimeout(() => {
           setError(undefined);
         }, 500);
@@ -41,19 +48,23 @@ const LogonForm = (props) => {
   };
 
   const fetchPost = async () => {
-    await getDocs(collection(db, "users")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-
-        // id: doc.id,
-      }));
-      setUsers(newData[0]);
-    });
+    const docRef = doc(db, "users", userId);
+    const docSnap = await getDoc(docRef);
+    const newData = docSnap.data();
+    setGlobalUsers(newData);
   };
 
   useEffect(() => {
-    fetchPost();
-  }, []);
+    if (globalUsers?.type === "employee") {
+      setEmployee(true);
+    }
+  }, [globalUsers?.type, setEmployee]);
+
+  useEffect(() => {
+    if (userId !== undefined) {
+      fetchPost();
+    }
+  }, [userId]);
   return (
     <div className={classNames({ "hide-logon": !signOn })}>
       <div className="form-container-sign-on">

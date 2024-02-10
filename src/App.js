@@ -11,6 +11,7 @@ function App() {
   const [displayCart, setDisplayCart] = useState(false);
   const [signOn, setSignOn] = useState(false);
   const [employee, setEmployee] = useState(false);
+  const [users, setUsers] = useState();
   return (
     <div>
       <BrowserRouter>
@@ -29,11 +30,13 @@ function App() {
                 setSignOn={setSignOn}
                 displayCart={displayCart}
                 setDisplayCart={setDisplayCart}
+                users={users}
+                setUsers={setUsers}
               />
             }
           />
 
-          <Route
+          {/* <Route
             path="/dashboard"
             element={
               <Dashboard
@@ -47,9 +50,11 @@ function App() {
                 setDisplayCart={setDisplayCart}
                 signOn={signOn}
                 setSignOn={setSignOn}
+                users={users}
+                setUsers={setUsers}
               />
             }
-          />
+          /> */}
           {/* <Route path="/user" element={<Profile name={name} verified={verified}
                 setVerified={setVerified} />} /> */}
           <Route
@@ -66,6 +71,8 @@ function App() {
                 setSignOn={setSignOn}
                 employee={employee}
                 setEmployee={setEmployee}
+                users={users}
+                setUsers={setUsers}
               />
             }
           />

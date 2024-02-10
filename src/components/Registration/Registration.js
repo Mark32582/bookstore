@@ -14,7 +14,11 @@ const Registration = (props) => {
     setName,
     employee,
     setEmployee,
+    users,
+    setUsers,
   } = props;
+
+  console.log(setUsers);
   return (
     <div>
       <Navigation
@@ -25,15 +29,27 @@ const Registration = (props) => {
         setDisplayCart={setDisplayCart}
         signOn={signOn}
         setSignOn={setSignOn}
+        setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
       />
 
-      <LogonForm signOn={signOn} setName={setName} setVerified={setVerified} />
+      <LogonForm
+        signOn={signOn}
+        setName={setName}
+        setVerified={setVerified}
+        users={users}
+        setUsers={setUsers}
+        setEmployee={setEmployee}
+      />
       <RegisterForm
         verified={verified}
         setVerified={setVerified}
         setName={setName}
         employee={employee}
         setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
       />
     </div>
   );

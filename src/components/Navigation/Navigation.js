@@ -12,10 +12,17 @@ const Navigation = (props) => {
     setEmployee,
     displayCart,
     setDisplayCart,
+    setUsers,
   } = props;
-
+  
   const signOff = () => {
     setVerified(!verified);
+    setTimeout(() => {
+      setEmployee(false);
+    }, 250);
+    setTimeout(() => {
+      setUsers(undefined);
+    }, 500);
   };
 
   return (
