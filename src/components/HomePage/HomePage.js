@@ -15,6 +15,14 @@ const HomePage = (props) => {
     setDisplayCart,
   } = props;
 
+  const handleSignOn = () => {
+    setSignOn(true);
+  };
+
+  const handleEmployeeLogin = () => {
+    setSignOn(!signOn);
+  };
+
   return (
     <div className="HomePage">
       <Navigation
@@ -27,25 +35,51 @@ const HomePage = (props) => {
         displayCart={displayCart}
         setDisplayCart={setDisplayCart}
       />
-      <LogonForm
-        signOn={signOn}
-        setSignOn={setSignOn}
-        setVerified={setVerified}
-        employee={employee}
-        setEmployee={setEmployee}
-      />
-      <Cart cart={displayCart} />
       {employee === true ? (
-        <AdminDashboard />
+        <div>
+          <div className="carousel">
+            {/* Scrolling new release carousel can go here */}
+          </div>
+          <div className="body-content">List of best sellers goes here</div>
+          <div className="employee-login-container">
+            <div className="employee-login">
+              <button className="employee-login-button" onClick={handleEmployeeLogin}>
+                Employee Login
+              </button>
+            </div>
+          </div>
+          <AdminDashboard />
+        </div>
       ) : (
-        <div className="carousel">
-          {" "}
-          a scrolling new release carousel can go here (when employee is logged
-          on hero disappears and a grid appears with options for the employee)
+        <div>
+         
+          <div className="carousel">
+            {/* Scrolling new release carousel can go here */}
+          </div>
+          <div className="body-content">List of best sellers goes here</div>
+          {signOn && (
+            <div className="login-form-container">
+              <LogonForm
+                signOn={signOn}
+                setSignOn={setSignOn}
+                setVerified={setVerified}
+                employee={employee}
+                setEmployee={setEmployee}
+              />
+            </div>
+          )}
+          <div className="employee-login-container">
+            <div className="employee-login">
+              <button className="employee-login-button" onClick={handleEmployeeLogin}>
+                Employee Login
+              </button>
+            </div>
+          </div>
         </div>
       )}
-      <div className="body-content">List of best sellers goes here</div>
+      <Cart cart={displayCart} />
     </div>
   );
 };
+
 export default HomePage;

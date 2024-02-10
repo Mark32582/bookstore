@@ -17,3 +17,30 @@ body {
 .body-content{
     margin: 16px 24px;
 }
+.HomePage {
+    position: relative;
+  
+    .employee-login-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+  
+      .employee-login {
+        padding: 10px;
+        border-radius: 5px;
+  
+        h4 {
+          margin: 0;
+          font-size: 18px;
+        }
+      }
+  
+      .employee-login-button {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: transparent;
+      }
+    }
+  }

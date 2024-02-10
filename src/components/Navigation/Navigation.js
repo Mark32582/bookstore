@@ -47,8 +47,10 @@ const Navigation = (props) => {
       </div>
       <div className="navigation--secondary-nav">
         <div>
-          Nav buttons go here (categories like fiction, non-fiction, mystery,
-          romance ...)
+          <button class="nav-button">Fiction</button> 
+          <button class="nav-button">Non-Fiction</button>
+          <button class="nav-button">Audiobooks</button>
+          <button class="nav-button">Bestsellers</button>
         </div>
         <div className="navigation--right">
           <label htmlFor="email-address">
