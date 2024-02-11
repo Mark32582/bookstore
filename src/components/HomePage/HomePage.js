@@ -2,6 +2,7 @@ import Navigation from "../Navigation/Navigation";
 import LogonForm from "../LogonForm/LogonForm";
 import AdminDashboard from "../AdminDashboard/Dashboard";
 import Cart from "../Cart/Cart";
+import Carousel from "../Carousel/Carousel";
 
 const HomePage = (props) => {
   const {
@@ -15,6 +16,10 @@ const HomePage = (props) => {
     setDisplayCart,
     users,
     setUsers,
+    search,
+    setSearch,
+    books,
+    setBooks,
   } = props;
 
   console.log(users);
@@ -30,6 +35,10 @@ const HomePage = (props) => {
         displayCart={displayCart}
         setDisplayCart={setDisplayCart}
         setUsers={setUsers}
+        search={search}
+        setSearch={setSearch}
+        books={books}
+        setBooks={setBooks}
       />
       <LogonForm
         signOn={signOn}
@@ -40,13 +49,17 @@ const HomePage = (props) => {
         users={users}
         setUsers={setUsers}
       />
-      <Cart cart={displayCart} />
+      <Cart cart={displayCart} books={books} setBooks={setBooks} />
       {employee === true ? (
-        <AdminDashboard users={users} />
+        <AdminDashboard users={users} books={books} setBooks={setBooks} />
       ) : (
         <div className="carousel">
-          a scrolling new release carousel can go here (when employee is logged
-          on hero disappears and a grid appears with options for the employee)
+          <Carousel
+            search={search}
+            setSearch={setSearch}
+            books={books}
+            setBooks={setBooks}
+          />
         </div>
       )}
       <div className="body-content">List of best sellers goes here</div>

@@ -16,6 +16,10 @@ const Registration = (props) => {
     setEmployee,
     users,
     setUsers,
+    search,
+    setSearch,
+    books,
+    setBooks,
   } = props;
 
   console.log(setUsers);
@@ -32,6 +36,10 @@ const Registration = (props) => {
         setEmployee={setEmployee}
         users={users}
         setUsers={setUsers}
+        search={search}
+        setSearch={setSearch}
+        books={books}
+        setBooks={setBooks}
       />
 
       <LogonForm
