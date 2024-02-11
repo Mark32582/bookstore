@@ -12,6 +12,8 @@ function App() {
   const [signOn, setSignOn] = useState(false);
   const [employee, setEmployee] = useState(false);
   const [users, setUsers] = useState();
+  const [search, setSearch] = useState();
+  const [books, setBooks] = useState();
   return (
     <div>
       <BrowserRouter>
@@ -32,6 +34,10 @@ function App() {
                 setDisplayCart={setDisplayCart}
                 users={users}
                 setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
               />
             }
           />
@@ -73,6 +79,10 @@ function App() {
                 setEmployee={setEmployee}
                 users={users}
                 setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
               />
             }
           />

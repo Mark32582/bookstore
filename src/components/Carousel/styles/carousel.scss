@@ -1,0 +1,28 @@
+.carousel {
+    display:flex;
+    flex: row;
+    align-items: flex-end;
+    padding: 8px 24px;
+    overflow: hidden;
+    border:none;
+
+    &--image {
+        margin-right:16px;
+    }
+    &--text{
+        display:flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+
+        &__description{
+            overflow: hidden;
+            display:block;
+            text-overflow: ellipsis;
+            max-height: 225px;
+            display: -webkit-box;
+            -webkit-line-clamp: 7;
+            -webkit-box-orient: vertical;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
-
+import axios from "axios";
 import classNames from "classnames";
+import { googleBooks } from "../../config/googlebooks";
 
 const Navigation = (props) => {
   const {
@@ -13,8 +14,13 @@ const Navigation = (props) => {
     displayCart,
     setDisplayCart,
     setUsers,
+    search,
+    setSearch,
+    books,
+    setBooks,
   } = props;
-  
+
+  const api = googleBooks?.key;
   const signOff = () => {
     setVerified(!verified);
     setTimeout(() => {
@@ -25,6 +31,15 @@ const Navigation = (props) => {
     }, 500);
   };
 
+  const handleSearch = () => {
+    axios
+      .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
+      .then((res) => {
+        console.log(res);
+        setBooks(res?.data?.items);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <div className="navigation">
@@ -63,21 +78,19 @@ const Navigation = (props) => {
             <button>Poetry</button>
             <button>Horror</button>
             <button>Thriller</button>
-            <button>Children's Literature</button>        
+            <button>Children's Literature</button>
           </div>
-    
         </div>
         <div className="navigation--right">
-          <label htmlFor="email-address">
-            <form className="navigation--search">
-              <input
-                type="text"
-                name="search"
-                placeholder="search for books or authors"
-              />
-              <button type="submit">Search</button>{" "}
-            </form>
-          </label>
+          <input
+            type="text"
+            name="search"
+            placeholder="search for books or authors"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button type="submit" onClick={handleSearch}>
+            Search
+          </button>{" "}
           <NavLink>
             <img
               className="cart-icon"

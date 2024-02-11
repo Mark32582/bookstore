@@ -88,8 +88,8 @@ const RegisterForm = (props) => {
           type: type,
         });
         if (employee) {
-          docRef();
           setSuccess("Registration Successful!");
+          docRef();
         }
         setVerified(true);
         docRef();
