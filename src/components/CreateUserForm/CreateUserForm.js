@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const RegisterForm = (props) => {
@@ -26,15 +26,8 @@ const RegisterForm = (props) => {
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
 
-  const {
-    employee,
-    setEmployee,
-    verified,
-    setVerified,
-    users: globalUsers,
-    setUsers: setGlobalUsers,
-  } = props;
-  console.log(employee);
+  const { employee, verified, setVerified } = props;
+
   const fetchPost = async () => {
     await getDocs(collection(db, "users")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
@@ -42,7 +35,7 @@ const RegisterForm = (props) => {
         id: doc.id,
       }));
       setUsers(newData);
-      setRewardNum(users?.length + 1);
+      setRewardNum(Object?.keys(users)?.length + 1);
     });
   };
 
@@ -73,7 +66,9 @@ const RegisterForm = (props) => {
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const docRef = setDoc(doc(db, "users", userCredential.user.uid), {
+        const user = userCredential.user;
+        console.log(user);
+        const docRef = addDoc(collection(db, "users"), {
           fName: fName,
           lName: lName,
           streetNumber: streetNum,
@@ -88,7 +83,6 @@ const RegisterForm = (props) => {
           type: type,
         });
         if (employee) {
-          docRef();
           setSuccess("Registration Successful!");
         }
         setVerified(true);
@@ -102,11 +96,9 @@ const RegisterForm = (props) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        if (errorMessage !== "docRef is not a function") {
-          setError(
-            "Email has already been used. Please login or use another email."
-          );
-        }
+        setError(
+          "Email has already been used. Please login or use another email."
+        );
         // ..
       });
   };
@@ -259,23 +251,13 @@ const RegisterForm = (props) => {
                     </label>
                   </div>
                 )}
-                {!employee ? (
-                  <button
-                    type="submit"
-                    onClick={onSubmit}
-                    className="signup-button "
-                  >
-                    Sign up
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    onClick={onSubmit}
-                    className="signup-button "
-                  >
-                    Register Customer/Employee
-                  </button>
-                )}
+                <button
+                  type="submit"
+                  onClick={onSubmit}
+                  className="signup-button "
+                >
+                  Register Customer/Employee
+                </button>
               </form>
             </div>
           </div>

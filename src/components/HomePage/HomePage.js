@@ -13,8 +13,11 @@ const HomePage = (props) => {
     setEmployee,
     displayCart,
     setDisplayCart,
+    users,
+    setUsers,
   } = props;
 
+  console.log(users);
   return (
     <div className="HomePage">
       <Navigation
@@ -26,6 +29,7 @@ const HomePage = (props) => {
         setEmployee={setEmployee}
         displayCart={displayCart}
         setDisplayCart={setDisplayCart}
+        setUsers={setUsers}
       />
       <LogonForm
         signOn={signOn}
@@ -33,13 +37,14 @@ const HomePage = (props) => {
         setVerified={setVerified}
         employee={employee}
         setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
       />
       <Cart cart={displayCart} />
       {employee === true ? (
-        <AdminDashboard />
+        <AdminDashboard users={users} />
       ) : (
         <div className="carousel">
-          {" "}
           a scrolling new release carousel can go here (when employee is logged
           on hero disappears and a grid appears with options for the employee)
         </div>

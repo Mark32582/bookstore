@@ -12,10 +12,17 @@ const Navigation = (props) => {
     setEmployee,
     displayCart,
     setDisplayCart,
+    setUsers,
   } = props;
-
+  
   const signOff = () => {
     setVerified(!verified);
+    setTimeout(() => {
+      setEmployee(false);
+    }, 250);
+    setTimeout(() => {
+      setUsers(undefined);
+    }, 500);
   };
 
   return (
@@ -47,8 +54,18 @@ const Navigation = (props) => {
       </div>
       <div className="navigation--secondary-nav">
         <div>
-          Nav buttons go here (categories like fiction, non-fiction, mystery,
-          romance ...)
+          <div className="navigation--buttons">
+            <button>Fiction</button>
+            <button>Science-Fiction</button>
+            <button>Non-Fiction</button>
+            <button>Mystery</button>
+            <button>Romance</button>
+            <button>Poetry</button>
+            <button>Horror</button>
+            <button>Thriller</button>
+            <button>Children's Literature</button>        
+          </div>
+    
         </div>
         <div className="navigation--right">
           <label htmlFor="email-address">
