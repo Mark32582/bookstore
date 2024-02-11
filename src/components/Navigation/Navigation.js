@@ -21,7 +21,6 @@ const Navigation = (props) => {
   } = props;
 
   const api = googleBooks?.key;
-  console.log(api);
   const signOff = () => {
     setVerified(!verified);
     setTimeout(() => {
@@ -35,7 +34,10 @@ const Navigation = (props) => {
   const handleSearch = () => {
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
-      .then((res) => setBooks(res?.data?.items))
+      .then((res) => {
+        console.log(res);
+        setBooks(res?.data?.items);
+      })
       .catch((err) => console.log(err));
   };
   return (

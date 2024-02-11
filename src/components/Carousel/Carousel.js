@@ -1,3 +1,4 @@
+/* eslint-disable no-lone-blocks */
 import { googleBooks } from "../../config/googlebooks";
 import axios from "axios";
 import { useCallback, useState } from "react";
@@ -26,24 +27,31 @@ const Carousel = (props) => {
   // console.log(bookLibrary)
   console.log(books);
   return (
-    <div>
+    <div className="carousel">
       {books &&
         books.map((book, i) => {
           {
             if (i < 1) {
               return (
-                <div key={i}>
-                  <b>{book?.volumeInfo?.title}</b>
-                  <br />
-                  <i>{book?.volumeInfo?.authors}</i>
-                  <br />
-                  {book?.volumeInfo?.description}
-                </div>
+                <>
+                  <div className="carousel--image">
+                    <img
+                      src={book?.volumeInfo?.imageLinks?.thumbnail}
+                      width="200px"
+                      alt=""
+                    />
+                  </div>
+                  <div key={i} className="carousel--text">
+                    <span><b>{book?.volumeInfo?.title}</b></span>         
+                    <span><i>{book?.volumeInfo?.authors}</i></span>                
+                    <div className="carousel--text__description"><p >{book?.volumeInfo?.description}</p></div>
+                  </div>
+                </>
               );
             }
+            return null;
           }
         })}
-      <span>random stuff currently </span>
     </div>
   );
 };

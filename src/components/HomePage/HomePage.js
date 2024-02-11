@@ -53,7 +53,7 @@ const HomePage = (props) => {
       {employee === true ? (
         <AdminDashboard users={users} books={books} setBooks={setBooks} />
       ) : (
-        <div className="carousel">
+        <div className="carousel-container">
           <Carousel
             search={search}
             setSearch={setSearch}
