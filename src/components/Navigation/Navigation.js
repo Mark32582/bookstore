@@ -1,6 +1,22 @@
 import { NavLink } from "react-router-dom";
-
+import axios from 'axios';
 import classNames from "classnames";
+
+// Define the Google API module
+const googleAPI = {
+  retrieveBooks: (category) => {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${category}`;
+
+    return axios.get(url)
+      .then((response) => {
+        // Process the response data as needed
+        return response.data.items; // Assuming the response contains an array of books
+      })
+      .catch((error) => {
+        throw new Error(`Error retrieving books: ${error.message}`);
+      });
+  },
+};
 
 const Navigation = (props) => {
   const {
@@ -18,6 +34,20 @@ const Navigation = (props) => {
 
   const signOff = () => {
     setVerified(!verified);
+  };
+
+  const handleNavigation = (category) => {
+    // Perform Google API action based on the selected category
+    // Example: Making an API call to retrieve books of the selected category
+    googleAPI.retrieveBooks(category)
+      .then((books) => {
+        console.log(`Retrieved books of category ${category}:`, books);
+        // Do something with the retrieved books
+      })
+      .catch((error) => {
+        console.error(`Error retrieving books of category ${category}:`, error);
+        // Handle the error accordingly
+      });
   };
 
   return (
@@ -49,10 +79,14 @@ const Navigation = (props) => {
       </div>
       <div className="navigation--secondary-nav">
         <div>
-          <button class="nav-button">Fiction</button> 
-          <button class="nav-button">Non-Fiction</button>
-          <button class="nav-button">Audiobooks</button>
-          <button class="nav-button">Bestsellers</button>
+        <button value="non-fiction" onClick={() => handleNavigation("non-fiction")}>Non-Fiction</button> 
+        <button value="fiction" onClick={() => handleNavigation("fiction")}>Fiction</button> 
+        <button value="Suspense" onClick={() => handleNavigation("Suspense")}>Suspense</button> 
+        <button value="science fiction" onClick={() => handleNavigation("science fiction")}>Science Fiction</button> 
+        <button value="romance" onClick={() => handleNavigation("romance")}>Romance</button> 
+        <button value="Poetry" onClick={() => handleNavigation("non-Poetry")}>Poetry</button> 
+        <button value="young adult" onClick={() => handleNavigation("young adult")}>Young Adult</button> 
+        <button value="childrens" onClick={() => handleNavigation("childrens")}>Childrens</button> 
         </div>
         <div className="navigation--right">
           <label htmlFor="email-address">
