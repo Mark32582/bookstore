@@ -3,14 +3,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Before starting guidelines
+
 Please cd into the bookstore directory
 
 You will need to add the config file for Firebase ask a moderator for this information and make sure you do not upload this config to Github
+You will also need to add the config file for Google Books API ask a moderator for this information and DO NOT UPLOAD TO GITHUB
 
 in the terminal type `npm i`
-let this run until finished 
+let this run until finished
 in the terminal type `npm i classnames`
 in the terminal type `npm i firebase`
+in the terminal type `npm i axios`
 
 if you have followed all these steps you can now launch the framework
 
@@ -80,5 +83,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
 # bookstore
+
 # bookstore
