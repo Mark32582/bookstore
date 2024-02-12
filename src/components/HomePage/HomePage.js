@@ -3,6 +3,7 @@ import LogonForm from "../LogonForm/LogonForm";
 import AdminDashboard from "../AdminDashboard/Dashboard";
 import Cart from "../Cart/Cart";
 import Carousel from "../Carousel/Carousel";
+import Rows from "../CategoryRows/Rows";
 
 const HomePage = (props) => {
   const {
@@ -20,6 +21,8 @@ const HomePage = (props) => {
     setSearch,
     books,
     setBooks,
+    bookCategory,
+    setBookCategory,
   } = props;
 
   console.log(users);
@@ -39,6 +42,8 @@ const HomePage = (props) => {
         setSearch={setSearch}
         books={books}
         setBooks={setBooks}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
       />
       <LogonForm
         signOn={signOn}
@@ -62,7 +67,9 @@ const HomePage = (props) => {
           />
         </div>
       )}
-      <div className="body-content">List of best sellers goes here</div>
+      <div className="body-content">
+        <Rows bookCategory={bookCategory} books={books} setBooks={setBooks} />
+      </div>
     </div>
   );
 };

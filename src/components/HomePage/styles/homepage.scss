@@ -5,6 +5,7 @@ html {
 body {
     overflow: hidden;
     min-height: 800px;
+    overflow:auto;
 }
 .carousel-container{
     height:350px;
@@ -16,4 +17,5 @@ body {
 }
 .body-content{
     margin: 16px 24px;
+    width: 100%;
 }
