@@ -12,6 +12,8 @@ const Navigation = (props) => {
     setEmployee,
     displayCart,
     setDisplayCart,
+    bookCategory,
+    setBookCategory,
   } = props;
 
   const signOff = () => {

@@ -14,6 +14,8 @@ const Registration = (props) => {
     setName,
     employee,
     setEmployee,
+    bookCategory,
+    setBookCategory,
   } = props;
   return (
     <div>
@@ -25,6 +27,8 @@ const Registration = (props) => {
         setDisplayCart={setDisplayCart}
         signOn={signOn}
         setSignOn={setSignOn}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
       />
 
       <LogonForm signOn={signOn} setName={setName} setVerified={setVerified} />
@@ -34,6 +38,8 @@ const Registration = (props) => {
         setName={setName}
         employee={employee}
         setEmployee={setEmployee}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
       />
     </div>
   );

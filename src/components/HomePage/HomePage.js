@@ -13,6 +13,8 @@ const HomePage = (props) => {
     setEmployee,
     displayCart,
     setDisplayCart,
+    bookCategory,
+    setBookCategory,
   } = props;
 
   const handleSignOn = () => {
@@ -34,6 +36,8 @@ const HomePage = (props) => {
         setEmployee={setEmployee}
         displayCart={displayCart}
         setDisplayCart={setDisplayCart}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory} 
       />
       {employee === true ? (
         <div>
@@ -65,6 +69,8 @@ const HomePage = (props) => {
                 setVerified={setVerified}
                 employee={employee}
                 setEmployee={setEmployee}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
               />
             </div>
           )}

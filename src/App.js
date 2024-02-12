@@ -11,6 +11,7 @@ function App() {
   const [displayCart, setDisplayCart] = useState(false);
   const [signOn, setSignOn] = useState(false);
   const [employee, setEmployee] = useState(false);
+  const [bookCategory, setBookCategory] = useState("");
   return (
     <div>
       <BrowserRouter>
@@ -29,6 +30,8 @@ function App() {
                 setSignOn={setSignOn}
                 displayCart={displayCart}
                 setDisplayCart={setDisplayCart}
+                bookCategory={bookCategory} 
+                setBookCategory={setBookCategory} 
               />
             }
           />
@@ -47,6 +50,8 @@ function App() {
                 setDisplayCart={setDisplayCart}
                 signOn={signOn}
                 setSignOn={setSignOn}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory} 
               />
             }
           />
@@ -66,6 +71,8 @@ function App() {
                 setSignOn={setSignOn}
                 employee={employee}
                 setEmployee={setEmployee}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory} 
               />
             }
           />
