@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Navigation = (props) => {
   const {
@@ -18,6 +20,8 @@ const Navigation = (props) => {
     setSearch,
     books,
     setBooks,
+    bookCategory,
+    setBookCategory,
   } = props;
 
   const api = googleBooks?.key;
@@ -40,6 +44,20 @@ const Navigation = (props) => {
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    if (bookCategory) {
+      axios
+        .get(
+          `https://www.googleapis.com/books/v1/volumes?q=subject:${bookCategory}&maxResults=20&key=${api}`
+        )
+        .then((res) => {
+          console.log(res);
+          setBooks(res?.data?.items);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [api, bookCategory, setBooks]);
   return (
     <div>
       <div className="navigation">
@@ -70,14 +88,24 @@ const Navigation = (props) => {
       <div className="navigation--secondary-nav">
         <div>
           <div className="navigation--buttons">
-            <button>Fiction</button>
-            <button>Science-Fiction</button>
+            <NavLink to="/">
+              <img
+                style={{ marginRight: "8px" }}
+                src={process.env.PUBLIC_URL + "home.png"}
+                alt="home button"
+              />
+            </NavLink>
+            <button id="fiction" onClick={() => setBookCategory("fiction")}>
+              Fiction
+            </button>
             <button>Non-Fiction</button>
             <button>Mystery</button>
             <button>Romance</button>
             <button>Poetry</button>
             <button>Horror</button>
-            <button>Thriller</button>
+            <button>Suspense</button>
+            <button>Science-Fiction</button>
+            <button>Young Adult</button>
             <button>Children's Literature</button>
           </div>
         </div>

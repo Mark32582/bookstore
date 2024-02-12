@@ -20,6 +20,8 @@ const Registration = (props) => {
     setSearch,
     books,
     setBooks,
+    bookCategory,
+    setBookCategory,
   } = props;
 
   console.log(setUsers);
@@ -40,6 +42,8 @@ const Registration = (props) => {
         setSearch={setSearch}
         books={books}
         setBooks={setBooks}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
       />
 
       <LogonForm

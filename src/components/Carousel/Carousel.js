@@ -34,7 +34,7 @@ const Carousel = (props) => {
             if (i < 1) {
               return (
                 <>
-                  <div className="carousel--image">
+                  <div className="carousel--image" key={i}>
                     <img
                       src={book?.volumeInfo?.imageLinks?.thumbnail}
                       width="200px"

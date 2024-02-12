@@ -14,6 +14,7 @@ function App() {
   const [users, setUsers] = useState();
   const [search, setSearch] = useState();
   const [books, setBooks] = useState();
+  const [bookCategory, setBookCategory] = useState();
   return (
     <div>
       <BrowserRouter>
@@ -38,12 +39,14 @@ function App() {
                 setSearch={setSearch}
                 books={books}
                 setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
               />
             }
           />
 
           {/* <Route
-            path="/dashboard"
+            path="/book/:bookId"
             element={
               <Dashboard
                 name={name}
@@ -83,6 +86,8 @@ function App() {
                 setSearch={setSearch}
                 books={books}
                 setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
               />
             }
           />
