@@ -98,15 +98,15 @@ const Navigation = (props) => {
             <button id="fiction" onClick={() => setBookCategory("fiction")}>
               Fiction
             </button>
-            <button>Non-Fiction</button>
-            <button>Mystery</button>
-            <button>Romance</button>
-            <button>Poetry</button>
-            <button>Horror</button>
-            <button>Suspense</button>
-            <button>Science-Fiction</button>
-            <button>Young Adult</button>
-            <button>Children's Literature</button>
+            <button id = "nonFiction" onClick={() => setBookCategory("nonFiction")}>Non-Fiction</button>
+            <button id = "mystery" onClick={() => setBookCategory("mystery")}>Mystery</button>
+           <button id = "romance" onClick={() => setBookCategory("romance")}>Romance</button>
+            <button id = "poetry" onClick={() => setBookCategory("poetry")}>Poetry</button>
+            <button id = "horror" onClick={() => setBookCategory("horror")}>Horror</button>
+            <button id = "suspense" onClick={() => setBookCategory("suspense")}>Suspense</button>
+            <button id = "scienceFiction" onClick={() => setBookCategory("scienceFiction")}>Science-Fiction</button>
+            <button id = "youngAdult" onClick={() => setBookCategory("youngAdult")}>Young Adult</button>
+            <button id = "childrens" onClick={() => setBookCategory("childrens")}>Children's</button>
           </div>
         </div>
         <div className="navigation--right">
