@@ -114,7 +114,7 @@ const Navigation = (props) => {
               Science-Fiction</button>
             <button id = "youngAdult" onClick={() => setBookCategory("youth")}>
               Young Adult</button>
-            <button id = "childrens" onClick={() => setBookCategory("childrens")}>
+            <button id = "childrens" onClick={() => setBookCategory("juvenile fiction")}>
               Children's</button>
           </div>
         </div>
