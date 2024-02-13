@@ -58,7 +58,7 @@ const HomePage = (props) => {
       {employee === true ? (
         <AdminDashboard users={users} books={books} setBooks={setBooks} />
       ) : (
-        <div className="carousel-container">
+        <div className="temp-carousel-container">
           <Carousel
             search={search}
             setSearch={setSearch}
@@ -67,9 +67,9 @@ const HomePage = (props) => {
           />
         </div>
       )}
-      <div className="body-content">
+      {/* <div className="body-content">
         <Rows bookCategory={bookCategory} books={books} setBooks={setBooks} />
-      </div>
+      </div> */}
     </div>
   );
 };

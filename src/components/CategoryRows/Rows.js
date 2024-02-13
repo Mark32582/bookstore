@@ -11,7 +11,7 @@ const Rows = (props) => {
         books.map((book, i) => {
           console.log(book);
           return (
-            <div className="row">
+            <div className="row" key={i}>
               <div className="row--image">
                 <img
                   src={book?.volumeInfo?.imageLinks?.thumbnail}
@@ -30,7 +30,7 @@ const Rows = (props) => {
                   <p>{book?.volumeInfo?.description}</p>
                 </div>
                 <div className="row--text__actions">
-                  <NavLink to={`/book/${book?.accessInfo?.id}`}>
+                  <NavLink to={`/book/${book?.id}`}>
                     <span className="row--text__info">More Info</span>
                   </NavLink>
                   {book?.saleInfo?.listPrice?.amount ? (

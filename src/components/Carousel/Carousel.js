@@ -1,55 +1,58 @@
 /* eslint-disable no-lone-blocks */
-import { googleBooks } from "../../config/googlebooks";
-import axios from "axios";
-import { useCallback, useState } from "react";
+// import { googleBooks } from "../../config/googlebooks";
+// import axios from "axios";
+// import { useCallback, useState } from "react";
 
 const Carousel = (props) => {
   const { books, setBooks } = props;
-  const api = googleBooks?.key;
-  //   const [books, setBooks] = useState();
-  const [search, setSearch] = useState();
+  //   const api = googleBooks?.key;
+  //   const [search, setSearch] = useState();
 
-  //   useCallback(() => {
-  // if (search) {
-  //   axios
-  //     .get(
-  //       `https://www.googleapis.com/books/v1/volumes?q=javascript&key=${api}`
-  //     )
-  //     .then((res) => setBooks(res?.data?.items))
-  //     .catch((err) => console.log(err));
-  // }
-  //   }, [search, api]);
-  //   const bookLibrary = axios
-  //     .get(`https://www.googleapis.com/books/v1/volumes?q=javascript&key=${api}`)
-  //     .then(res=>setBooks(res?.data?.items))
-  //     .catch(err =>console.log(err))
-
-  // console.log(bookLibrary)
   console.log(books);
   return (
-    <div className="carousel">
+    <div className="temp-carousel">
       {books &&
         books.map((book, i) => {
           {
-            if (i < 1) {
-              return (
-                <>
-                  <div className="carousel--image" key={i}>
-                    <img
-                      src={book?.volumeInfo?.imageLinks?.thumbnail}
-                      width="200px"
-                      alt=""
-                    />
-                  </div>
-                  <div key={i} className="carousel--text">
-                    <span><b>{book?.volumeInfo?.title}</b></span>         
-                    <span><i>{book?.volumeInfo?.authors}</i></span>                
-                    <div className="carousel--text__description"><p >{book?.volumeInfo?.description}</p></div>
-                  </div>
-                </>
-              );
-            }
-            return null;
+            return (
+              <div className="temp">
+                <div className="interior">
+                  <b>id:</b> {book?.id}
+                </div>
+                <div className="interior">
+                  <b>title:</b> {book?.volumeInfo?.title}
+                </div>
+                <div className="interior">
+                  <b>author:</b> {book?.volumeInfo?.authors}
+                </div>
+                <div className="interior">
+                  <b>category:</b> {book?.volumeInfo?.categories}
+                </div>
+                <div className="interior">
+                  <b>description: </b>
+                  {book?.volumeInfo?.description}
+                </div>
+                <div className="interior">
+                  <b>thumbnail URL: </b>
+                  {book?.volumeInfo?.imageLinks?.thumbnail}
+                </div>
+                <div className="interior">
+                  <b>page count: </b>
+                  {book?.volumeInfo?.pageCount}
+                </div>
+                <div className="interior">
+                  <b>published date: </b>
+                  {book?.volumeInfo?.publishedDate}
+                </div>
+                <div className="interior">
+                  <b>publisher:</b> {book?.volumeInfo?.publisher}
+                </div>
+                <div className="interior">
+                  <b>retail price: </b>
+                  {book?.saleInfo?.listPrice?.amount}
+                </div>
+              </div>
+            );
           }
         })}
     </div>

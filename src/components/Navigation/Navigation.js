@@ -2,8 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Navigation = (props) => {
   const {
@@ -91,7 +90,7 @@ const Navigation = (props) => {
             <NavLink to="/">
               <img
                 style={{ marginRight: "8px" }}
-                src={process.env.PUBLIC_URL + "home.png"}
+                src={process.env.PUBLIC_URL + "/home.png"}
                 alt="home button"
               />
             </NavLink>
