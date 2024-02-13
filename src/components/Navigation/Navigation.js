@@ -110,11 +110,11 @@ const Navigation = (props) => {
               Horror</button>
             <button id = "suspense" onClick={() => setBookCategory("suspense")}>
               Suspense</button>
-            <button id = "scienceFiction" onClick={() => setBookCategory("scienceFiction")}>
+            <button id = "scienceFiction" onClick={() => setBookCategory("science fiction")}>
               Science-Fiction</button>
-            <button id = "youngAdult" onClick={() => setBookCategory("youngAdult")}>
+            <button id = "youngAdult" onClick={() => setBookCategory("Ya Fiction")}>
               Young Adult</button>
-            <button id = "childrens" onClick={() => setBookCategory("childrens")}>
+            <button id = "childrens" onClick={() => setBookCategory("juvenile fiction")}>
               Children's</button>
           </div>
         </div>
