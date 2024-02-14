@@ -6,8 +6,7 @@ import { useCallback, useState } from "react";
 const Carousel = (props) => {
   const { books, setBooks } = props;
   const api = googleBooks?.key;
-  //   const [books, setBooks] = useState();
-  const [search, setSearch] = useState();
+ 
 
   //   useCallback(() => {
   // if (search) {
@@ -25,7 +24,6 @@ const Carousel = (props) => {
   //     .catch(err =>console.log(err))
 
   // console.log(bookLibrary)
-  console.log(books);
   return (
     <div className="carousel">
       {books &&

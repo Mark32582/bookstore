@@ -25,7 +25,6 @@ const HomePage = (props) => {
     setBookCategory,
   } = props;
 
-  console.log(users);
   return (
     <div className="HomePage">
       <Navigation
@@ -68,7 +67,11 @@ const HomePage = (props) => {
         </div>
       )}
       <div className="body-content">
-        <Rows bookCategory={bookCategory} books={books} setBooks={setBooks} />
+        <div></div>
+
+        <div className="search-results" id="searchResults">
+          <Rows bookCategory={bookCategory} books={books} setBooks={setBooks} />
+        </div>
       </div>
     </div>
   );

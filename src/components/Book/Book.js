@@ -8,18 +8,61 @@ const Book = (props) => {
   const { bookId } = useParams();
   const api = googleBooks?.key;
   const [currentBook, setCurrentBook] = useState();
-  const {} = props;
+  const {
+    verified,
+    setVerified,
+    signOn,
+    setSignOn,
+    employee,
+    setEmployee,
+    displayCart,
+    setDisplayCart,
+    users,
+    setUsers,
+    search,
+    setSearch,
+    books,
+    setBooks,
+    bookCategory,
+    setBookCategory,
+  } = props;
 
   useEffect(() => {
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=id:${bookId}&key=${api}`
+        `https://www.googleapis.com/books/v1/volumes/${bookId}`
       )
-      .then((res) => setCurrentBook(res?.data?.items))
+      .then((res) => {
+        setCurrentBook(res?.data?.volumeInfo);
+        
+      })
       .catch((err) => console.log(err));
-  }, [api, bookId]);
+  }, []);
 
+//   console.log(bookId);
   console.log(currentBook);
-  return <Navigation />;
+
+  return (
+    <>
+      <Navigation
+        verified={verified}
+        setVerified={setVerified}
+        signOn={signOn}
+        setSignOn={setSignOn}
+        employee={employee}
+        setEmployee={setEmployee}
+        displayCart={displayCart}
+        setDisplayCart={setDisplayCart}
+        setUsers={setUsers}
+        search={search}
+        setSearch={setSearch}
+        books={books}
+        setBooks={setBooks}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
+      />
+      <div></div>
+    </>
+  );
 };
 export default Book;
