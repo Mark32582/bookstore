@@ -4,6 +4,7 @@ import HomePage from "./components/HomePage/HomePage";
 import Dashboard from "./components/AdminDashboard/Dashboard";
 import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
+
 import Registration from "./components/Registration/Registration";
 
 function App() {
@@ -47,10 +48,11 @@ function App() {
             }
           />
 
-{/* <Route
-            path="/book/:bookId" 
+
+          <Route
+            path="/book/:bookId"
             element={
-              <Dashboard
+              <Book
                 name={name}
                 setName={setName}
                 verified={verified}
@@ -63,9 +65,15 @@ function App() {
                 setSignOn={setSignOn}
                 users={users}
                 setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
               />
             }
-          /> */}
+          />
           {/* <Route path="/user" element={<Profile name={name} verified={verified}
                 setVerified={setVerified} />} /> */}
           <Route

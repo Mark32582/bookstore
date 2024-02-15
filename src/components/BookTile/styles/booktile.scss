@@ -1,21 +1,26 @@
-.row {
+.tile {
     display:flex;
-    flex: row;
-    align-items: flex-end;
-    padding: 8px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding:0 16px;
+    margin-bottom: 12px;
     overflow: hidden;
-    border:none;
-    height:120px;
+    border:1px solid;
+    height:170px;
+    width: 340px;
 
     &--image {
-        margin-right:16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
     }
     &--text{
         display:flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: flex-end;
-        margin-right:24px;
+        justify-content: center;
+        margin:0 16px;
 
         &__description{
             overflow: hidden;
@@ -34,15 +39,4 @@
             margin-right:12px;
         }
     }
-    &--category{
-        display:flex;
-        width:100%;
-        margin-bottom: 0;
-        flex-direction: column;
-
-    }
-}
-.static-books{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
