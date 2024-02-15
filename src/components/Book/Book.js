@@ -29,17 +29,14 @@ const Book = (props) => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://www.googleapis.com/books/v1/volumes/${bookId}`
-      )
+      .get(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
       .then((res) => {
-        setCurrentBook(res?.data?.volumeInfo);
-        
+        setCurrentBook(res?.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-//   console.log(bookId);
+  //   console.log(bookId);
   console.log(currentBook);
 
   return (
@@ -61,7 +58,26 @@ const Book = (props) => {
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
       />
-      <div></div>
+      <div className="carousel-container">
+        <div className="carousel--image">
+          <img
+            src={currentBook?.volumeInfo?.imageLinks?.thumbnail}
+            width="200px"
+            alt=""
+          />
+        </div>
+        <div className="carousel--text">
+          <span>
+            <b>{currentBook?.volumeInfo?.title}</b>
+          </span>
+          <span>
+            <i>{currentBook?.volumeInfo?.authors}</i>
+          </span>
+          <div className="carousel--text__description">
+            <p>{currentBook?.volumeInfo?.description}</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

@@ -85,6 +85,7 @@ const Rows = (props) => {
       {books &&
         books.map((book, i) => {
         const bookId = book?.id;
+        console.log(book)
           return (
             <div className="row" id="search" key={i}>
               <div className="row--image">
