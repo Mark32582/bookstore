@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 
 const BookTile = (props) => {
   const { books } = props;
-  console.log(books);
   const bookId = books?.googleId;
   return (
     <>
