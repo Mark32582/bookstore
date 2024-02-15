@@ -21,6 +21,7 @@ const Navigation = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    signedIn, // Added signedIn prop
   } = props;
 
   const api = googleBooks?.key;
@@ -56,6 +57,7 @@ const Navigation = (props) => {
         .catch((err) => console.log(err));
     }
   }, [api, bookCategory, setBooks]);
+
   return (
     <div>
       <div className="navigation">
@@ -93,6 +95,7 @@ const Navigation = (props) => {
                 alt="home button"
               />
             </NavLink>
+
             <button id="fiction" onClick={() => setBookCategory("fiction")}>
               Fiction
             </button>
@@ -156,7 +159,7 @@ const Navigation = (props) => {
           </NavLink>
         </div>
       </div>
-      {employee ? (
+      {signedIn && employee ? ( // Added signedIn prop check
         <div className="navigation--employee-nav">
           Employee Nav goes here when not hidden
         </div>
@@ -164,4 +167,5 @@ const Navigation = (props) => {
     </div>
   );
 };
+
 export default Navigation;
