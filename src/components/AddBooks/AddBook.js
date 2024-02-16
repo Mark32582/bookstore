@@ -1,30 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navigation from "../Navigation/Navigation";
-import Grid from "../Grid/Grid";
+import LogonForm from "../LogonForm/LogonForm";
 
-const AddBooks = () => {
+const AddBooks = (props) => {
+  const {
+    name,
+    setName,
+    verified,
+    setVerified,
+    displayCart,
+    setDisplayCart,
+    signOn,
+    setSignOn,
+    employee,
+    setEmployee,
+    users,
+    setUsers,
+    search,
+    setSearch,
+    books,
+    setBooks,
+    bookCategory,
+    setBookCategory,
+  } = props;
+
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [search, setSearch] = useState("");
-  const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);
-
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
-
-  const handleAuthorChange = (event) => {
-    setAuthor(event.target.value);
-  };
-
-  const handleQuantityChange = (event) => {
-    setQuantity(event.target.value);
-  };
 
   const handleSearch = () => {
     axios
@@ -53,6 +60,17 @@ const AddBooks = () => {
         title: selectedBook.volumeInfo.title,
         author: selectedBook.volumeInfo.authors[0],
         quantity: orderQuantity,
+        category: selectedBook.volumeInfo.category,
+        cost: selectedBook.volumeInfo.cost,
+        description: selectedBook.volumeInfo.description,
+        googleId: selectedBook.volumeInfo.googleId,
+        id: selectedBook.volumeInfo.id,
+        inventoryCount: selectedBook.volumeInfo.inventoryCount,
+        pageCount: selectedBook.volumeInfo.pageCount,
+        publisher: selectedBook.volumeInfo.publisher,
+        publisherDate: selectedBook.volumeInfo.publisherDate,
+        retailPrice: selectedBook.volumeInfo.retailPrice,
+        thumbnail: selectedBook.volumeInfo.thumbnail,
       };
       // Further processing
       setTitle("");
@@ -75,91 +93,110 @@ const AddBooks = () => {
 
   return (
     <div>
-      <Navigation />
+      <Navigation
+        name={name}
+        setName={setName}
+        verified={verified}
+        setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
+        signOn={signOn}
+        setSignOn={setSignOn}
+        displayCart={displayCart}
+        setDisplayCart={setDisplayCart}
+        users={users}
+        setUsers={setUsers}
+        search={search}
+        setSearch={setSearch}
+        books={books}
+        setBooks={setBooks}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
+      />
+      <LogonForm
+        signOn={signOn}
+        setSignOn={setSignOn}
+        setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
+      />
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={title}
-          onChange={handleTitleChange}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="Enter title"
         />
         <input
           type="text"
           value={author}
-          onChange={handleAuthorChange}
+          onChange={(e) => setAuthor(e.target.value)}
           placeholder="Enter author"
         />
         <input
           type="number"
           value={quantity}
-          onChange={handleQuantityChange}
+          onChange={(e) => setQuantity(e.target.value)}
           placeholder="Enter quantity"
         />
         <button type="submit">Add Book</button>
       </form>
 
       <div>
-        <h2>Search Books</h2>
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Enter search term"
-        />
-        <button onClick={handleSearch}>Search</button>
-        
-        {books.map((book) => (
-  <li key={book.id}>
-    <div onClick={() => handleBookClick(book)}>
-      <a
-        href={book.volumeInfo.infoLink}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src={book.volumeInfo.imageLinks?.thumbnail}
-          alt="Book Thumbnail"
-        />
-      </a>
-      <div>
-        <h3>
-          <a
-            href={book.volumeInfo.infoLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {book.volumeInfo.title}
-          </a>
-        </h3>
-        <p>{book.volumeInfo.description}</p>
-        <p>Price: {book.saleInfo?.listPrice?.amount}</p>
-      </div>
-    </div>
-    <input
-      type="number"
-      value={orderQuantity}
-      onChange={handleOrderQuantityChange}
-      placeholder="Quantity"
-    />
-    <button type="submit">Order</button>
-  </li>
-))}
-    
+        {books?.map((book) => (
+          <li key={book.id}>
+            <div onClick={() => handleBookClick(book)}>
+              <a
+                href={book.volumeInfo.infoLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={book.volumeInfo.imageLinks?.thumbnail}
+                  alt="Book Thumbnail"
+                />
+              </a>
+              <div>
+                <h3>
+                  <a
+                    href={book.volumeInfo.infoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {book.volumeInfo.title}
+                  </a>
+                </h3>
+                <p>{book.volumeInfo.description}</p>
+                <p>Price: {book.saleInfo?.listPrice?.amount}</p>
+              </div>
+            </div>
+            <form onSubmit={handleOrderQuantityChange}>
+              <input
+                type="number"
+                value={orderQuantity}
+                onChange={handleOrderQuantityChange}
+                placeholder="Quantity"
+              />
+              <button type="submit">Order</button>
+            </form>
+          </li>
+        ))}
       </div>
 
       {selectedBook && (
         <div>
           <h2>Selected Book</h2>
-          <p>Title: {selectedBook.volumeInfo.title}</p>
-          <p>Author: {selectedBook.volumeInfo.authors[0]}</p>
+          <p>Title: {selectedBook?.volumeInfo?.title}</p>
+          <p>Author: {selectedBook?.volumeInfo?.authors[0]}</p>
           <p>Quantity: {quantity}</p>
-          <p>Price: {selectedBook.saleInfo?.listPrice?.amount}</p>
+          <p>Price: {selectedBook?.saleInfo?.listPrice?.amount}</p>
           <input
             type="number"
             value={orderQuantity}
             onChange={handleOrderQuantityChange}
             placeholder="Quantity"
-
           />
           <button type="submit">Order Book</button>
         </div>
