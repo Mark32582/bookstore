@@ -1,0 +1,25 @@
+.checkout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+}
+.payment-section{
+    margin-top:16px;
+
+    label{
+        display:block;
+        margin-bottom:8px;
+    }
+    input{
+        width:100%;
+        padding:8px;
+        margin-bottom:16px;
+    }
+    button{
+        padding:8px;
+        background: color #3498db;
+        color:#fff;
+        cursor: pointer;
+    }
+}

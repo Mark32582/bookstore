@@ -15,6 +15,7 @@ function App() {
   const [search, setSearch] = useState();
   const [books, setBooks] = useState();
   const [bookCategory, setBookCategory] = useState();
+  const [cartItems, setCartItems] = useState();
   return (
     <div>
       <BrowserRouter>
@@ -41,6 +42,8 @@ function App() {
                 setBooks={setBooks}
                 bookCategory={bookCategory}
                 setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             }
           />
@@ -88,6 +91,8 @@ function App() {
                 setBooks={setBooks}
                 bookCategory={bookCategory}
                 setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             }
           />
