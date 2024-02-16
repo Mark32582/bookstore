@@ -1,9 +1,8 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Navigation = (props) => {
   const {
@@ -22,6 +21,7 @@ const Navigation = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    signedIn, // Added signedIn prop
   } = props;
 
   const api = googleBooks?.key;
@@ -39,8 +39,8 @@ const Navigation = (props) => {
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {
-        console.log(res);
         setBooks(res?.data?.items);
+        
       })
       .catch((err) => console.log(err));
   };
@@ -52,12 +52,12 @@ const Navigation = (props) => {
           `https://www.googleapis.com/books/v1/volumes?q=subject:${bookCategory}&maxResults=20&key=${api}`
         )
         .then((res) => {
-          console.log(res);
           setBooks(res?.data?.items);
         })
         .catch((err) => console.log(err));
     }
   }, [api, bookCategory, setBooks]);
+
   return (
     <div>
       <div className="navigation">
@@ -91,31 +91,50 @@ const Navigation = (props) => {
             <NavLink to="/">
               <img
                 style={{ marginRight: "8px" }}
-                src={process.env.PUBLIC_URL + "home.png"}
+                src={process.env.PUBLIC_URL + "/home.png"}
                 alt="home button"
               />
             </NavLink>
+
             <button id="fiction" onClick={() => setBookCategory("fiction")}>
               Fiction
             </button>
-            <button id = "nonFiction" onClick={() => setBookCategory("nonFiction")}>
-              Non-Fiction</button>
-            <button id = "mystery" onClick={() => setBookCategory("mystery")}>
-              Mystery</button>
-            <button id = "romance" onClick={() => setBookCategory("romance")}>
-              Romance</button>
-            <button id = "poetry" onClick={() => setBookCategory("poetry")}>
-              Poetry</button>
-            <button id = "horror" onClick={() => setBookCategory("horror")}>
-              Horror</button>
-            <button id = "suspense" onClick={() => setBookCategory("suspense")}>
-              Suspense</button>
-            <button id = "scienceFiction" onClick={() => setBookCategory("sciFi")}>
-              Science-Fiction</button>
-            <button id = "youngAdult" onClick={() => setBookCategory("youth")}>
-              Young Adult</button>
-            <button id = "childrens" onClick={() => setBookCategory("juvenile fiction")}>
-              Children's</button>
+            <button
+              id="nonFiction"
+              onClick={() => setBookCategory("nonFiction")}
+            >
+              Non-Fiction
+            </button>
+            <button id="mystery" onClick={() => setBookCategory("mystery")}>
+              Mystery
+            </button>
+            <button id="romance" onClick={() => setBookCategory("romance")}>
+              Romance
+            </button>
+            <button id="poetry" onClick={() => setBookCategory("poetry")}>
+              Poetry
+            </button>
+            <button id="horror" onClick={() => setBookCategory("horror")}>
+              Horror
+            </button>
+            <button id="suspense" onClick={() => setBookCategory("suspense")}>
+              Suspense
+            </button>
+            <button
+              id="scienceFiction"
+              onClick={() => setBookCategory("sciFi")}
+            >
+              Science-Fiction
+            </button>
+            <button id="youngAdult" onClick={() => setBookCategory("youth")}>
+              Young Adult
+            </button>
+            <button
+              id="childrens"
+              onClick={() => setBookCategory("juvenile fiction")}
+            >
+              Children's
+            </button>
           </div>
         </div>
         <div className="navigation--right">
@@ -131,7 +150,7 @@ const Navigation = (props) => {
           <NavLink>
             <img
               className="cart-icon"
-              src={process.env.PUBLIC_URL + "empty-cart.png"}
+              src={process.env.PUBLIC_URL + "/empty-cart.png"}
               alt="cart"
               onClick={() => setDisplayCart(!displayCart)}
               width="24px"
@@ -140,7 +159,7 @@ const Navigation = (props) => {
           </NavLink>
         </div>
       </div>
-      {employee ? (
+      {signedIn && employee ? ( // Added signedIn prop check
         <div className="navigation--employee-nav">
           Employee Nav goes here when not hidden
         </div>
@@ -148,4 +167,5 @@ const Navigation = (props) => {
     </div>
   );
 };
+
 export default Navigation;

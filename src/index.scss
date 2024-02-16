@@ -13,7 +13,9 @@ body {
   background-color: blanchedalmond;
 }
 
+@import "./components/AddBooks/styles/addbooks.scss";
 @import "./components/AdminDashboard/styles/dashboard.scss";
+@import "./components/BookTile/styles/booktile.scss";
 @import "./components/Carousel/styles/carousel.scss";
 @import "./components/Cart/styles/cart.scss";
 @import "./components//Checkout/styles/checkout.scss";
