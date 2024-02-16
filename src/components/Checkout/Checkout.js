@@ -43,7 +43,7 @@ const Checkout = ({cartItems, setCartItems}) => {
             type="text"
             name="cardNumber"
             value={paymentInfo.cardNumber}
-            onChange={handlePaymenInfoChange}
+            onChange={handlePaymentInfoChange}
         />
         <label>Expiry Date:</label>
         <input
