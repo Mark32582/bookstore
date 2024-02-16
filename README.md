@@ -14,6 +14,7 @@ let this run until finished
 in the terminal type `npm i classnames`
 in the terminal type `npm i firebase`
 in the terminal type `npm i axios`
+in the terminal type `npm i react-responsive-carousel`
 
 if you have followed all these steps you can now launch the framework
 
