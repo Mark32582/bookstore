@@ -3,6 +3,7 @@ import { useState } from "react";
 import HomePage from "./components/HomePage/HomePage";
 import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
+import Checkout from "./components/Checkout/Checkout";
 import Registration from "./components/Registration/Registration";
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   const [search, setSearch] = useState();
   const [books, setBooks] = useState();
   const [bookCategory, setBookCategory] = useState();
-
+  const [cartItems, setCartItems] = useState([{title:"test-title", description:"Lookey here", price:9.99}]);
   return (
     <div>
       <BrowserRouter>
@@ -42,6 +43,8 @@ function App() {
                 setBooks={setBooks}
                 bookCategory={bookCategory}
                 setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             }
           />
@@ -69,6 +72,8 @@ function App() {
                 setBooks={setBooks}
                 bookCategory={bookCategory}
                 setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             }
           />
@@ -96,6 +101,8 @@ function App() {
                 setBooks={setBooks}
                 bookCategory={bookCategory}
                 setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             }
           />
@@ -122,6 +129,35 @@ function App() {
                 setBooks={setBooks}
                 bookCategory={bookCategory}
                 setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                name={name}
+                setName={setName}
+                verified={verified}
+                setVerified={setVerified}
+                displayCart={displayCart}
+                setDisplayCart={setDisplayCart}
+                signOn={signOn}
+                setSignOn={setSignOn}
+                employee={employee}
+                setEmployee={setEmployee}
+                users={users}
+                setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             }
           />
