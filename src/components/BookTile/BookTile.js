@@ -1,27 +1,35 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const BookTile = (props) => {
   const { books } = props;
-  const bookId = books?.googleId;
+  const bookId = books?.googleId || books?.id;
+  console.log(books);
+  const url = books?.thumbnail || books?.volumeInfo?.imageLinks?.thumbnail;
+  const title = books?.title || books?.volumeInfo?.title;
+  const author = books?.author || books?.volumeInfo?.authors;
+  const price = books?.retailPrice || books?.saleInfo?.retailPrice?.amount;
+
   return (
     <div className="tile">
       <div className="tile--image">
-        <img src={books?.thumbnail} height="120px" alt="" />
+        <img src={url} height="120px" alt="" />
       </div>
       <div className="tile--text">
         <span>
-          <h3>{books?.title}</h3>
+          <h3>{title}</h3>
         </span>
         <span>
-          <i>{books?.author}</i>
+          <i>{author}</i>
         </span>
-        <NavLink to={`/book/${bookId}`}>
+
+        <Link to={`/book/${bookId}`}>
           <span className="row--text__info">More Info</span>
-        </NavLink>
+        </Link>
+
         <div className="row--text__actions">
           {books?.retailPrice ? (
             <>
-              <span className="row--text__info">${books?.retailPrice}</span>{" "}
+              <span className="row--text__info">${price}</span>{" "}
               <button>Add to Cart</button>
             </>
           ) : (

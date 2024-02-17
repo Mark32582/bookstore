@@ -3,9 +3,8 @@ html {
     min-height: 800px;
 }
 body {
-    overflow: hidden;
-    min-height: 800px;
     overflow:auto;
+    background-color: darkslategray;
 }
 .carousel-container{
     height:400px;
@@ -14,9 +13,6 @@ body {
 }
 .body-content{
     margin: 16px 24px ;
-    width: 100%;
+
 }
-.search-results{
-    width:100%;
-    margin: 0 0 0 0;
-}
+

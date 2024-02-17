@@ -67,8 +67,6 @@ const HomePage = (props) => {
         </div>
       )}
       <div className="body-content">
-        <div></div>
-
         <div className="search-results" id="searchResults">
           <Rows bookCategory={bookCategory} books={books} setBooks={setBooks} />
         </div>

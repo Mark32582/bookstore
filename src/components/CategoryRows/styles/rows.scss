@@ -37,9 +37,16 @@
     &--category{
         display:flex;
         width:100%;
-        margin-bottom: 0;
+        margin-bottom: 8px;
         flex-direction: column;
-
+        color:blanchedalmond;
+        font-family: 'Courier New', Courier, monospace;
+        border-bottom: 1px solid blanchedalmond;
+        h2 {
+            padding:0 0;
+            margin:0;
+        }
+      
     }
 }
 .static-books{

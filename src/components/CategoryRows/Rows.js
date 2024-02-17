@@ -1,7 +1,5 @@
-import axios from "axios";
-import { googleBooks } from "../../config/googlebooks";
 import { NavLink } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import BookTile from "../BookTile/BookTile";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
