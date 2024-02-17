@@ -35,7 +35,7 @@ const Navigation = (props) => {
     }, 500);
   };
 
-  const handleSearch = () => {
+  const handleSearch = () => { 
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {

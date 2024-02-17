@@ -4,7 +4,7 @@ import HomePage from "./components/HomePage/HomePage";
 import Dashboard from "./components/AdminDashboard/Dashboard";
 import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
-
+import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
 
 function App() {
@@ -127,6 +127,29 @@ function App() {
               />
             }
           />
+          <Route
+            path="/deletebooks"
+            element={
+              <DeleteBooks
+                name={name}
+                setName={setName}
+                verified={verified}
+                setVerified={setVerified}
+                displayCart={displayCart}
+                setDisplayCart={setDisplayCart}
+                signOn={signOn}
+                setSignOn={setSignOn}
+                employee={employee}
+                setEmployee={setEmployee}
+                users={users}
+                setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory} /* Pass your props here */ />}
+              />
 {/* <Route path="/checkout" element={<Checkout name={name} verified={verified}
                 setVerified={setVerified} />} /> */}
         </Routes>

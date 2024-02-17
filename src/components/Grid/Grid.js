@@ -12,6 +12,10 @@ const Grid = () => {
     navigate("/order");
   };
 
+  const handleDeleteClick = () => {
+    navigate("/deletebooks");
+  };
+
   return (
     <div className="grid-container">
       <div className="grid-tiles">
@@ -23,7 +27,9 @@ const Grid = () => {
       <div className="grid-tiles">
         <button onClick={handleAddBooksClick}>Order Books</button>
       </div>
-      <div className="grid-tiles">stuff goes in all these tiles</div>
+      <div className="grid-tiles">
+        <button onClick={handleDeleteClick}>Delete Books</button>
+      </div>
       <div className="grid-tiles">stuff goes in all these tiles</div>
       <div className="grid-tiles">stuff goes in all these tiles</div>
       <div className="grid-tiles">stuff goes in all these tiles</div>
