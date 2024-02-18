@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Navigation from "../Navigation/Navigation";
 import LogonForm from "../LogonForm/LogonForm";
+import Cart from "../Cart/Cart";
 
 const AddBooks = (props) => {
   const {
@@ -122,6 +123,7 @@ const AddBooks = (props) => {
         users={users}
         setUsers={setUsers}
       />
+      <Cart cart={displayCart} books={books} setBooks={setBooks} />
       <form onSubmit={handleSubmit}>
         <input
           type="text"
