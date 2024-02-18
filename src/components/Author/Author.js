@@ -9,20 +9,22 @@ const Author = (props) => {
   const api = googleBooks?.key;
 
   const handleAuthorSearch = useCallback(() => {
-    axios
-      .get(
-        `https://www.googleapis.com/books/v1/volumes?q=inAuthor${author}&key=${api}`
-      )
-      .then((res) => {
-        setBooksByAuthor(res?.data?.items);
-        console.log(booksByAuthor);
-      })
-      .catch((err) => console.log(err));
-  }, [booksByAuthor]);
+    if (booksByAuthor === undefined) {
+      axios
+        .get(
+          `https://www.googleapis.com/books/v1/volumes?q=inAuthor${author}&key=${api}`
+        )
+        .then((res) => {
+          setBooksByAuthor(res?.data?.items);
+          console.log(booksByAuthor);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [api, author, booksByAuthor]);
 
   useEffect(() => {
     handleAuthorSearch();
-  }, [handleAuthorSearch]);
+  }, [booksByAuthor, author, handleAuthorSearch]);
 
   return (
     <>
