@@ -42,6 +42,7 @@ const Navigation = (props) => {
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {
         setBooks(res?.data?.items);
+        setBookCategory(undefined);
         setRedirect(true);
       })
       .catch((err) => console.log(err));

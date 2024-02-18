@@ -55,8 +55,22 @@ const Browse = (props) => {
       <div className="body-content">
         <div className="search-results" id="searchResults">
           {books && (
-            <div>
-              <h1>Search Results</h1> <h2>{bookCategory}</h2>
+            <div className="browse">
+              {!bookCategory ? (
+                <h1 className="row--category">Search Results</h1>
+              ) : (
+                <h1 className="row--category">
+                  {bookCategory === "sciFi"
+                    ? "Science Fiction"
+                    : bookCategory === "nonFiction"
+                    ? "Non Fiction"
+                    : bookCategory === "Youth"
+                    ? "Young Adult"
+                    : bookCategory === "juvenile fiction"
+                    ? "Children's Books"
+                    : bookCategory}
+                </h1>
+              )}
             </div>
           )}
           {books &&
