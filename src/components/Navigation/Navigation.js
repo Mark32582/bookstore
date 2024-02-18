@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
@@ -25,6 +25,7 @@ const Navigation = (props) => {
   } = props;
 
   const api = googleBooks?.key;
+  const navigate = useNavigate();
   const signOff = () => {
     setVerified(!verified);
     setTimeout(() => {
@@ -40,7 +41,6 @@ const Navigation = (props) => {
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {
         setBooks(res?.data?.items);
-        
       })
       .catch((err) => console.log(err));
   };
@@ -57,6 +57,12 @@ const Navigation = (props) => {
         .catch((err) => console.log(err));
     }
   }, [api, bookCategory, setBooks]);
+
+  useEffect(() => {
+    if (books) {
+      navigate("/browse");
+    }
+  }, [books]);
 
   return (
     <div>

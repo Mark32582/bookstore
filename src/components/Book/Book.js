@@ -3,6 +3,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Navigation from "../Navigation/Navigation";
 import Author from "../Author/Author";
+import LogonForm from "../LogonForm/LogonForm";
+import Cart from "../Cart/Cart";
 
 const Book = (props) => {
   const { bookId } = useParams();
@@ -36,8 +38,6 @@ const Book = (props) => {
       .catch((err) => console.log(err));
   }, []);
 
-
-
   const removeScript = (description) => {
     if (description === null || description === "") {
       return "test";
@@ -65,6 +65,16 @@ const Book = (props) => {
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
       />
+      <LogonForm
+        signOn={signOn}
+        setSignOn={setSignOn}
+        setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
+      />
+      <Cart cart={displayCart} books={books} setBooks={setBooks} />
       <div className="book-background">
         <div className="book-container">
           <div className="book--image">
