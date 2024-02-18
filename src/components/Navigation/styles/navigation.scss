@@ -28,7 +28,7 @@
 
     .sign-on {
       text-wrap: nowrap;
-      padding: 2px 5px;
+      padding: 4px 8px;
       height: 42px;
       border: none;
       background-color: blanchedalmond;
@@ -36,7 +36,9 @@
       font-size: 1rem;
     }
     .sign-on:hover {
-      background-color: lightgray;
+      background-color: darkslategray;
+      border-radius: 12px;
+      color:blanchedalmond;
     }
     .sign-on:focus {
       display: flex;
@@ -44,8 +46,6 @@
       justify-content: center;
       align-items: flex-start;
       height: 42px;
-      margin-left: 4px;
-      padding-left: 4px;
       .logon {
         display: flex;
         margin-right: 4px;
