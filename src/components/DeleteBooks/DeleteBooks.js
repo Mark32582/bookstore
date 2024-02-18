@@ -27,63 +27,69 @@ const DeleteBooks = (props) => {
     setBookCategory,
   } = props;
 
-  const handleCollectionChange = (event) => {
-    setSelectedCollection(event.target.value);
-  };
-
   const navigate = useNavigate();
-  const [searchQuery, setSearchQuery] = useState(["bestSeller", "newReleases", "employeeRecommendations", "carousel"]);
-  const [searchResults, setSearchResults] = useState(["bestSeller", "newReleases", "employeeRecommendations", "carousel"]);
-  const [checked, setChecked] = useState(["bestSeller", "newReleases", "employeeRecommendations", "carousel"]);
-  const [selectedCollection, setSelectedCollection] = useState("bestSeller");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [checked, setChecked] = useState([]);
+  const selectedCollections = ["bestSeller", "newReleases", "carousel", "employeeRecommendations"];
 
   const fetchBooks = async () => {
-    const collectionRef = collection(db, selectedCollection);
+    const results = [];
 
-    const queryTitle = query(collectionRef, where("title", "==", searchQuery));
-    const queryAuthor = query(collectionRef, where("author", "==", searchQuery));
-    const queryId = query(collectionRef, where("id", "==", searchQuery));
+    for (const collectionName of selectedCollections) {
+      const collectionRef = collection(db, collectionName);
 
-    const [snapshotTitle, snapshotAuthor, snapshotId] = await Promise.all([
-      getDocs(queryTitle),
-      getDocs(queryAuthor),
-      getDocs(queryId)
-    ]);
+      const queryTitle = query(collectionRef, where("title", "==", searchQuery));
+      const queryAuthor = query(collectionRef, where("author", "==", searchQuery));
+      const queryId = query(collectionRef, where("id", "==", searchQuery));
 
-    const resultsTitle = snapshotTitle.docs.map((doc) => ({
-      id: doc.id,
-      title: doc.data().title,
-      author: doc.data().author,
-      description: doc.data().description,
-      thumbnail: doc.data().thumbnail,
-    }));
+      const [snapshotTitle, snapshotAuthor, snapshotId] = await Promise.all([
+        getDocs(queryTitle),
+        getDocs(queryAuthor),
+        getDocs(queryId)
+      ]);
 
-    const resultsAuthor = snapshotAuthor.docs.map((doc) => ({
-      id: doc.id,
-      title: doc.data().title,
-      author: doc.data().author,
-      description: doc.data().description,
-      thumbnail: doc.data().thumbnail,
-    }));
+      const resultsTitle = snapshotTitle.docs.map((doc) => ({
+        collection: collectionName,
+        id: doc.id,
+        title: doc.data().title,
+        author: doc.data().author,
+        description: doc.data().description,
+        thumbnail: doc.data().thumbnail,
+      }));
 
-    const resultsId = snapshotId.docs.map((doc) => ({
-      id: doc.id,
-      title: doc.data().title,
-      author: doc.data().author,
-      description: doc.data().description,
-      thumbnail: doc.data().thumbnail,
-    }));
+      const resultsAuthor = snapshotAuthor.docs.map((doc) => ({
+        collection: collectionName,
+        id: doc.id,
+        title: doc.data().title,
+        author: doc.data().author,
+        description: doc.data().description,
+        thumbnail: doc.data().thumbnail,
+      }));
 
-    const results = [...resultsTitle, ...resultsAuthor, ...resultsId];
+      const resultsId = snapshotId.docs.map((doc) => ({
+        collection: collectionName,
+        id: doc.id,
+        title: doc.data().title,
+        author: doc.data().author,
+        description: doc.data().description,
+        thumbnail: doc.data().thumbnail,
+      }));
+
+      results.push(...resultsTitle, ...resultsAuthor, ...resultsId);
+    }
+
     setSearchResults(results);
   };
 
   useEffect(() => {
     fetchBooks();
-  }, [searchQuery]);
+  }, [searchQuery, selectedCollections]);
 
   const deleteBook = async (bookId) => {
-    await deleteDoc(doc(db, "bestSellers", "newReleases", "employeeRecommendations",  bookId));
+    for (const collectionName of selectedCollections) {
+      await deleteDoc(doc(db, collectionName, bookId));
+    }
     fetchBooks();
   };
 
@@ -100,13 +106,15 @@ const DeleteBooks = (props) => {
   };
 
   const handleDelete = async () => {
-    const checkedBooks = searchResults.filter((result) =>
-      checked.includes(result.id)
-    );
+    for (const collectionName of selectedCollections) {
+      const checkedBooks = searchResults.filter((result) =>
+        checked.includes(result.id) && result.collection === collectionName
+      );
 
-    checkedBooks.forEach(async (book) => {
-      await deleteDoc(doc(db, selectedCollection, book.id));
-    });
+      for (const book of checkedBooks) {
+        await deleteDoc(doc(db, collectionName, book.id));
+      }
+    }
 
     setChecked([]);
     fetchBooks();
@@ -145,33 +153,40 @@ const DeleteBooks = (props) => {
       />
       <h1>Delete Books</h1>
 
+      <ul>
+        {selectedCollections.map((collectionName) => (
+          <li key={collectionName}>
+            <button onClick={() => fetchBooks(collectionName)}>
+              {collectionName}
+            </button>
+          </li>
+        ))}
+      </ul>
+
       <input
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search by title, author, or ID"
       />
       <button onClick={handleSearch}>Search</button>
-      <ul>
-        {searchResults.map((result) => (
-          <li key={result.id}>
-            <input
-type="checkbox"
-              onChange={(e) => handleCheck(e, result.id)}
-              checked={checked.includes(result.id)}
-            />
-            <h2>{result.title}</h2>
-            <p>Author: {result.author}</p>
-            <p>Description: {result.description}</p>
-            <p>ID: {result.id}</p>
 
+      <ul>
+        {searchResults.map((book) => (
+          <li key={book.id}>
+            <input
+              type="checkbox"
+              checked={checked.includes(book.id)}
+              onChange={(e) => handleCheck(e, book.id)}
+            />
+            <span>{book.title}</span>
+            <span>{book.author}</span>
+            <span>{book.description}</span>
+            <img src={book.thumbnail} alt={book.title} /> 
           </li>
         ))}
       </ul>
-      {checked.length > 0 && (
-        <button onClick={handleDelete}>Delete Selected Books</button>
-      )}
-      <button onClick={() => navigate("/")}>Go back</button>
+
+      <button onClick={handleDelete}>Delete Selected</button>
     </div>
   );
 };
