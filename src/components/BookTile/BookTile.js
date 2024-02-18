@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const BookTile = (props) => {
   const { books } = props;
   const bookId = books?.googleId || books?.id;
-  console.log(books);
   const url = books?.thumbnail || books?.volumeInfo?.imageLinks?.thumbnail;
   const title = books?.title || books?.volumeInfo?.title;
   const author = books?.author || books?.volumeInfo?.authors;

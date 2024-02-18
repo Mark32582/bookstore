@@ -23,13 +23,18 @@ const Carousel = () => {
   }, []);
 
   return (
-    <Slider autoPlay infiniteLoop interval="10000">
+    <Slider autoPlay infiniteLoop interval="10000" showThumbs={false}>
       {carouselBooks &&
         carouselBooks.map((book, i) => {
           return (
-            <div className="carousel">
+            <div className="carousel" key={i+"carousel"}>
               <div className="carousel--image" key={i}>
-                <img src={book?.thumbnail} height="350px" width="200px" alt="" />
+                <img
+                  src={book?.thumbnail}
+                  height="350px"
+                  width="200px"
+                  alt=""
+                />
               </div>
               <div key={i} className="carousel--text">
                 <span>
