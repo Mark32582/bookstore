@@ -7,6 +7,9 @@ import { db } from "../../config/fireBaseConfig";
 const Rows = (props) => {
   const { books, setBooks, cartItems, setCartItems } = props;
   const [pageData, setPageData] = useState();
+  const [showMore, setShowMore] = useState(false); // Add showMore state
+  const [showMore1, setShowMore1] = useState(false);
+  const [showMore2, setShowMore2] = useState(false);
 
   const fetchBooks = async () => {
     let releases;
@@ -42,43 +45,56 @@ const Rows = (props) => {
     fetchBooks();
   }, []);
 
+  const handleShowMore = () => {
+    setShowMore(!showMore);
+  };
+  const handleShowMore1 = () => {
+    setShowMore1(!showMore1);
+  };
+  const handleShowMore2 = () => {
+    setShowMore2(!showMore2);
+  };
+
   return (
     <>
       {pageData?.releases?.length >= 1 && (
         <>
           <div className="row--category" id="newRelease">
-            <h2>New Releases</h2>
+            <h2>New Releases</h2>{" "}
+            <button onClick={handleShowMore}>
+              {showMore ? "Show Less" : "Show More"}
+            </button>
           </div>
           <div className="static-books">
-            {pageData?.releases?.map((book, i) => {
-              return (
-                <BookTile
-                  books={book}
-                  key={i + "newRelease"}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              );
-            })}
+
+            {pageData?.releases
+              ?.slice(0, showMore ? undefined : 3)
+              .map((book, i) => {
+                return <BookTile books={book} key={i+"new-release"} cartItems={cartItems}
+                  setCartItems={setCartItems}/>;
+              })}
+
           </div>
         </>
       )}
       {pageData?.best?.length >= 1 && (
         <>
           <div className="row--category" id="bestSeller">
-            <h2>Best Sellers</h2>
+            <h2>Best Sellers</h2>{" "}
+            <button onClick={handleShowMore1}>
+              {showMore1 ? "Show Less" : "Show More"}
+            </button>
           </div>
           <div className="static-books">
-            {pageData?.best?.map((book, i) => {
-              return (
-                <BookTile
-                  books={book}
-                  key={i + "bestSellers"}
+
+            {pageData?.best
+              ?.slice(0, showMore1 ? undefined : 3)
+              .map((book, i) => {
+                return <BookTile books={book}  key={i + "bestSellers"}
                   cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              );
-            })}
+                  setCartItems={setCartItems} />;
+              })}
+
           </div>
         </>
       )}
@@ -86,18 +102,20 @@ const Rows = (props) => {
         <>
           <div className="row--category" id="employee">
             <h2>Employee Recommendations</h2>
+            <button onClick={handleShowMore2}>
+              {showMore2 ? "Show Less" : "Show More"}
+            </button>
           </div>
           <div className="static-books">
-            {pageData?.employee?.map((book, i) => {
-              return (
-                <BookTile
-                  books={book}
-                  key={i + "employee"}
+
+            {pageData?.employee
+              ?.slice(0, showMore2 ? undefined : 3)
+              .map((book, i) => {
+                return <BookTile books={book} key={i + "employee"}
                   cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              );
-            })}
+                  setCartItems={setCartItems} />;
+              })}
+
           </div>
         </>
       )}
