@@ -6,6 +6,11 @@ import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
 import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
+<<<<<<< Updated upstream
+=======
+import Browse from "./components/Browse/Browse";
+import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
+>>>>>>> Stashed changes
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -129,6 +134,36 @@ function App() {
           />
           <Route
             path="/deletebooks"
+<<<<<<< Updated upstream
+=======
+            element={
+              <DeleteBooks
+                name={name}
+                setName={setName}
+                verified={verified}
+                setVerified={setVerified}
+                displayCart={displayCart}
+                setDisplayCart={setDisplayCart}
+                signOn={signOn}
+                setSignOn={setSignOn}
+                employee={employee}
+                setEmployee={setEmployee}
+                users={users}
+                setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
+            }
+          />
+          <Route
+            path="/browse"
+>>>>>>> Stashed changes
             element={
               <DeleteBooks
                 name={name}
