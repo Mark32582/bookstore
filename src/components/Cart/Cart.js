@@ -25,17 +25,25 @@ const Cart = (props) => {
           <h1>Shopping Cart</h1>
         </div>
         <div className="cart-contents">
-          <div className="cart-items">
-            <span>
-              <b>Title:</b> {cartItems?.[0]?.title}
-            </span>
-            <span>
-              <b>Price:</b> {cartItems?.[0]?.price}
-            </span>
-            <span>
-              <b>Count:</b> 1
-            </span>
+          <div className="cart-mapped">
+            {cartItems &&
+              cartItems?.map((item, i) => {
+                return (
+                  <div key={i + "cartItem"} className="cart-items">
+                    <div>
+                      <b>Title:</b> {item?.title}
+                    </div>
+                    <div>
+                      <b>Price:</b> {item?.price}
+                    </div>
+                    <div>
+                      <b>Count:</b> 1
+                    </div>
+                  </div>
+                );
+              })}
           </div>
+
           <span>
             <em>Delivery Fee:</em> ${deliveryFee}
           </span>

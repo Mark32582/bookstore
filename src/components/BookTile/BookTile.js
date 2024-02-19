@@ -8,6 +8,12 @@ const BookTile = (props) => {
   const author = books?.author || books?.volumeInfo?.authors;
   const price = books?.retailPrice || books?.saleInfo?.retailPrice?.amount;
 
+  const onAddToCart = () => {
+    setCartItems([
+      ...cartItems,
+      { title: title, description: "", price: price },
+    ]);
+  };
   return (
     <div className="tile">
       <div className="tile--image">
@@ -29,7 +35,7 @@ const BookTile = (props) => {
           {books?.retailPrice ? (
             <>
               <span className="row--text__info">${price}</span>{" "}
-              <button>Add to Cart</button>
+              <button onClick={() => onAddToCart()}>Add to Cart</button>
             </>
           ) : (
             <span>Unavailable</span>

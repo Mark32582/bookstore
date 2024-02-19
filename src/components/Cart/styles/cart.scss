@@ -28,10 +28,21 @@
   &-contents {
     display: grid;
     padding: 8px;
+    
   }
   &-items {
-    display: flex;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom:8px;
+    gap: 16px;
+    width: 100%;
+    border-bottom: 1px solid blanchedalmond;
+
+
+  }
+  &-mapped {
+    width: 100%;
     margin-bottom: 16px;
+    
   }
 }
