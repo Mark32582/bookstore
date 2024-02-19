@@ -37,7 +37,7 @@ const Book = (props) => {
         setCurrentBook(res?.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [bookId]);
 
   const removeScript = (description) => {
     if (description === null || description === "") {
