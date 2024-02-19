@@ -22,7 +22,11 @@ const AddBooks = (props) => {
     setUsers,
     search,
     setSearch,
+<<<<<<< Updated upstream
     books,
+=======
+    books: propBooks,
+>>>>>>> Stashed changes
     setBooks,
     bookCategory,
     setBookCategory
@@ -31,6 +35,11 @@ const AddBooks = (props) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
+<<<<<<< Updated upstream
+=======
+  const [orderSearch, setOrderSearch] = useState(propSearch);
+  const [orderBooks, setOrderBooks] = useState(propBooks);
+>>>>>>> Stashed changes
   const [selectedBook, setSelectedBook] = useState(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -139,23 +148,66 @@ const AddBooks = (props) => {
       )}
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          value={title}
-          onChange = {(e) => setTitle(e.target.value)}
-          placeholder="Enter title"
-        />
-        <input
-          type="text"
-          value={author}
-          onChange = {(e) => setAuthor(e.target.value)}
-          placeholder="Enter author"
-        />
-        <input
-          type="number"
-          value={quantity}
-          onChange = {(e) => setQuantity(e.target.value)}
-          placeholder="Enter quantity"
-        />
+  type="text"
+  value={title}
+  onChange={(e) => setTitle(e.target.value)}
+  placeholder="Enter title"
+/>
+<input
+  type="text"
+  value={author}
+  onChange={(e) => setAuthor(e.target.value)}
+  placeholder="Enter author"
+/>
+<input
+  type="number"
+  value={quantity}
+  onChange={(e) => setQuantity(e.target.value)}
+  placeholder="Enter quantity"
+/>
+
+<div>
+  <label>
+    <input
+      type="radio"
+      name="collection"
+      value="employeeRecommendations"
+      checked={collection === "employeeRecommendations"}
+      onChange={(e) => setCollection(e.target.value)}
+    />
+    Employee Recommendations
+  </label>
+  <label>
+    <input
+      type="radio"
+      name="collection"
+      value="bestSellers"
+      checked={collection === "bestSellers"}
+      onChange={(e) => setCollection(e.target.value)}
+    />
+    Best Sellers
+  </label>
+  <label>
+    <input
+      type="radio"
+      name="collection"
+      value="newReleases"
+      checked={collection === "newReleases"}
+      onChange={(e) => setCollection(e.target.value)}
+    />
+    New Releases
+  </label>
+  <label>
+    <input
+      type="radio"
+      name="collection"
+      value="carousel"
+      checked={collection === "carousel"}
+      onChange={(e) => setCollection(e.target.value)}
+    />
+    Carousel
+  </label>
+</div>
         <button type="submit">Add Book</button>
       </form>
 

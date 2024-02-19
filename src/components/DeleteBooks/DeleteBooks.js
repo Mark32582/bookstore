@@ -9,6 +9,7 @@ import { db } from "../../config/fireBaseConfig";
 import Navigation from "../Navigation/Navigation";
 import LogonForm from "../LogonForm/LogonForm";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 import HomePage from "../HomePage/HomePage";
 >>>>>>> Stashed changes
@@ -33,6 +34,10 @@ const fetchCollection = async (collectionName, setSearchResults) => {
   setSearchResults(results);
 };
 
+=======
+import Cart from "../Cart/Cart";
+import Carousel from "../Carousel/Carousel";
+>>>>>>> Stashed changes
 const DeleteBooks = (props) => {
   const {
     name,
@@ -57,9 +62,24 @@ const DeleteBooks = (props) => {
 
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [checked, setChecked] = useState([]);
-  const selectedCollections = ["bestSeller", "newReleases", "carousel", "employeeRecommendations"];
+  const [selectedCollections, setSelectedCollections] = useState(["bestSeller", "newReleases", "carousel", "employeeRecommendations"]);
+
+  const fetchCollection = async (collectionName) => {
+    const collectionRef = collection(db, collectionName);
+    const [searchResults, setSearchResults] = useState([]);
+    const querySnapshot = await getDocs(collectionRef);
+    const results = querySnapshot.docs.map((doc) => ({
+      collection: collectionName,
+      id: doc.id,
+      title: doc.data().title,
+      author: doc.data().author,
+      description: doc.data().description,
+      thumbnail: doc.data().thumbnail,
+    }));
+    
+  };
+  
 
   const fetchBooks = async () => {
     const results = [];
@@ -76,6 +96,20 @@ const DeleteBooks = (props) => {
         getDocs(queryAuthor),
         getDocs(queryId)
       ]);
+      
+  const fetchCollection = async (collectionName) => {
+    const collectionRef = collection(db, collectionName);
+    const querySnapshot = await getDocs(collectionRef);
+    const results = querySnapshot.docs.map((doc) => ({
+      collection: collectionName,
+      id: doc.id,
+      title: doc.data().title,
+      author: doc.data().author,
+      description: doc.data().description,
+      thumbnail: doc.data().thumbnail,
+    }));
+  };
+      
 
       const resultsTitle = snapshotTitle.docs.map((doc) => ({
         collection: collectionName,
@@ -107,7 +141,7 @@ const DeleteBooks = (props) => {
       results.push(...resultsTitle, ...resultsAuthor, ...resultsId);
     }
 
-    setSearchResults(results);
+  
   };
 
   useEffect(() => {
@@ -275,11 +309,12 @@ const DeleteBooks = (props) => {
     fetchBooks();
   };
 
+
   return (
     <div>
       <Navigation
         name={name}
-        setName={setName}
+        setName={setName} 
         verified={verified}
         setVerified={setVerified}
         employee={employee}
@@ -306,6 +341,7 @@ const DeleteBooks = (props) => {
         users={users}
         setUsers={setUsers}
       />
+<<<<<<< Updated upstream
       <Cart cart={displayCart} books={books} setBooks={setBooks} />
       {employee === true ? (
         <AdminDashboard users={users} books={books} setBooks={setBooks} />
@@ -319,12 +355,16 @@ const DeleteBooks = (props) => {
           />
         </div>
       )}
+=======
+          
+>>>>>>> Stashed changes
       <h1>Delete Books</h1>
 <<<<<<< Updated upstream
 
 =======
 >>>>>>> Stashed changes
       <ul>
+<<<<<<< Updated upstream
         {selectedCollections.map((collectionName) => (
           <li key={collectionName}>
           <label>
@@ -339,22 +379,38 @@ const DeleteBooks = (props) => {
         </li>
         ))}
       </ul>
+=======
+      {selectedCollections.map((collectionName) => (
+        <li key={collectionName}>
+          <button onClick={() => fetchCollection(collectionName)}>
+            {collectionName}
+          </button>
+        </li>
+      ))}
+    </ul>
+>>>>>>> Stashed changes
 
       <input
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search by title, author, or ID"
       />
       <button onClick={handleSearch}>Search</button>
-
       <ul>
+<<<<<<< Updated upstream
         {searchResults?.map((book) => (
           <li key={book.id}>
+=======
+        {searchResults?.map((result) => (
+          <li key={result.id}>
+>>>>>>> Stashed changes
             <input
               type="checkbox"
-              checked={checked.includes(book.id)}
-              onChange={(e) => handleCheck(e, book.id)}
+              onChange={(e) => handleCheck(e, result.id)}
+              checked={checked.includes(result.id)}
             />
+<<<<<<< Updated upstream
             <img src={book.thumbnail} alt={book.title} />
             <h3>{book.title}</h3>
             <p>{book.author}</p>
@@ -362,9 +418,21 @@ const DeleteBooks = (props) => {
           </li>
         ))}
       </ul>
+=======
+            <h2>{result.title}</h2>
+            <p>Author: {result.author}</p>
+            <p>Description: {result.description}</p>
+            <p>ID: {result.id}</p>
+>>>>>>> Stashed changes
 
-      <button onClick={handleDelete}>Delete Selected</button>
-    </div>
+          </li>
+      ))}
+      </ul>
+      {checked.length > 0 && (
+        <button onClick={handleDelete}>Delete Selected Books</button>
+      )}
+      <button onClick={() => navigate("/")}>Go back</button>
+   </div>
   );
 };
 
