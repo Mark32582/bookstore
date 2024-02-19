@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import Navigation from "../Navigation/Navigation";
 import Grid from "../Grid/Grid";
+import LogonForm from "../LogonForm/LogonForm";
+import AdminDashboard from "../AdminDashboard/Dashboard";
+import Cart from "../Cart/Cart";
+import Carousel from "../Carousel/Carousel";
 
 const AddBooks = (props) => {
   const {
@@ -16,10 +20,10 @@ const AddBooks = (props) => {
     setEmployee,
     users,
     setUsers,
-    search: propSearch,
-    setSearch: propSetSearch,
-    books: propBooks,
-    setBooks: propSetBooks,
+    search,
+    setSearch,
+    books,
+    setBooks,
     bookCategory,
     setBookCategory
   } = props;
@@ -27,8 +31,6 @@ const AddBooks = (props) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [search, setSearch] = useState(propSearch);
-  const [books, setBooks] = useState(propBooks);
   const [selectedBook, setSelectedBook] = useState(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -94,7 +96,47 @@ const AddBooks = (props) => {
 
   return (
     <div>
-      <Navigation />
+      <Navigation 
+        setName={setName}
+        verified={verified}
+        setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
+        signOn={signOn}
+        setSignOn={setSignOn}
+        displayCart={displayCart}
+        setDisplayCart={setDisplayCart}
+        users={users}
+        setUsers={setUsers}
+        search={search}
+        setSearch={setSearch}
+        books={books}
+        setBooks={setBooks}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
+      />
+      <LogonForm
+        signOn={signOn}
+        setSignOn={setSignOn}
+        setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
+      />
+      <Cart cart={displayCart} books={books} setBooks={setBooks} />
+      {employee === true ? (
+        <AdminDashboard users={users} books={books} setBooks={setBooks} />
+      ) : (
+        <div className="carousel-container">
+          <Carousel
+            search={search}
+            setSearch={setSearch}
+            books={books}
+            setBooks={setBooks}
+          />
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -129,7 +171,7 @@ const AddBooks = (props) => {
           <button onClick={handleSearch}>Search</button>
         </form>
 
-        {books.map((book) => (
+        {books?.map((book) => (
           <li key={book.id}>
             <div onClick={() => handleBookClick(book)}>
               <a

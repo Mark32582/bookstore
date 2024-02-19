@@ -4,6 +4,25 @@ import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/fire
 import { db } from "../../config/fireBaseConfig";
 import Navigation from "../Navigation/Navigation";
 import LogonForm from "../LogonForm/LogonForm";
+import AdminDashboard from "../AdminDashboard/Dashboard";
+import Cart from "../Cart/Cart";
+import Carousel from "../Carousel/Carousel";
+
+
+
+const fetchCollection = async (collectionName, setSearchResults) => {
+  const collectionRef = collection(db, collectionName);
+  const querySnapshot = await getDocs(collectionRef);
+  const results = querySnapshot.docs.map((doc) => ({
+    collection: collectionName,
+    id: doc.id,
+    title: doc.data().title,
+    author: doc.data().author,
+    description: doc.data().description,
+    thumbnail: doc.data().thumbnail,
+  }));
+  setSearchResults(results);
+};
 
 const DeleteBooks = (props) => {
   const {
@@ -151,15 +170,34 @@ const DeleteBooks = (props) => {
         users={users}
         setUsers={setUsers}
       />
+      <Cart cart={displayCart} books={books} setBooks={setBooks} />
+      {employee === true ? (
+        <AdminDashboard users={users} books={books} setBooks={setBooks} />
+      ) : (
+        <div className="carousel-container">
+          <Carousel
+            search={search}
+            setSearch={setSearch}
+            books={books}
+            setBooks={setBooks}
+          />
+        </div>
+      )}
       <h1>Delete Books</h1>
 
       <ul>
         {selectedCollections.map((collectionName) => (
           <li key={collectionName}>
-            <button onClick={() => fetchBooks(collectionName)}>
-              {collectionName}
-            </button>
-          </li>
+          <label>
+            <input
+              type="radio"
+              name="collection"
+              value={collectionName}
+              onChange={() => fetchBooks(collectionName)}
+            />
+            {collectionName}
+          </label>
+        </li>
         ))}
       </ul>
 
@@ -171,17 +209,17 @@ const DeleteBooks = (props) => {
       <button onClick={handleSearch}>Search</button>
 
       <ul>
-        {searchResults.map((book) => (
+        {searchResults?.map((book) => (
           <li key={book.id}>
             <input
               type="checkbox"
               checked={checked.includes(book.id)}
               onChange={(e) => handleCheck(e, book.id)}
             />
-            <span>{book.title}</span>
-            <span>{book.author}</span>
-            <span>{book.description}</span>
-            <img src={book.thumbnail} alt={book.title} /> 
+            <img src={book.thumbnail} alt={book.title} />
+            <h3>{book.title}</h3>
+            <p>{book.author}</p>
+            <p>{book.description}</p>
           </li>
         ))}
       </ul>
