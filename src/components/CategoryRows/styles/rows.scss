@@ -36,9 +36,10 @@
     }
     &--category{
         display:flex;
+        justify-content: space-between;
         width:100%;
         margin-bottom: 8px;
-        flex-direction: column;
+        flex-direction: row;
         color:blanchedalmond;
         font-family: 'Courier New', Courier, monospace;
         border-bottom: 1px solid blanchedalmond;
