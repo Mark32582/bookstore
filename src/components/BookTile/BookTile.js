@@ -9,10 +9,9 @@ const BookTile = (props) => {
   const price = books?.retailPrice || books?.saleInfo?.retailPrice?.amount;
 
   const onAddToCart = () => {
-    setCartItems([
-      ...cartItems,
-      { title: title, description: "", price: price },
-    ]);
+    let count = 0;
+    count = count++;
+    setCartItems([...cartItems, { title: title, price: price, count: count }]);
   };
   return (
     <div className="tile">

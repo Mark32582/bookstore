@@ -160,7 +160,7 @@ const Navigation = (props) => {
             Search
           </button>{" "}
           <NavLink>
-            {cartItems ? (
+            {cartItems?.length > 0 ? (
               <img
                 className="cart-icon"
                 src={process.env.PUBLIC_URL + "/full-cart.png"}

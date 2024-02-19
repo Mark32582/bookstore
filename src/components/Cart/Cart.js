@@ -10,10 +10,22 @@ const Cart = (props) => {
   const [taxes, setTaxes] = useState();
 
   useEffect(() => {
-    setSubTotalCost(deliveryFee + Number(cartItems?.[0]?.price));
-    setTaxes(subTotalCost * 0.06);
-    setTotalCost(taxes + subTotalCost);
-  }, [cartItems]);
+    let subTotal = 0;
+
+    cartItems?.price?.map((item) => {
+        subTotal = subTotal + Number(item);
+        console.log(item)
+        return subTotal;
+      }
+    );
+    // console.log(subTotalCost);
+    // setTimeout(() => {
+    //   setTaxes(subTotalCost * 0.06);
+    // }, 200);
+    // setTimeout(() => {
+    //   setTotalCost(4.99 + taxes + subTotalCost);
+    // }, 400);
+  }, [cartItems, subTotalCost, taxes]);
 
   return (
     <div
@@ -26,7 +38,7 @@ const Cart = (props) => {
         </div>
         <div className="cart-contents">
           <div className="cart-mapped">
-            {cartItems &&
+            {cartItems?.length > 0 &&
               cartItems?.map((item, i) => {
                 return (
                   <div key={i + "cartItem"} className="cart-items">

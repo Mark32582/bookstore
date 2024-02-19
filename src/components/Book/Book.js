@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Navigation from "../Navigation/Navigation";
@@ -28,7 +28,6 @@ const Book = (props) => {
     setBookCategory,
     cartItems,
   } = props;
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
