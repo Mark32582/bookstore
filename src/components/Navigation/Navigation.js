@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Navigation = (props) => {
   const {
@@ -21,7 +21,7 @@ const Navigation = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
-    signedIn, // Added signedIn prop
+    cartItems,
   } = props;
 
   const api = googleBooks?.key;
@@ -160,22 +160,28 @@ const Navigation = (props) => {
             Search
           </button>{" "}
           <NavLink>
-            <img
-              className="cart-icon"
-              src={process.env.PUBLIC_URL + "/empty-cart.png"}
-              alt="cart"
-              onClick={() => setDisplayCart(!displayCart)}
-              width="24px"
-              height="24px"
-            />
+            {cartItems?.length > 0 ? (
+              <img
+                className="cart-icon"
+                src={process.env.PUBLIC_URL + "/full-cart.png"}
+                alt="cart"
+                onClick={() => setDisplayCart(!displayCart)}
+                width="24px"
+                height="24px"
+              />
+            ) : (
+              <img
+                className="cart-icon"
+                src={process.env.PUBLIC_URL + "/empty-cart.png"}
+                alt="cart"
+                onClick={() => setDisplayCart(!displayCart)}
+                width="24px"
+                height="24px"
+              />
+            )}
           </NavLink>
         </div>
       </div>
-      {signedIn && employee ? ( // Added signedIn prop check
-        <div className="navigation--employee-nav">
-          Employee Nav goes here when not hidden
-        </div>
-      ) : null}
     </div>
   );
 };

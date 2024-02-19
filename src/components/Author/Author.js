@@ -35,7 +35,7 @@ const Author = (props) => {
           </div>
           <div className="static-books">
             {booksByAuthor?.map((book, i) => {
-              return <BookTile books={book} key={i} />;
+              return <BookTile books={book} key={i+"authorBooks"} />;
             })}
           </div>
         </div>

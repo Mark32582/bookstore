@@ -17,9 +17,7 @@ function App() {
   const [search, setSearch] = useState();
   const [books, setBooks] = useState();
   const [bookCategory, setBookCategory] = useState();
-  const [cartItems, setCartItems] = useState([
-    { title: "test-title", description: "Lookey here", price: 9.99 },
-  ]);
+  const [cartItems, setCartItems] = useState([]);
   return (
     <div>
       <BrowserRouter>

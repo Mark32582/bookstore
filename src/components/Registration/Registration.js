@@ -23,6 +23,8 @@ const Registration = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
+    setCartItems,
   } = props;
 
   console.log(setUsers);
@@ -45,6 +47,7 @@ const Registration = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
       <LogonForm
         signOn={signOn}
@@ -55,7 +58,13 @@ const Registration = (props) => {
         users={users}
         setUsers={setUsers}
       />
-      <Cart cart={displayCart} books={books} setBooks={setBooks} />
+      <Cart
+        cart={displayCart}
+        books={books}
+        setBooks={setBooks}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+      />
       <RegisterForm
         verified={verified}
         setVerified={setVerified}

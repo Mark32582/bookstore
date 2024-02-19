@@ -1,25 +1,69 @@
 import classNames from "classnames";
+import { useEffect, useState } from "react";
 
 const Cart = (props) => {
-  const { cart, cost, totalCost, deliveryFee, items } = props;
+  const { cart, cartItems, setCartItems } = props;
+  const deliveryFee = 4.99;
+
+  const [totalCost, setTotalCost] = useState();
+  const [subTotalCost, setSubTotalCost] = useState();
+  const [taxes, setTaxes] = useState();
+
+  useEffect(() => {
+    let subTotal = 0;
+
+    cartItems?.price?.map((item) => {
+        subTotal = subTotal + Number(item);
+        console.log(item)
+        return subTotal;
+      }
+    );
+    // console.log(subTotalCost);
+    // setTimeout(() => {
+    //   setTaxes(subTotalCost * 0.06);
+    // }, 200);
+    // setTimeout(() => {
+    //   setTotalCost(4.99 + taxes + subTotalCost);
+    // }, 400);
+  }, [cartItems, subTotalCost, taxes]);
+
   return (
     <div
       className={classNames({ "hide-cart": !cart }, { "cart-container": cart })}
     >
       {/* <div className={classNames({ "hide-logon": !signOn })}></div> */}
-      <div className={classNames({ "hide-cart": !cart }, { "cart": cart })}>
+      <div className={classNames({ "hide-cart": !cart }, { cart: cart })}>
         <div className="cart-headline">
           <h1>Shopping Cart</h1>
         </div>
         <div className="cart-contents">
-          <span>items in the cart{items}</span>
-          <span>cost {cost}</span>
-          <span>input here</span>
-          <span>Delivery Fee{deliveryFee}</span>
-          <span>if applicable</span>
-          <h2>Total{totalCost}</h2>
+          <div className="cart-mapped">
+            {cartItems?.length > 0 &&
+              cartItems?.map((item, i) => {
+                return (
+                  <div key={i + "cartItem"} className="cart-items">
+                    <div>
+                      <b>Title:</b> {item?.title}
+                    </div>
+                    <div>
+                      <b>Price:</b> {item?.price}
+                    </div>
+                    <div>
+                      <b>Count:</b> 1
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+
           <span>
-            <h2>total cost here</h2>
+            <em>Delivery Fee:</em> ${deliveryFee}
+          </span>
+          <span>(if applicable)</span>
+          <h2>SubTotal: ${subTotalCost}</h2>
+          <span>Taxes: ${taxes}</span>
+          <span>
+            <h2>Total Cost: ${totalCost}</h2>
           </span>
         </div>
       </div>

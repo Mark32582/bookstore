@@ -21,6 +21,7 @@ const Browse = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
   } = props;
 
   return (
@@ -41,6 +42,7 @@ const Browse = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
       <LogonForm
         signOn={signOn}
@@ -78,7 +80,7 @@ const Browse = (props) => {
               const bookId = book?.id;
               console.log(book);
               return (
-                <div className="row" id="search" key={i}>
+                <div className="row" id="search" key={i+"search"}>
                   <div className="row--image">
                     <img
                       src={book?.volumeInfo?.imageLinks?.thumbnail}

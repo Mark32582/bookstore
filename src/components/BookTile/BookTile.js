@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 
 const BookTile = (props) => {
-  const { books } = props;
+  const { books, cartItems, setCartItems } = props;
   const bookId = books?.googleId || books?.id;
   const url = books?.thumbnail || books?.volumeInfo?.imageLinks?.thumbnail;
   const title = books?.title || books?.volumeInfo?.title;
   const author = books?.author || books?.volumeInfo?.authors;
   const price = books?.retailPrice || books?.saleInfo?.retailPrice?.amount;
 
+  const onAddToCart = () => {
+    let count = 0;
+    count = count++;
+    setCartItems([...cartItems, { title: title, price: price, count: count }]);
+  };
   return (
     <div className="tile">
       <div className="tile--image">
@@ -29,7 +34,7 @@ const BookTile = (props) => {
           {books?.retailPrice ? (
             <>
               <span className="row--text__info">${price}</span>{" "}
-              <button>Add to Cart</button>
+              <button onClick={() => onAddToCart()}>Add to Cart</button>
             </>
           ) : (
             <span>Unavailable</span>

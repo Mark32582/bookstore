@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Navigation from "../Navigation/Navigation";
@@ -26,8 +26,8 @@ const Book = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
   } = props;
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -36,7 +36,7 @@ const Book = (props) => {
         setCurrentBook(res?.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [bookId]);
 
   const removeScript = (description) => {
     if (description === null || description === "") {
@@ -64,6 +64,7 @@ const Book = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
       <LogonForm
         signOn={signOn}
