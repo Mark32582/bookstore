@@ -6,6 +6,7 @@ import AddBooks from "./components/AddBooks/AddBook";
 import Checkout from "./components/Checkout/Checkout";
 import Registration from "./components/Registration/Registration";
 import Browse from "./components/Browse/Browse";
+import { FirestoreCacheProvider } from './provider/ContextProvider.js';
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -19,6 +20,7 @@ function App() {
   const [bookCategory, setBookCategory] = useState();
   const [cartItems, setCartItems] = useState([]);
   return (
+    <FirestoreCacheProvider>
     <div>
       <BrowserRouter>
         <Routes>
@@ -193,6 +195,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+    </FirestoreCacheProvider>
   );
 }
 
