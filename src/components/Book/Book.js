@@ -26,6 +26,7 @@ const Book = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
   } = props;
   const navigate = useNavigate();
 
@@ -64,6 +65,7 @@ const Book = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
       <LogonForm
         signOn={signOn}

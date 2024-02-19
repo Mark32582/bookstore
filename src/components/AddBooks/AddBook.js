@@ -24,6 +24,7 @@ const AddBooks = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
   } = props;
 
   const [title, setTitle] = useState("");
@@ -113,6 +114,7 @@ const AddBooks = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
       <LogonForm
         signOn={signOn}

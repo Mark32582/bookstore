@@ -5,7 +5,7 @@ import { getDocs, collection } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const Rows = (props) => {
-  const { books, setBooks } = props;
+  const { books, setBooks, cartItems, setCartItems } = props;
   const [pageData, setPageData] = useState();
 
   const fetchBooks = async () => {
@@ -51,7 +51,14 @@ const Rows = (props) => {
           </div>
           <div className="static-books">
             {pageData?.releases?.map((book, i) => {
-              return <BookTile books={book} key={i} />;
+              return (
+                <BookTile
+                  books={book}
+                  key={i + "newRelease"}
+                  cartItems={cartItems}
+                  setCartItems={setCartItems}
+                />
+              );
             })}
           </div>
         </>
@@ -63,7 +70,14 @@ const Rows = (props) => {
           </div>
           <div className="static-books">
             {pageData?.best?.map((book, i) => {
-              return <BookTile books={book} key={i} />;
+              return (
+                <BookTile
+                  books={book}
+                  key={i + "bestSellers"}
+                  cartItems={cartItems}
+                  setCartItems={setCartItems}
+                />
+              );
             })}
           </div>
         </>
@@ -75,7 +89,14 @@ const Rows = (props) => {
           </div>
           <div className="static-books">
             {pageData?.employee?.map((book, i) => {
-              return <BookTile books={book} key={i} />;
+              return (
+                <BookTile
+                  books={book}
+                  key={i + "employee"}
+                  cartItems={cartItems}
+                  setCartItems={setCartItems}
+                />
+              );
             })}
           </div>
         </>

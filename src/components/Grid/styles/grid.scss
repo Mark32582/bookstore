@@ -7,6 +7,13 @@
 .grid-tiles{
     padding:16px;
     min-height:200px;
-    border: 1px solid black;
-    
+    border: 1px ridge black;
+    margin: 16px;
+    border-radius: 12px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: blanchedalmond;
+    min-width: 305px;
 }
