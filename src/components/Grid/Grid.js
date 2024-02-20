@@ -33,7 +33,7 @@ const Grid = () => {
       </div>
       <div className="grid-tiles">
         <img
-          src={process.env.PUBLIC_URL + "/remove-book.png"}
+          src={process.env.PUBLIC_URL + "/add-book.png"}
           alt=""
           height="120px"
         />
