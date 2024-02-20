@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navigation from "../Navigation/Navigation";
-import Grid from "../Grid/Grid";
-import DeleteBooks from "../DeleteBooks/DeleteBooks";
+import LogonForm from "../LogonForm/LogonForm";
+import Cart from "../Cart/Cart";
 
 const AddBooks = (props) => {
   const {
@@ -22,7 +22,8 @@ const AddBooks = (props) => {
     books,
     setBooks,
     bookCategory,
-    setBookCategory
+    setBookCategory,
+    cartItems,
   } = props;
 
   const [title, setTitle] = useState("");
@@ -30,14 +31,17 @@ const AddBooks = (props) => {
   const [quantity, setQuantity] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
   const [collection, setCollection] = useState("null");
-  const selectedCollections = ["bestSeller", "newReleases", "carousel", "employeeRecommendations"];
+  const selectedCollections = [
+    "bestSeller",
+    "newReleases",
+    "carousel",
+    "employeeRecommendations",
+  ];
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);
 
-  const fetchCollection = async (collectionName, setSearchResults) => {
-   
-  };
+  const fetchCollection = async (collectionName, setSearchResults) => {};
 
   const handleSearch = () => {
     axios
@@ -58,25 +62,24 @@ const AddBooks = (props) => {
   };
 
   const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   if (selectedBook) {
-  //     const newBook = {
-  //       title: selectedBook.volumeInfo.title,
-  //       author: selectedBook.volumeInfo.authors[0],
-  //       quantity: orderQuantity,
-  //       category: selectedBook.volumeInfo.category,
-  //       cost: selectedBook.volumeInfo.cost,
-  //       description: selectedBook.volumeInfo.description,
-  //       googleId: selectedBook.volumeInfo.googleId,
-  //       id: selectedBook.volumeInfo.id,
-  //       inventoryCount: selectedBook.volumeInfo.inventoryCount,
-  //       pageCount: selectedBook.volumeInfo.pageCount,
-  //       publisher: selectedBook.volumeInfo.publisher,
-  //       publisherDate: selectedBook.volumeInfo.publisherDate,
-  //       retailPrice: selectedBook.volumeInfo.retailPrice,
-  //       thumbnail: selectedBook.volumeInfo.thumbnail,
-      };
+    //   event.preventDefault();
+    //   if (selectedBook) {
+    //     const newBook = {
+    //       title: selectedBook.volumeInfo.title,
+    //       author: selectedBook.volumeInfo.authors[0],
+    //       quantity: orderQuantity,
+    //       category: selectedBook.volumeInfo.category,
+    //       cost: selectedBook.volumeInfo.cost,
+    //       description: selectedBook.volumeInfo.description,
+    //       googleId: selectedBook.volumeInfo.googleId,
+    //       id: selectedBook.volumeInfo.id,
+    //       inventoryCount: selectedBook.volumeInfo.inventoryCount,
+    //       pageCount: selectedBook.volumeInfo.pageCount,
+    //       publisher: selectedBook.volumeInfo.publisher,
+    //       publisherDate: selectedBook.volumeInfo.publisherDate,
+    //       retailPrice: selectedBook.volumeInfo.retailPrice,
+    //       thumbnail: selectedBook.volumeInfo.thumbnail,
+  };
 
   //     // Logic for adding the new book to the collection
   //     // Example: setBooks([...books, newBook]);
@@ -101,7 +104,34 @@ const AddBooks = (props) => {
 
   return (
     <div>
-      <Navigation />
+      <Navigation
+        verified={verified}
+        setVerified={setVerified}
+        signOn={signOn}
+        setSignOn={setSignOn}
+        employee={employee}
+        setEmployee={setEmployee}
+        displayCart={displayCart}
+        setDisplayCart={setDisplayCart}
+        setUsers={setUsers}
+        search={search}
+        setSearch={setSearch}
+        books={books}
+        setBooks={setBooks}
+        bookCategory={bookCategory}
+        setBookCategory={setBookCategory}
+        cartItems={cartItems}
+      />
+      <LogonForm
+        signOn={signOn}
+        setSignOn={setSignOn}
+        setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
+      />
+      <Cart cart={displayCart} books={books} setBooks={setBooks} />
       <form onSubmit={handleSubmit}>
         <ul>
           {selectedCollections.map((collectionName) => (
