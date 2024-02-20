@@ -8,6 +8,7 @@ import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
 import Browse from "./components/Browse/Browse";
 
+
 function App() {
   const [name, setName] = useState("Guest");
   const [verified, setVerified] = useState(false);
@@ -48,8 +49,6 @@ function App() {
               />
             }
           />
-
-
           <Route
             path="/book/:bookId"
             element={
@@ -149,9 +148,67 @@ function App() {
                 books={books}
                 setBooks={setBooks}
                 bookCategory={bookCategory}
-                setBookCategory={setBookCategory} /* Pass your props here */ />}
+                setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
-{/* <Route path="/checkout" element={<Checkout name={name} verified={verified}
+            }
+          />
+          <Route
+            path="/deletebooks"
+            element={
+              <DeleteBooks
+                name={name}
+                setName={setName}
+                verified={verified}
+                setVerified={setVerified}
+                displayCart={displayCart}
+                setDisplayCart={setDisplayCart}
+                signOn={signOn}
+                setSignOn={setSignOn}
+                employee={employee}
+                setEmployee={setEmployee}
+                users={users}
+                setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                name={name}
+                setName={setName}
+                verified={verified}
+                setVerified={setVerified}
+                displayCart={displayCart}
+                setDisplayCart={setDisplayCart}
+                signOn={signOn}
+                setSignOn={setSignOn}
+                employee={employee}
+                setEmployee={setEmployee}
+                users={users}
+                setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
+            }
+          />
+          {/* <Route path="/checkout" element={<Checkout name={name} verified={verified}
                 setVerified={setVerified} />} /> */}
         </Routes>
       </BrowserRouter>

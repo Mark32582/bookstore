@@ -141,7 +141,7 @@ const DeleteBooks = (props) => {
     <div>
       <Navigation
         name={name}
-        setName={setName} 
+        setName={setName}
         verified={verified}
         setVerified={setVerified}
         employee={employee}
@@ -181,7 +181,6 @@ const DeleteBooks = (props) => {
           />
         </div>
       )}
-          
       <h1>Delete Books</h1>
 
       <ul>
@@ -204,18 +203,16 @@ const DeleteBooks = (props) => {
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search by title, author, or ID"
       />
       <button onClick={handleSearch}>Search</button>
+
       <ul>
         {searchResults?.map((book) => (
           <li key={book.id}>
-        {searchResults?.map((result) => (
-          <li key={result.id}>
             <input
               type="checkbox"
-              onChange={(e) => handleCheck(e, result.id)}
-              checked={checked.includes(result.id)}
+              checked={checked.includes(book.id)}
+              onChange={(e) => handleCheck(e, book.id)}
             />
             <img src={book.thumbnail} alt={book.title} />
             <h3>{book.title}</h3>
@@ -223,15 +220,10 @@ const DeleteBooks = (props) => {
             <p>{book.description}</p>
           </li>
         ))}
-
-          </li>
-      ))}
       </ul>
-      {checked.length > 0 && (
-        <button onClick={handleDelete}>Delete Selected Books</button>
-      )}
-      <button onClick={() => navigate("/")}>Go back</button>
-   </div>
+
+      <button onClick={handleDelete}>Delete Selected</button>
+    </div>
   );
 }};
 
