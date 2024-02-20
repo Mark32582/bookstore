@@ -12,6 +12,11 @@ const Grid = () => {
     navigate("/order");
   };
 
+  const handleDeleteClick = () => {
+    navigate("/deletebooks");
+  };
+
+
   return (
     <div className="grid-container">
       <div className="grid-tiles">
@@ -27,14 +32,6 @@ const Grid = () => {
         <button onClick={handleRegisterClick}>Register Users</button>
       </div>
       <div className="grid-tiles">
-        <img
-          src={process.env.PUBLIC_URL + "/add-book.png"}
-          alt=""
-          height="120px"
-        />
-        <span>
-          <h2>Order New Books</h2>
-        </span>
         <button onClick={handleAddBooksClick}>Order Books</button>
       </div>
       <div className="grid-tiles">
@@ -44,9 +41,16 @@ const Grid = () => {
           height="120px"
         />
         <span>
-          <h2>Remove Books</h2>
+        <h2>Remove Books</h2>
         </span>
-        <button>Remove Books</button>
+        <button onClick={handleDeleteClick}>Remove Books</button>
+      </div>
+      <div className="grid-tiles">
+        <img
+          src={process.env.PUBLIC_URL + "/remove-book.png"}
+          alt=""
+          height="120px"
+        />
       </div>
       <div className="grid-tiles">stuff goes in all these tiles</div>
       <div className="grid-tiles">stuff goes in all these tiles</div>
