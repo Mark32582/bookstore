@@ -1,6 +1,7 @@
 import RegisterForm from "../RegisterForm/RegisterForm";
 import Navigation from "../Navigation/Navigation";
 import LogonForm from "../LogonForm/LogonForm";
+import Cart from "../Cart/Cart";
 
 const Registration = (props) => {
   const {
@@ -22,6 +23,8 @@ const Registration = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
+    setCartItems,
   } = props;
 
   console.log(setUsers);
@@ -44,15 +47,23 @@ const Registration = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
-
       <LogonForm
         signOn={signOn}
-        setName={setName}
+        setSignOn={setSignOn}
         setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
         users={users}
         setUsers={setUsers}
-        setEmployee={setEmployee}
+      />
+      <Cart
+        cart={displayCart}
+        books={books}
+        setBooks={setBooks}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
       />
       <RegisterForm
         verified={verified}

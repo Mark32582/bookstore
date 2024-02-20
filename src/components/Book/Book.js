@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
-import { googleBooks } from "../../config/googlebooks";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Navigation from "../Navigation/Navigation";
+import Author from "../Author/Author";
+import LogonForm from "../LogonForm/LogonForm";
+import Cart from "../Cart/Cart";
 
 const Book = (props) => {
   const { bookId } = useParams();
-  const api = googleBooks?.key;
   const [currentBook, setCurrentBook] = useState();
   const {
     verified,
@@ -25,6 +26,7 @@ const Book = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
   } = props;
 
   useEffect(() => {
@@ -34,10 +36,15 @@ const Book = (props) => {
         setCurrentBook(res?.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [bookId]);
 
-  //   console.log(bookId);
-  console.log(currentBook);
+  const removeScript = (description) => {
+    if (description === null || description === "") {
+      return "test";
+    } else {
+      return description?.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, "");
+    }
+  };
 
   return (
     <>
@@ -57,26 +64,40 @@ const Book = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
-      <div className="carousel-container">
-        <div className="carousel--image">
-          <img
-            src={currentBook?.volumeInfo?.imageLinks?.thumbnail}
-            width="200px"
-            alt=""
-          />
-        </div>
-        <div className="carousel--text">
-          <span>
-            <b>{currentBook?.volumeInfo?.title}</b>
-          </span>
-          <span>
-            <i>{currentBook?.volumeInfo?.authors}</i>
-          </span>
-          <div className="carousel--text__description">
-            <p>{currentBook?.volumeInfo?.description}</p>
+      <LogonForm
+        signOn={signOn}
+        setSignOn={setSignOn}
+        setVerified={setVerified}
+        employee={employee}
+        setEmployee={setEmployee}
+        users={users}
+        setUsers={setUsers}
+      />
+      <Cart cart={displayCart} books={books} setBooks={setBooks} />
+      <div className="book-background">
+        <div className="book-container">
+          <div className="book--image">
+            <img
+              src={currentBook?.volumeInfo?.imageLinks?.thumbnail}
+              width="200px"
+              alt=""
+            />
+          </div>
+          <div className="book--text">
+            <span>
+              <h1>{currentBook?.volumeInfo?.title}</h1>
+            </span>
+            <span>
+              <i>{currentBook?.volumeInfo?.authors}</i>
+            </span>
+            <div className="book--text__description">
+              <p>{removeScript(currentBook?.volumeInfo?.description)}</p>
+            </div>
           </div>
         </div>
+        <Author author={currentBook?.volumeInfo?.authors} />
       </div>
     </>
   );

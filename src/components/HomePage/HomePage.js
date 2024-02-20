@@ -23,6 +23,8 @@ const HomePage = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
+    cartItems,
+    setCartItems,
   } = props;
 
   return (
@@ -43,6 +45,7 @@ const HomePage = (props) => {
         setBooks={setBooks}
         bookCategory={bookCategory}
         setBookCategory={setBookCategory}
+        cartItems={cartItems}
       />
       <LogonForm
         signOn={signOn}
@@ -53,7 +56,13 @@ const HomePage = (props) => {
         users={users}
         setUsers={setUsers}
       />
-      <Cart cart={displayCart} books={books} setBooks={setBooks} />
+      <Cart
+        cart={displayCart}
+        books={books}
+        setBooks={setBooks}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+      />
       {employee === true ? (
         <AdminDashboard users={users} books={books} setBooks={setBooks} />
       ) : (
@@ -63,14 +72,20 @@ const HomePage = (props) => {
             setSearch={setSearch}
             books={books}
             setBooks={setBooks}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
           />
         </div>
       )}
       <div className="body-content">
-        <div></div>
-
-        <div className="search-results" id="searchResults">
-          <Rows bookCategory={bookCategory} books={books} setBooks={setBooks} />
+        <div className="row-container">
+          <Rows
+            bookCategory={bookCategory}
+            books={books}
+            setBooks={setBooks}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+          />
         </div>
       </div>
     </div>

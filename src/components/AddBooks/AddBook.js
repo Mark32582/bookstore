@@ -83,6 +83,17 @@ const AddBooks = (props) => {
         publisherDate: selectedBook.volumeInfo.publisherDate,
         retailPrice: selectedBook.volumeInfo.retailPrice,
         thumbnail: selectedBook.volumeInfo.thumbnail,
+        category: selectedBook.volumeInfo.category,
+        cost: selectedBook.volumeInfo.cost,
+        description: selectedBook.volumeInfo.description,
+        googleId: selectedBook.volumeInfo.googleId,
+        id: selectedBook.volumeInfo.id,
+        inventoryCount: selectedBook.volumeInfo.inventoryCount,
+        pageCount: selectedBook.volumeInfo.pageCount,
+        publisher: selectedBook.volumeInfo.publisher,
+        publisherDate: selectedBook.volumeInfo.publisherDate,
+        retailPrice: selectedBook.volumeInfo.retailPrice,
+        thumbnail: selectedBook.volumeInfo.thumbnail,
       };
       // Further processing
       setTitle("");
@@ -266,10 +277,10 @@ const AddBooks = (props) => {
       {selectedBook && (
         <div>
           <h2>Selected Book</h2>
-          <p>Title: {selectedBook.volumeInfo.title}</p>
-          <p>Author: {selectedBook.volumeInfo.authors[0]}</p>
+          <p>Title: {selectedBook?.volumeInfo?.title}</p>
+          <p>Author: {selectedBook?.volumeInfo?.authors[0]}</p>
           <p>Quantity: {quantity}</p>
-          <p>Price: {selectedBook.saleInfo?.listPrice?.amount}</p>
+          <p>Price: {selectedBook?.saleInfo?.listPrice?.amount}</p>
           <input
             type="number"
             value={orderQuantity}

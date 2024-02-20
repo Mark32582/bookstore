@@ -2,10 +2,17 @@
   display: none;
 }
 .cart-container {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border: 1px double blanchedalmond;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 10;
+  color: blanchedalmond;
+  background-color: darkslategray;
 }
 .cart {
   display: flex;
@@ -21,5 +28,21 @@
   &-contents {
     display: grid;
     padding: 8px;
+    
+  }
+  &-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom:8px;
+    gap: 16px;
+    width: 100%;
+    border-bottom: 1px solid blanchedalmond;
+
+
+  }
+  &-mapped {
+    width: 100%;
+    margin-bottom: 16px;
+    
   }
 }

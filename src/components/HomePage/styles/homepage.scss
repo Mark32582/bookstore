@@ -3,23 +3,19 @@ html {
     min-height: 800px;
 }
 body {
-    overflow: hidden;
-    min-height: 800px;
     overflow:auto;
+    background-color: darkslategray;
 }
 .carousel-container{
-    height:350px;
-    border:1px solid black;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    margin:8px 24px 0 ;
+    height:400px;
+    overflow: hidden;
+    margin:0;
 }
 .body-content{
     margin: 16px 24px ;
-    width: 100%;
+
 }
-.search-results{
-    width:100%;
-    margin: 0 0 0 0;
+.row-container a{
+    color:darkslategray;
 }
+

@@ -1,56 +1,56 @@
 /* eslint-disable no-lone-blocks */
-import { googleBooks } from "../../config/googlebooks";
-import axios from "axios";
-import { useCallback, useState } from "react";
+import { db } from "../../config/fireBaseConfig";
+import { getDocs, collection } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel as Slider } from "react-responsive-carousel";
 
-const Carousel = (props) => {
-  const { books, setBooks } = props;
-  const api = googleBooks?.key;
- 
+const Carousel = () => {
+  const [carouselBooks, setCarouselBooks] = useState();
 
-  //   useCallback(() => {
-  // if (search) {
-  //   axios
-  //     .get(
-  //       `https://www.googleapis.com/books/v1/volumes?q=javascript&key=${api}`
-  //     )
-  //     .then((res) => setBooks(res?.data?.items))
-  //     .catch((err) => console.log(err));
-  // }
-  //   }, [search, api]);
-  //   const bookLibrary = axios
-  //     .get(`https://www.googleapis.com/books/v1/volumes?q=javascript&key=${api}`)
-  //     .then(res=>setBooks(res?.data?.items))
-  //     .catch(err =>console.log(err))
+  const fetchBooks = async () => {
+    await getDocs(collection(db, "carousel")).then((querySnapshot) => {
+      const newData = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setCarouselBooks(newData);
+    });
+  };
 
-  // console.log(bookLibrary)
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+
   return (
-    <div className="carousel">
-      {books &&
-        books.map((book, i) => {
-          {
-            if (i < 1) {
-              return (
-                <>
-                  <div className="carousel--image" key={i}>
-                    <img
-                      src={book?.volumeInfo?.imageLinks?.thumbnail}
-                      width="200px"
-                      alt=""
-                    />
-                  </div>
-                  <div key={i} className="carousel--text">
-                    <span><b>{book?.volumeInfo?.title}</b></span>         
-                    <span><i>{book?.volumeInfo?.authors}</i></span>                
-                    <div className="carousel--text__description"><p >{book?.volumeInfo?.description}</p></div>
-                  </div>
-                </>
-              );
-            }
-            return null;
-          }
+    <Slider autoPlay infiniteLoop interval="10000" showThumbs={false}>
+      {carouselBooks &&
+        carouselBooks.map((book, i) => {
+          return (
+            <div className="carousel" key={i+"carousel"}>
+              <div className="carousel--image" key={i}>
+                <img
+                  src={book?.thumbnail}
+                  height="350px"
+                  width="200px"
+                  alt=""
+                />
+              </div>
+              <div key={i} className="carousel--text">
+                <span>
+                  <h1>{book?.title}</h1>
+                </span>
+                <span>
+                  <em>{book?.author}</em>
+                </span>
+                <div className="carousel--text__description">
+                  <p>{book?.description}</p>
+                </div>
+              </div>
+            </div>
+          );
         })}
-    </div>
+    </Slider>
   );
 };
 

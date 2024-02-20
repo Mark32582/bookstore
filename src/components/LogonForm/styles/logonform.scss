@@ -2,11 +2,15 @@
     display:none;
 }
 .form-container-sign-on{
-    display:flex;
-    align-items: flex-end;
-    justify-content: flex-end ;
-    z-index: 10;
-    width:100%;
+    position: absolute;
+    top: 102px;
+    right: 0;
+    padding:16px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: darkslategray;
+    z-index: 1;
+    border-radius: 0 0 0 8px;
     
 }
 .logon-form{
@@ -16,9 +20,8 @@
     align-items: flex-end;
     justify-content: center;
     width:fit-content;
-    padding:4px 8px 8px;
-    border-radius: 0 0 0 10px;
     z-index: inherit;
+    margin:0;
 }
 input{
     margin:0 2px;

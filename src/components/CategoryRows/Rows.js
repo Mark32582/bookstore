@@ -1,14 +1,15 @@
-import axios from "axios";
-import { googleBooks } from "../../config/googlebooks";
 import { NavLink } from "react-router-dom";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import BookTile from "../BookTile/BookTile";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const Rows = (props) => {
-  const { books, setBooks } = props;
+  const { books, setBooks, cartItems, setCartItems } = props;
   const [pageData, setPageData] = useState();
+  const [showMore, setShowMore] = useState(false); // Add showMore state
+  const [showMore1, setShowMore1] = useState(false);
+  const [showMore2, setShowMore2] = useState(false);
 
   const fetchBooks = async () => {
     let releases;
@@ -44,29 +45,56 @@ const Rows = (props) => {
     fetchBooks();
   }, []);
 
+  const handleShowMore = () => {
+    setShowMore(!showMore);
+  };
+  const handleShowMore1 = () => {
+    setShowMore1(!showMore1);
+  };
+  const handleShowMore2 = () => {
+    setShowMore2(!showMore2);
+  };
+
   return (
     <>
       {pageData?.releases?.length >= 1 && (
         <>
           <div className="row--category" id="newRelease">
-            <h2>New Releases</h2>
+            <h2>New Releases</h2>{" "}
+            <button onClick={handleShowMore}>
+              {showMore ? "Show Less" : "Show More"}
+            </button>
           </div>
           <div className="static-books">
-            {pageData?.releases?.map((book, i) => {
-              return <BookTile books={book} key={i} />;
-            })}
+
+            {pageData?.releases
+              ?.slice(0, showMore ? undefined : 3)
+              .map((book, i) => {
+                return <BookTile books={book} key={i+"new-release"} cartItems={cartItems}
+                  setCartItems={setCartItems}/>;
+              })}
+
           </div>
         </>
       )}
       {pageData?.best?.length >= 1 && (
         <>
           <div className="row--category" id="bestSeller">
-            <h2>Best Sellers</h2>
+            <h2>Best Sellers</h2>{" "}
+            <button onClick={handleShowMore1}>
+              {showMore1 ? "Show Less" : "Show More"}
+            </button>
           </div>
           <div className="static-books">
-            {pageData?.best?.map((book, i) => {
-              return <BookTile books={book} key={i} />;
-            })}
+
+            {pageData?.best
+              ?.slice(0, showMore1 ? undefined : 3)
+              .map((book, i) => {
+                return <BookTile books={book}  key={i + "bestSellers"}
+                  cartItems={cartItems}
+                  setCartItems={setCartItems} />;
+              })}
+
           </div>
         </>
       )}
@@ -74,56 +102,23 @@ const Rows = (props) => {
         <>
           <div className="row--category" id="employee">
             <h2>Employee Recommendations</h2>
+            <button onClick={handleShowMore2}>
+              {showMore2 ? "Show Less" : "Show More"}
+            </button>
           </div>
           <div className="static-books">
-            {pageData?.employee?.map((book, i) => {
-              return <BookTile books={book} key={i} />;
-            })}
+
+            {pageData?.employee
+              ?.slice(0, showMore2 ? undefined : 3)
+              .map((book, i) => {
+                return <BookTile books={book} key={i + "employee"}
+                  cartItems={cartItems}
+                  setCartItems={setCartItems} />;
+              })}
+
           </div>
         </>
       )}
-      {books &&
-        books.map((book, i) => {
-        const bookId = book?.id;
-        console.log(book)
-          return (
-            <div className="row" id="search" key={i}>
-              <div className="row--image">
-                <img
-                  src={book?.volumeInfo?.imageLinks?.thumbnail}
-                  height="120px"
-                  alt=""
-                />
-              </div>
-              <div className="row--text">
-                <span>
-                  <b>{book?.volumeInfo?.title}</b>
-                </span>
-                <span>
-                  <i>{book?.volumeInfo?.authors}</i>
-                </span>
-                <div className="row--text__description">
-                  <p>{book?.volumeInfo?.description}</p>
-                </div>
-                <div className="row--text__actions">
-                  <NavLink to={`/book/${bookId}`}>
-                    <span className="row--text__info">More Info</span>
-                  </NavLink>
-                  {book?.saleInfo?.listPrice?.amount ? (
-                    <>
-                      <span className="row--text__info">
-                        ${book?.saleInfo?.listPrice?.amount}
-                      </span>{" "}
-                      <button>Add to Cart</button>
-                    </>
-                  ) : (
-                    <span>Currently Unavailable</span>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        })}
     </>
   );
 };

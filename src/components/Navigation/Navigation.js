@@ -1,8 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Navigation = (props) => {
   const {
@@ -21,10 +21,11 @@ const Navigation = (props) => {
     setBooks,
     bookCategory,
     setBookCategory,
-    signedIn, // Added signedIn prop
+    cartItems,
   } = props;
 
   const api = googleBooks?.key;
+  const navigate = useNavigate();
   const signOff = () => {
     setVerified(!verified);
     setTimeout(() => {
@@ -34,15 +35,22 @@ const Navigation = (props) => {
       setUsers(undefined);
     }, 500);
   };
+  const [redirect, setRedirect] = useState();
 
   const handleSearch = () => { 
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {
         setBooks(res?.data?.items);
-        
+        setBookCategory(undefined);
+        setRedirect(true);
       })
       .catch((err) => console.log(err));
+  };
+
+  const handleCategory = (category) => {
+    setBookCategory(category);
+    setTimeout(() => setRedirect(true), 200);
   };
 
   useEffect(() => {
@@ -57,6 +65,12 @@ const Navigation = (props) => {
         .catch((err) => console.log(err));
     }
   }, [api, bookCategory, setBooks]);
+
+  useEffect(() => {
+    if (redirect === true) {
+      navigate("/browse");
+    }
+  }, [redirect, books, bookCategory]);
 
   return (
     <div>
@@ -93,40 +107,38 @@ const Navigation = (props) => {
                 style={{ marginRight: "8px" }}
                 src={process.env.PUBLIC_URL + "/home.png"}
                 alt="home button"
+                onClick={() => setRedirect(false)}
               />
             </NavLink>
 
-            <button id="fiction" onClick={() => setBookCategory("fiction")}>
+            <button id="fiction" onClick={() => handleCategory("Fiction")}>
               Fiction
             </button>
             <button
               id="nonFiction"
-              onClick={() => setBookCategory("nonFiction")}
+              onClick={() => handleCategory("nonFiction")}
             >
               Non-Fiction
             </button>
-            <button id="mystery" onClick={() => setBookCategory("mystery")}>
+            <button id="mystery" onClick={() => handleCategory("Mystery")}>
               Mystery
             </button>
-            <button id="romance" onClick={() => setBookCategory("romance")}>
+            <button id="romance" onClick={() => handleCategory("Romance")}>
               Romance
             </button>
-            <button id="poetry" onClick={() => setBookCategory("poetry")}>
+            <button id="poetry" onClick={() => handleCategory("Poetry")}>
               Poetry
             </button>
-            <button id="horror" onClick={() => setBookCategory("horror")}>
+            <button id="horror" onClick={() => handleCategory("Horror")}>
               Horror
             </button>
-            <button id="suspense" onClick={() => setBookCategory("suspense")}>
+            <button id="suspense" onClick={() => handleCategory("Suspense")}>
               Suspense
             </button>
-            <button
-              id="scienceFiction"
-              onClick={() => setBookCategory("sciFi")}
-            >
+            <button id="scienceFiction" onClick={() => handleCategory("sciFi")}>
               Science-Fiction
             </button>
-            <button id="youngAdult" onClick={() => setBookCategory("youth")}>
+            <button id="youngAdult" onClick={() => handleCategory("Youth")}>
               Young Adult
             </button>
             <button
@@ -148,22 +160,28 @@ const Navigation = (props) => {
             Search
           </button>{" "}
           <NavLink>
-            <img
-              className="cart-icon"
-              src={process.env.PUBLIC_URL + "/empty-cart.png"}
-              alt="cart"
-              onClick={() => setDisplayCart(!displayCart)}
-              width="24px"
-              height="24px"
-            />
+            {cartItems?.length > 0 ? (
+              <img
+                className="cart-icon"
+                src={process.env.PUBLIC_URL + "/full-cart.png"}
+                alt="cart"
+                onClick={() => setDisplayCart(!displayCart)}
+                width="24px"
+                height="24px"
+              />
+            ) : (
+              <img
+                className="cart-icon"
+                src={process.env.PUBLIC_URL + "/empty-cart.png"}
+                alt="cart"
+                onClick={() => setDisplayCart(!displayCart)}
+                width="24px"
+                height="24px"
+              />
+            )}
           </NavLink>
         </div>
       </div>
-      {signedIn && employee ? ( // Added signedIn prop check
-        <div className="navigation--employee-nav">
-          Employee Nav goes here when not hidden
-        </div>
-      ) : null}
     </div>
   );
 };

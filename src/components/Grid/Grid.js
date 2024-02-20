@@ -19,12 +19,26 @@ const Grid = () => {
   return (
     <div className="grid-container">
       <div className="grid-tiles">
-        <div className="tile">
-          <span>people icon and below that text about registering new employees or customers</span>
-        </div>
+        <img
+          src={process.env.PUBLIC_URL + "/add-person.png"}
+          alt=""
+          height="120px"
+        />
+        <span>
+          <h2>Add Customer/Employee</h2>
+        </span>
+
         <button onClick={handleRegisterClick}>Register Users</button>
       </div>
       <div className="grid-tiles">
+        <img
+          src={process.env.PUBLIC_URL + "/remove-book.png"}
+          alt=""
+          height="120px"
+        />
+        <span>
+        <h2>Order Books</h2>
+        </span>
         <button onClick={handleAddBooksClick}>Order Books</button>
       </div>
       <div className="grid-tiles">
