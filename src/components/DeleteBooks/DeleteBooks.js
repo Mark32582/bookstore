@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 import Navigation from "../Navigation/Navigation";
 import LogonForm from "../LogonForm/LogonForm";
-import HomePage from "../HomePage/HomePage";
-import AdminDashboard from "../AdminDashboard/Dashboard";
-import Cart from "../Cart/Cart";
-import Carousel from "../Carousel/Carousel";
-
 
 const fetchCollection = async (collectionName, setSearchResults) => {
   // const collectionRef = collection(db, collectionName);
@@ -136,6 +130,10 @@ const DeleteBooks = (props) => {
       }
     }
 
+    setChecked([]);
+    fetchBooks();
+  };
+
 
   return (
     <div>
@@ -168,63 +166,53 @@ const DeleteBooks = (props) => {
         users={users}
         setUsers={setUsers}
       />
-      <Cart cart={displayCart} books={books} setBooks={setBooks} />
-      {employee === true ? (
-        <AdminDashboard users={users} books={books} setBooks={setBooks} />
-      ) : (
-        <div className="carousel-container">
-          <Carousel
-            search={search}
-            setSearch={setSearch}
-            books={books}
-            setBooks={setBooks}
-          />
-        </div>
-      )}
       <h1>Delete Books</h1>
 
       <ul>
-        {selectedCollections.map((collectionName) => (
-          <li key={collectionName}>
-          <label>
-            <input
-              type="radio"
-              name="collection"
-              value={collectionName}
-              onChange={() => fetchBooks(collectionName)}
-            />
-            {collectionName}
-          </label>
-        </li>
-        ))}
-      </ul>
+  {selectedCollections.map((collectionName) => (
+    <li key={collectionName}>
+      <label>
+        <input
+          type="radio"
+          name="collection"
+          value={collectionName}
+          onChange={() => fetchCollection(collectionName)}
+        />
+        {collectionName}
+      </label>
+    </li>
+  ))}
+</ul>
 
       <input
         type="text"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Search by title, author, or ID"
       />
       <button onClick={handleSearch}>Search</button>
-
       <ul>
-        {searchResults?.map((book) => (
-          <li key={book.id}>
+        {searchResults.map((result) => (
+          <li key={result.id}>
             <input
-              type="checkbox"
-              checked={checked.includes(book.id)}
-              onChange={(e) => handleCheck(e, book.id)}
+type="checkbox"
+              onChange={(e) => handleCheck(e, result.id)}
+              checked={checked.includes(result.id)}
             />
-            <img src={book.thumbnail} alt={book.title} />
-            <h3>{book.title}</h3>
-            <p>{book.author}</p>
-            <p>{book.description}</p>
+            <h2>{result.title}</h2>
+            <p>Author: {result.author}</p>
+            <p>Description: {result.description}</p>
+            <p>ID: {result.id}</p>
+
           </li>
         ))}
       </ul>
-
-      <button onClick={handleDelete}>Delete Selected</button>
+      {checked.length > 0 && (
+        <button onClick={handleDelete}>Delete Selected Books</button>
+      )}
+      <button onClick={() => navigate("/")}>Go back</button>
     </div>
   );
-}};
+};
 
 export default DeleteBooks;
