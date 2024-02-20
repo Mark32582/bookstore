@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Navigation from "../Navigation/Navigation";
 import Grid from "../Grid/Grid";
-
+import DeleteBooks from "../DeleteBooks/DeleteBooks";
 const AddBooks = (props) => {
   const {
     setName,
@@ -29,9 +29,14 @@ const AddBooks = (props) => {
   const [quantity, setQuantity] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
   const [collection, setCollection] = useState("null");
+  const selectedCollections = ["bestSeller", "newReleases", "carousel", "employeeRecommendations"];
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);
+
+  const fetchCollection = async (collectionName, setSearchResults) => {
+   
+  };
 
   const handleSearch = () => {
     axios
@@ -95,25 +100,21 @@ const AddBooks = (props) => {
     <div>
       <Navigation />
       <form onSubmit={handleSubmit}>
+      <ul>
+  {selectedCollections.map((collectionName) => (
+    <li key={collectionName}>
+      <label>
         <input
-          type="text"
-          value={title}
-          onChange = {(e) => setTitle(e.target.value)}
-          placeholder="Enter title"
+          type="radio"
+          name="collection"
+          value={collectionName}
+          onChange={() => fetchCollection(collectionName)}
         />
-        <input
-          type="text"
-          value={author}
-          onChange = {(e) => setAuthor(e.target.value)}
-          placeholder="Enter author"
-        />
-        <input
-          type="number"
-          value={quantity}
-          onChange = {(e) => setQuantity(e.target.value)}
-          placeholder="Enter quantity"
-        />
-        <button type="submit">Add Book</button>
+        {collectionName}
+      </label>
+    </li>
+  ))}
+</ul>
       </form>
 
       <div>
@@ -127,6 +128,7 @@ const AddBooks = (props) => {
           />
           <button onClick={handleSearch}>Search</button>
         </form>
+        <button type="submit">Add Book</button>
 
         {books?.map((book) => (
           <li key={book.id}>
