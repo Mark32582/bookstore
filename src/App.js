@@ -6,6 +6,7 @@ import AddBooks from "./components/AddBooks/AddBook";
 import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
 import Dashboard from "./components/AdminDashboard/Dashboard";
+import Browse from "./components/Browse/Browse";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -50,7 +51,6 @@ function App() {
             }
           />
 
-
           <Route
             path="/book/:bookId"
             element={
@@ -78,7 +78,7 @@ function App() {
               />
             }
           />
-         {/* <Route 
+          {/* <Route 
             path="/user" 
             element={
               <Profile 
@@ -170,7 +170,7 @@ function App() {
               />
             }
           />
-         {/*} <Route
+          <Route
             path="/browse"
             element={
               <Browse
