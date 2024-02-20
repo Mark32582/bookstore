@@ -5,6 +5,7 @@ import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
 import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
+import Dashboard from "./components/AdminDashboard/Dashboard";
 
 function App() {
   const [name, setName] = useState("Guest");
