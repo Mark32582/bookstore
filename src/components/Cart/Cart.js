@@ -1,8 +1,10 @@
 import classNames from "classnames";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
   const { cart, cartItems, setCartItems } = props;
+  const navigate = useNavigate();
   const deliveryFee = 4.99;
 
   const [totalCost, setTotalCost] = useState();
@@ -13,11 +15,10 @@ const Cart = (props) => {
     let subTotal = 0;
 
     cartItems?.price?.map((item) => {
-        subTotal = subTotal + Number(item);
-        console.log(item)
-        return subTotal;
-      }
-    );
+      subTotal = subTotal + Number(item);
+      console.log(item);
+      return subTotal;
+    });
     // console.log(subTotalCost);
     // setTimeout(() => {
     //   setTaxes(subTotalCost * 0.06);
@@ -26,6 +27,10 @@ const Cart = (props) => {
     //   setTotalCost(4.99 + taxes + subTotalCost);
     // }, 400);
   }, [cartItems, subTotalCost, taxes]);
+
+  const handleCheckout = () => {
+    navigate("/checkout");
+  };
 
   return (
     <div
@@ -65,6 +70,9 @@ const Cart = (props) => {
           <span>
             <h2>Total Cost: ${totalCost}</h2>
           </span>
+        </div>
+        <div>
+          <button onClick={handleCheckout}>Complete Checkout</button>
         </div>
       </div>
     </div>

@@ -3,9 +3,11 @@ import { useState } from "react";
 import HomePage from "./components/HomePage/HomePage";
 import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
-import Checkout from "./components/Checkout/Checkout";
+import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
+import Dashboard from "./components/AdminDashboard/Dashboard";
 import Browse from "./components/Browse/Browse";
+import Checkout from "./components/Checkout/Checkout";
 import { FirestoreCacheProvider } from './provider/ContextProvider.js';
 
 function App() {
@@ -55,7 +57,7 @@ function App() {
           <Route
             path="/book/:bookId"
             element={
-              <Book
+              <Dashboard
                 name={name}
                 setName={setName}
                 verified={verified}
@@ -79,8 +81,16 @@ function App() {
               />
             }
           />
-          {/* <Route path="/user" element={<Profile name={name} verified={verified}
-                setVerified={setVerified} />} /> */}
+          {/* <Route 
+            path="/user" 
+            element={
+              <Profile 
+                name={name} 
+                verified={verified}
+                setVerified={setVerified} 
+              />
+            } 
+          /> */}
           <Route
             path="/signup"
             element={
@@ -137,6 +147,33 @@ function App() {
             }
           />
           <Route
+            path="/deletebooks"
+            element={
+              <DeleteBooks
+                name={name}
+                setName={setName}
+                verified={verified}
+                setVerified={setVerified}
+                displayCart={displayCart}
+                setDisplayCart={setDisplayCart}
+                signOn={signOn}
+                setSignOn={setSignOn}
+                employee={employee}
+                setEmployee={setEmployee}
+                users={users}
+                setUsers={setUsers}
+                search={search}
+                setSearch={setSearch}
+                books={books}
+                setBooks={setBooks}
+                bookCategory={bookCategory}
+                setBookCategory={setBookCategory}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+              />
+            }
+          />
+          <Route
             path="/browse"
             element={
               <Browse
@@ -168,30 +205,13 @@ function App() {
             element={
               <Checkout
                 name={name}
-                setName={setName}
                 verified={verified}
                 setVerified={setVerified}
-                displayCart={displayCart}
-                setDisplayCart={setDisplayCart}
-                signOn={signOn}
-                setSignOn={setSignOn}
-                employee={employee}
-                setEmployee={setEmployee}
-                users={users}
-                setUsers={setUsers}
-                search={search}
-                setSearch={setSearch}
-                books={books}
-                setBooks={setBooks}
-                bookCategory={bookCategory}
-                setBookCategory={setBookCategory}
                 cartItems={cartItems}
                 setCartItems={setCartItems}
               />
             }
           />
-          {/* <Route path="/checkout" element={<Checkout name={name} verified={verified}
-                setVerified={setVerified} />} /> */}
         </Routes>
       </BrowserRouter>
     </div>

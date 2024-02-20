@@ -6,7 +6,6 @@ import Cart from "../Cart/Cart";
 
 const AddBooks = (props) => {
   const {
-    name,
     setName,
     verified,
     setVerified,
@@ -31,9 +30,18 @@ const AddBooks = (props) => {
   const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
+  const [collection, setCollection] = useState("null");
+  const selectedCollections = [
+    "bestSeller",
+    "newReleases",
+    "carousel",
+    "employeeRecommendations",
+  ];
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);
+
+  const fetchCollection = async (collectionName, setSearchResults) => {};
 
   const handleSearch = () => {
     axios
@@ -54,39 +62,40 @@ const AddBooks = (props) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Add logic here to handle the form submission, such as sending data to a backend server or updating state variables.
-    if (selectedBook) {
-      const newBook = {
-        title: selectedBook.volumeInfo.title,
-        author: selectedBook.volumeInfo.authors[0],
-        quantity: orderQuantity,
-        category: selectedBook.volumeInfo.category,
-        cost: selectedBook.volumeInfo.cost,
-        description: selectedBook.volumeInfo.description,
-        googleId: selectedBook.volumeInfo.googleId,
-        id: selectedBook.volumeInfo.id,
-        inventoryCount: selectedBook.volumeInfo.inventoryCount,
-        pageCount: selectedBook.volumeInfo.pageCount,
-        publisher: selectedBook.volumeInfo.publisher,
-        publisherDate: selectedBook.volumeInfo.publisherDate,
-        retailPrice: selectedBook.volumeInfo.retailPrice,
-        thumbnail: selectedBook.volumeInfo.thumbnail,
-      };
-      // Further processing
-      setTitle("");
-      setAuthor("");
-      setQuantity("");
-      setSelectedBook(null);
-      setOrderQuantity(1);
-      setOrderSuccess(true);
-      setOrderError(false);
-    } else {
-      setOrderError(true);
-      setOrderSuccess(false);
-    }
+    //   event.preventDefault();
+    //   if (selectedBook) {
+    //     const newBook = {
+    //       title: selectedBook.volumeInfo.title,
+    //       author: selectedBook.volumeInfo.authors[0],
+    //       quantity: orderQuantity,
+    //       category: selectedBook.volumeInfo.category,
+    //       cost: selectedBook.volumeInfo.cost,
+    //       description: selectedBook.volumeInfo.description,
+    //       googleId: selectedBook.volumeInfo.googleId,
+    //       id: selectedBook.volumeInfo.id,
+    //       inventoryCount: selectedBook.volumeInfo.inventoryCount,
+    //       pageCount: selectedBook.volumeInfo.pageCount,
+    //       publisher: selectedBook.volumeInfo.publisher,
+    //       publisherDate: selectedBook.volumeInfo.publisherDate,
+    //       retailPrice: selectedBook.volumeInfo.retailPrice,
+    //       thumbnail: selectedBook.volumeInfo.thumbnail,
   };
+
+  //     // Logic for adding the new book to the collection
+  //     // Example: setBooks([...books, newBook]);
+
+  //     setTitle("");
+  //     setAuthor("");
+  //     setQuantity("");
+  //     setSelectedBook(null);
+  //     setOrderQuantity(1);
+  //     setOrderSuccess(true);
+  //     setOrderError(false);
+  //   } else {
+  //     setOrderError(true);
+  //     setOrderSuccess(false);
+  //   }
+  // };
 
   const handleBookLinkClick = (bookUrl) => {
     console.log(`Opening book URL: ${bookUrl}`);
@@ -96,17 +105,14 @@ const AddBooks = (props) => {
   return (
     <div>
       <Navigation
-        name={name}
-        setName={setName}
         verified={verified}
         setVerified={setVerified}
-        employee={employee}
-        setEmployee={setEmployee}
         signOn={signOn}
         setSignOn={setSignOn}
+        employee={employee}
+        setEmployee={setEmployee}
         displayCart={displayCart}
         setDisplayCart={setDisplayCart}
-        users={users}
         setUsers={setUsers}
         search={search}
         setSearch={setSearch}
@@ -127,28 +133,36 @@ const AddBooks = (props) => {
       />
       <Cart cart={displayCart} books={books} setBooks={setBooks} />
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter title"
-        />
-        <input
-          type="text"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-          placeholder="Enter author"
-        />
-        <input
-          type="number"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          placeholder="Enter quantity"
-        />
-        <button type="submit">Add Book</button>
+        <ul>
+          {selectedCollections.map((collectionName) => (
+            <li key={collectionName}>
+              <label>
+                <input
+                  type="radio"
+                  name="collection"
+                  value={collectionName}
+                  onChange={() => fetchCollection(collectionName)}
+                />
+                {collectionName}
+              </label>
+            </li>
+          ))}
+        </ul>
       </form>
 
       <div>
+        <h2>Search Books</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Enter search term"
+          />
+          <button onClick={handleSearch}>Search</button>
+        </form>
+        <button type="submit">Add Book</button>
+
         {books?.map((book) => (
           <li key={book.id}>
             <div onClick={() => handleBookClick(book)}>
@@ -192,10 +206,10 @@ const AddBooks = (props) => {
       {selectedBook && (
         <div>
           <h2>Selected Book</h2>
-          <p>Title: {selectedBook?.volumeInfo?.title}</p>
-          <p>Author: {selectedBook?.volumeInfo?.authors[0]}</p>
+          <p>Title: {selectedBook.volumeInfo.title}</p>
+          <p>Author: {selectedBook.volumeInfo.authors[0]}</p>
           <p>Quantity: {quantity}</p>
-          <p>Price: {selectedBook?.saleInfo?.listPrice?.amount}</p>
+          <p>Price: {selectedBook.saleInfo?.listPrice?.amount}</p>
           <input
             type="number"
             value={orderQuantity}

@@ -37,7 +37,7 @@ const Navigation = (props) => {
   };
   const [redirect, setRedirect] = useState();
 
-  const handleSearch = () => {
+  const handleSearch = () => { 
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {
