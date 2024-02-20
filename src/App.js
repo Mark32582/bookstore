@@ -3,9 +3,9 @@ import { useState } from "react";
 import HomePage from "./components/HomePage/HomePage";
 import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
-import Checkout from "./components/Checkout/Checkout";
+import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
-import Browse from "./components/Browse/Browse";
+import Dashboard from "./components/AdminDashboard/Dashboard";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -50,10 +50,11 @@ function App() {
             }
           />
 
+
           <Route
             path="/book/:bookId"
             element={
-              <Book
+              <Dashboard
                 name={name}
                 setName={setName}
                 verified={verified}
@@ -77,8 +78,16 @@ function App() {
               />
             }
           />
-          {/* <Route path="/user" element={<Profile name={name} verified={verified}
-                setVerified={setVerified} />} /> */}
+         {/* <Route 
+            path="/user" 
+            element={
+              <Profile 
+                name={name} 
+                verified={verified}
+                setVerified={setVerified} 
+              />
+            } 
+          /> */}
           <Route
             path="/signup"
             element={
@@ -135,9 +144,9 @@ function App() {
             }
           />
           <Route
-            path="/browse"
+            path="/deletebooks"
             element={
-              <Browse
+              <DeleteBooks
                 name={name}
                 setName={setName}
                 verified={verified}
@@ -161,10 +170,10 @@ function App() {
               />
             }
           />
-          <Route
-            path="/checkout"
+         {/*} <Route
+            path="/browse"
             element={
-              <Checkout
+              <Browse
                 name={name}
                 setName={setName}
                 verified={verified}
