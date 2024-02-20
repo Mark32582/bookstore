@@ -28,6 +28,7 @@ const AddBooks = (props) => {
   const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
+  const [collection, setCollection] = useState("null");
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);

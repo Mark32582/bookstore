@@ -5,8 +5,6 @@ import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
 import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
-import Browse from "./components/Browse/Browse";
-
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -50,10 +48,12 @@ function App() {
               />
             }
           />
+
+
           <Route
             path="/book/:bookId"
             element={
-              <Book
+              <Dashboard
                 name={name}
                 setName={setName}
                 verified={verified}
@@ -77,8 +77,16 @@ function App() {
               />
             }
           />
-          {/* <Route path="/user" element={<Profile name={name} verified={verified}
-                setVerified={setVerified} />} /> */}
+         {/* <Route 
+            path="/user" 
+            element={
+              <Profile 
+                name={name} 
+                verified={verified}
+                setVerified={setVerified} 
+              />
+            } 
+          /> */}
           <Route
             path="/signup"
             element={
