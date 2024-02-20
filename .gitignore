@@ -4,3 +4,5 @@ node_modules
 .env
 .sass-cache
 .eslintcache
+package-lock.json
+package.json
