@@ -134,7 +134,7 @@ function App() {
               />
             }
           />
-          <Route
+         {/*} <Route
             path="/browse"
             element={
               <Browse

@@ -32,6 +32,14 @@ const Grid = () => {
         <button onClick={handleRegisterClick}>Register Users</button>
       </div>
       <div className="grid-tiles">
+        <img
+          src={process.env.PUBLIC_URL + "/remove-book.png"}
+          alt=""
+          height="120px"
+        />
+        <span>
+        <h2>Order Books</h2>
+        </span>
         <button onClick={handleAddBooksClick}>Order Books</button>
       </div>
       <div className="grid-tiles">
@@ -45,13 +53,7 @@ const Grid = () => {
         </span>
         <button onClick={handleDeleteClick}>Remove Books</button>
       </div>
-      <div className="grid-tiles">
-        <img
-          src={process.env.PUBLIC_URL + "/remove-book.png"}
-          alt=""
-          height="120px"
-        />
-      </div>
+      <div className="grid-tiles">stuff goes in all these tiles</div>
       <div className="grid-tiles">stuff goes in all these tiles</div>
       <div className="grid-tiles">stuff goes in all these tiles</div>
       <div className="grid-tiles">stuff goes in all these tiles</div>

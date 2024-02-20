@@ -30,10 +30,13 @@ const AddBooks = (props) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [orderSearch, setOrderSearch] = useState("");
+  const [orderBooks, setOrderBooks] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderError, setOrderError] = useState(false);
+  const [collection, setCollection] = useState("");
 
   const handleSearch = () => {
     axios
