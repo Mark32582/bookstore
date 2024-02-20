@@ -205,6 +205,8 @@ function App() {
                 name={name}
                 verified={verified}
                 setVerified={setVerified}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
               />
             }
           />
