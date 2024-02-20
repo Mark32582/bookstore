@@ -7,6 +7,7 @@ import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
 import Dashboard from "./components/AdminDashboard/Dashboard";
 import Browse from "./components/Browse/Browse";
+import Checkout from "./components/Checkout/Checkout";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -197,8 +198,16 @@ function App() {
               />
             }
           />
-          {/* <Route path="/checkout" element={<Checkout name={name} verified={verified}
-                setVerified={setVerified} />} /> */}
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+                name={name}
+                verified={verified}
+                setVerified={setVerified}
+              />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
