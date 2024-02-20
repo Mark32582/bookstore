@@ -3,6 +3,7 @@ import axios from "axios";
 import Navigation from "../Navigation/Navigation";
 import Grid from "../Grid/Grid";
 import DeleteBooks from "../DeleteBooks/DeleteBooks";
+
 const AddBooks = (props) => {
   const {
     setName,
@@ -57,39 +58,41 @@ const AddBooks = (props) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+  //   event.preventDefault();
 
-    // Add logic here to handle the form submission, such as sending data to a backend server or updating state variables.
-    if (selectedBook) {
-      const newBook = {
-        title: selectedBook.volumeInfo.title,
-        author: selectedBook.volumeInfo.authors[0],
-        quantity: orderQuantity,
-        category: selectedBook.volumeInfo.category,
-        cost: selectedBook.volumeInfo.cost,
-        description: selectedBook.volumeInfo.description,
-        googleId: selectedBook.volumeInfo.googleId,
-        id: selectedBook.volumeInfo.id,
-        inventoryCount: selectedBook.volumeInfo.inventoryCount,
-        pageCount: selectedBook.volumeInfo.pageCount,
-        publisher: selectedBook.volumeInfo.publisher,
-        publisherDate: selectedBook.volumeInfo.publisherDate,
-        retailPrice: selectedBook.volumeInfo.retailPrice,
-        thumbnail: selectedBook.volumeInfo.thumbnail,
+  //   if (selectedBook) {
+  //     const newBook = {
+  //       title: selectedBook.volumeInfo.title,
+  //       author: selectedBook.volumeInfo.authors[0],
+  //       quantity: orderQuantity,
+  //       category: selectedBook.volumeInfo.category,
+  //       cost: selectedBook.volumeInfo.cost,
+  //       description: selectedBook.volumeInfo.description,
+  //       googleId: selectedBook.volumeInfo.googleId,
+  //       id: selectedBook.volumeInfo.id,
+  //       inventoryCount: selectedBook.volumeInfo.inventoryCount,
+  //       pageCount: selectedBook.volumeInfo.pageCount,
+  //       publisher: selectedBook.volumeInfo.publisher,
+  //       publisherDate: selectedBook.volumeInfo.publisherDate,
+  //       retailPrice: selectedBook.volumeInfo.retailPrice,
+  //       thumbnail: selectedBook.volumeInfo.thumbnail,
       };
-      // Further processing
-      setTitle("");
-      setAuthor("");
-      setQuantity("");
-      setSelectedBook(null);
-      setOrderQuantity(1);
-      setOrderSuccess(true);
-      setOrderError(false);
-    } else {
-      setOrderError(true);
-      setOrderSuccess(false);
-    }
-  };
+
+  //     // Logic for adding the new book to the collection
+  //     // Example: setBooks([...books, newBook]);
+
+  //     setTitle("");
+  //     setAuthor("");
+  //     setQuantity("");
+  //     setSelectedBook(null);
+  //     setOrderQuantity(1);
+  //     setOrderSuccess(true);
+  //     setOrderError(false);
+  //   } else {
+  //     setOrderError(true);
+  //     setOrderSuccess(false);
+  //   }
+  // };
 
   const handleBookLinkClick = (bookUrl) => {
     console.log(`Opening book URL: ${bookUrl}`);
@@ -100,21 +103,21 @@ const AddBooks = (props) => {
     <div>
       <Navigation />
       <form onSubmit={handleSubmit}>
-      <ul>
-  {selectedCollections.map((collectionName) => (
-    <li key={collectionName}>
-      <label>
-        <input
-          type="radio"
-          name="collection"
-          value={collectionName}
-          onChange={() => fetchCollection(collectionName)}
-        />
-        {collectionName}
-      </label>
-    </li>
-  ))}
-</ul>
+        <ul>
+          {selectedCollections.map((collectionName) => (
+            <li key={collectionName}>
+              <label>
+                <input
+                  type="radio"
+                  name="collection"
+                  value={collectionName}
+                  onChange={() => fetchCollection(collectionName)}
+                />
+                {collectionName}
+              </label>
+            </li>
+          ))}
+        </ul>
       </form>
 
       <div>
