@@ -67,7 +67,7 @@ const Cart = (props) => {
                       <b>Title:</b> {item?.title}
                     </div>
                     <div>
-                      <b>Price:</b> {item.price}
+                      <b>Price:</b> {item?.price}
                     </div>
                     <div>
                       <b>Count:</b> 1
@@ -81,14 +81,14 @@ const Cart = (props) => {
             <em>Delivery Fee:</em> ${deliveryFee}
           </span>
           <span>(if applicable)</span>
-          <h2>SubTotal: ${subTotalCost.toFixed(2)}</h2>
+          <h2>SubTotal: ${subTotalCost?.toFixed(2)}</h2>
           <span>Taxes: ${taxes.toFixed(2)}</span>
           <span>
-            <h2>Total Cost: ${totalCost.toFixed(2)}</h2>
+            <h2>Total Cost: ${totalCost?.toFixed(2)}</h2>
           </span>
         </div>
         <div>
-          {selectedItems.length > 0 && (
+          {selectedItems?.length > 0 && (
             <button onClick={handleDeleteSelected}>Delete Selected</button>
           )}
         </div>
