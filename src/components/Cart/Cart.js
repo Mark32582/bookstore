@@ -7,9 +7,11 @@ const Cart = (props) => {
   const navigate = useNavigate();
   const deliveryFee = 4.99;
 
+  const [selectedItems, setSelectedItems] = useState([]);
   const [totalCost, setTotalCost] = useState();
   const [subTotalCost, setSubTotalCost] = useState();
   const [taxes, setTaxes] = useState();
+  const [isChecked, setIsChecked] = useState(false); // New state for checkbox checked status
 
   useEffect(() => {
     let subTotal = 0;
@@ -19,14 +21,33 @@ const Cart = (props) => {
       console.log(item);
       return subTotal;
     });
-    // console.log(subTotalCost);
-    // setTimeout(() => {
-    //   setTaxes(subTotalCost * 0.06);
-    // }, 200);
-    // setTimeout(() => {
-    //   setTotalCost(4.99 + taxes + subTotalCost);
-    // }, 400);
+
+    // Calculate taxes and total cost
+    const calculateCost = () => {
+      setTaxes(subTotalCost * 0.06);
+      setTotalCost(4.99 + taxes + subTotalCost);
+    };
+
+    calculateCost();
   }, [cartItems, subTotalCost, taxes]);
+
+  const handleDeleteSelected = () => {
+    const updatedCartItems = cartItems.filter(
+      (_, index) => !selectedItems.includes(index)
+    );
+    setCartItems(updatedCartItems);
+    setSelectedItems([]);
+    setIsChecked(false); // Reset checkbox status
+  };
+
+  const handleCheckboxChange = (index) => {
+    if (selectedItems.includes(index)) {
+      setSelectedItems(selectedItems.filter((item) => item !== index));
+    } else {
+      setSelectedItems([...selectedItems, index]);
+    }
+    setIsChecked(!isChecked); // Update checkbox status
+  };
 
   const handleCheckout = () => {
     navigate("/checkout");
@@ -36,7 +57,6 @@ const Cart = (props) => {
     <div
       className={classNames({ "hide-cart": !cart }, { "cart-container": cart })}
     >
-      {/* <div className={classNames({ "hide-logon": !signOn })}></div> */}
       <div className={classNames({ "hide-cart": !cart }, { cart: cart })}>
         <div className="cart-headline">
           <h1>Shopping Cart</h1>
@@ -48,6 +68,11 @@ const Cart = (props) => {
                 return (
                   <div key={i + "cartItem"} className="cart-items">
                     <div>
+                      <input
+                        type="checkbox"
+                        checked={selectedItems.includes(i)}
+                        onChange={() => handleCheckboxChange(i)}
+                      />
                       <b>Title:</b> {item?.title}
                     </div>
                     <div>
@@ -72,10 +97,16 @@ const Cart = (props) => {
           </span>
         </div>
         <div>
+          {selectedItems.length > 0 && ( // Render the button only if checkboxes are checked
+            <button onClick={handleDeleteSelected}>Delete Selected</button>
+          )}
+        </div>
+        <div>
           <button onClick={handleCheckout}>Complete Checkout</button>
         </div>
       </div>
     </div>
   );
 };
+
 export default Cart;
