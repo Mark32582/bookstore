@@ -69,7 +69,7 @@ const Navigation = (props) => {
     if (redirect === true) {
       navigate("/browse");
     }
-  }, [redirect, books, bookCategory]);
+  }, [redirect, books, bookCategory, navigate]);
 
   return (
     <div>
