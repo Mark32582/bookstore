@@ -10,7 +10,6 @@ const Navigation = (props) => {
     setVerified,
     signOn,
     setSignOn,
-    employee,
     setEmployee,
     displayCart,
     setDisplayCart,

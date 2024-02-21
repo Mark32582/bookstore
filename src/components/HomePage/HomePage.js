@@ -1,68 +1,22 @@
-import Navigation from "../Navigation/Navigation";
-import LogonForm from "../LogonForm/LogonForm";
 import AdminDashboard from "../AdminDashboard/Dashboard";
-import Cart from "../Cart/Cart";
 import Carousel from "../Carousel/Carousel";
 import Rows from "../CategoryRows/Rows";
 
 const HomePage = (props) => {
   const {
-    verified,
-    setVerified,
-    signOn,
-    setSignOn,
     employee,
-    setEmployee,
-    displayCart,
-    setDisplayCart,
     users,
-    setUsers,
     search,
     setSearch,
     books,
     setBooks,
     bookCategory,
-    setBookCategory,
     cartItems,
     setCartItems,
   } = props;
 
   return (
     <div className="HomePage">
-      <Navigation
-        verified={verified}
-        setVerified={setVerified}
-        signOn={signOn}
-        setSignOn={setSignOn}
-        employee={employee}
-        setEmployee={setEmployee}
-        displayCart={displayCart}
-        setDisplayCart={setDisplayCart}
-        setUsers={setUsers}
-        search={search}
-        setSearch={setSearch}
-        books={books}
-        setBooks={setBooks}
-        bookCategory={bookCategory}
-        setBookCategory={setBookCategory}
-        cartItems={cartItems}
-      />
-      <LogonForm
-        signOn={signOn}
-        setSignOn={setSignOn}
-        setVerified={setVerified}
-        employee={employee}
-        setEmployee={setEmployee}
-        users={users}
-        setUsers={setUsers}
-      />
-      <Cart
-        cart={displayCart}
-        books={books}
-        setBooks={setBooks}
-        cartItems={cartItems}
-        setCartItems={setCartItems}
-      />
       {employee === true ? (
         <AdminDashboard users={users} books={books} setBooks={setBooks} />
       ) : (

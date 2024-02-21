@@ -28,11 +28,8 @@ const RegisterForm = (props) => {
 
   const {
     employee,
-    setEmployee,
     verified,
     setVerified,
-    users: globalUsers,
-    setUsers: setGlobalUsers,
   } = props;
   console.log(employee);
   const fetchPost = async () => {

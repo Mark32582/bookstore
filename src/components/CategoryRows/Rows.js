@@ -1,11 +1,10 @@
-import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import BookTile from "../BookTile/BookTile";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const Rows = (props) => {
-  const { books, setBooks, cartItems, setCartItems } = props;
+  const { cartItems, setCartItems } = props;
   const [pageData, setPageData] = useState();
   const [showMore, setShowMore] = useState(false); // Add showMore state
   const [showMore1, setShowMore1] = useState(false);
@@ -66,14 +65,18 @@ const Rows = (props) => {
             </button>
           </div>
           <div className="static-books">
-
             {pageData?.releases
               ?.slice(0, showMore ? undefined : 3)
               .map((book, i) => {
-                return <BookTile books={book} key={i+"new-release"} cartItems={cartItems}
-                  setCartItems={setCartItems}/>;
+                return (
+                  <BookTile
+                    books={book}
+                    key={i + "new-release"}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                  />
+                );
               })}
-
           </div>
         </>
       )}
@@ -86,15 +89,18 @@ const Rows = (props) => {
             </button>
           </div>
           <div className="static-books">
-
             {pageData?.best
               ?.slice(0, showMore1 ? undefined : 3)
               .map((book, i) => {
-                return <BookTile books={book}  key={i + "bestSellers"}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems} />;
+                return (
+                  <BookTile
+                    books={book}
+                    key={i + "bestSellers"}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                  />
+                );
               })}
-
           </div>
         </>
       )}
@@ -107,15 +113,18 @@ const Rows = (props) => {
             </button>
           </div>
           <div className="static-books">
-
             {pageData?.employee
               ?.slice(0, showMore2 ? undefined : 3)
               .map((book, i) => {
-                return <BookTile books={book} key={i + "employee"}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems} />;
+                return (
+                  <BookTile
+                    books={book}
+                    key={i + "employee"}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                  />
+                );
               })}
-
           </div>
         </>
       )}

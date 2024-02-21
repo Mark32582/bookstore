@@ -11,7 +11,6 @@ const LogonForm = (props) => {
     signOn,
     setSignOn,
     setVerified,
-    employee,
     setEmployee,
     users: globalUsers,
     setUsers: setGlobalUsers,

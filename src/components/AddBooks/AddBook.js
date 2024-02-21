@@ -1,30 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Navigation from "../Navigation/Navigation";
-import LogonForm from "../LogonForm/LogonForm";
-import Cart from "../Cart/Cart";
 
 const AddBooks = (props) => {
-  const {
-    setName,
-    verified,
-    setVerified,
-    displayCart,
-    setDisplayCart,
-    signOn,
-    setSignOn,
-    employee,
-    setEmployee,
-    users,
-    setUsers,
-    search,
-    setSearch,
-    books,
-    setBooks,
-    bookCategory,
-    setBookCategory,
-    cartItems,
-  } = props;
+  const { search, setSearch, books, setBooks } = props;
 
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -104,34 +82,6 @@ const AddBooks = (props) => {
 
   return (
     <div>
-      <Navigation
-        verified={verified}
-        setVerified={setVerified}
-        signOn={signOn}
-        setSignOn={setSignOn}
-        employee={employee}
-        setEmployee={setEmployee}
-        displayCart={displayCart}
-        setDisplayCart={setDisplayCart}
-        setUsers={setUsers}
-        search={search}
-        setSearch={setSearch}
-        books={books}
-        setBooks={setBooks}
-        bookCategory={bookCategory}
-        setBookCategory={setBookCategory}
-        cartItems={cartItems}
-      />
-      <LogonForm
-        signOn={signOn}
-        setSignOn={setSignOn}
-        setVerified={setVerified}
-        employee={employee}
-        setEmployee={setEmployee}
-        users={users}
-        setUsers={setUsers}
-      />
-      <Cart cart={displayCart} books={books} setBooks={setBooks} />
       <form onSubmit={handleSubmit}>
         <ul>
           {selectedCollections.map((collectionName) => (

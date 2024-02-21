@@ -1,33 +1,12 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Navigation from "../Navigation/Navigation";
 import Author from "../Author/Author";
-import LogonForm from "../LogonForm/LogonForm";
-import Cart from "../Cart/Cart";
 
 const Book = (props) => {
   const { bookId } = useParams();
   const [currentBook, setCurrentBook] = useState();
-  const {
-    verified,
-    setVerified,
-    signOn,
-    setSignOn,
-    employee,
-    setEmployee,
-    displayCart,
-    setDisplayCart,
-    users,
-    setUsers,
-    search,
-    setSearch,
-    books,
-    setBooks,
-    bookCategory,
-    setBookCategory,
-    cartItems,
-  } = props;
+  const { cartItems, setCartItems } = props;
 
   useEffect(() => {
     axios
@@ -48,34 +27,6 @@ const Book = (props) => {
 
   return (
     <>
-      <Navigation
-        verified={verified}
-        setVerified={setVerified}
-        signOn={signOn}
-        setSignOn={setSignOn}
-        employee={employee}
-        setEmployee={setEmployee}
-        displayCart={displayCart}
-        setDisplayCart={setDisplayCart}
-        setUsers={setUsers}
-        search={search}
-        setSearch={setSearch}
-        books={books}
-        setBooks={setBooks}
-        bookCategory={bookCategory}
-        setBookCategory={setBookCategory}
-        cartItems={cartItems}
-      />
-      <LogonForm
-        signOn={signOn}
-        setSignOn={setSignOn}
-        setVerified={setVerified}
-        employee={employee}
-        setEmployee={setEmployee}
-        users={users}
-        setUsers={setUsers}
-      />
-      <Cart cart={displayCart} books={books} setBooks={setBooks} />
       <div className="book-background">
         <div className="book-container">
           <div className="book--image">

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
-import Navigation from "../Navigation/Navigation";
-import LogonForm from "../LogonForm/LogonForm";
 
 const fetchCollection = async (collectionName, setSearchResults) => {
   //  const collectionRef = collection(db, collectionName);
@@ -19,33 +24,17 @@ const fetchCollection = async (collectionName, setSearchResults) => {
   //  setSearchResults(results);
 };
 
-const DeleteBooks = (props) => {
-  const {
-    name,
-    setName,
-    verified,
-    setVerified,
-    displayCart,
-    setDisplayCart,
-    signOn,
-    setSignOn,
-    employee,
-    setEmployee,
-    users,
-    setUsers,
-    search,
-    setSearch,
-    books,
-    setBooks,
-    bookCategory,
-    setBookCategory,
-  } = props;
-
+const DeleteBooks = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [checked, setChecked] = useState([]);
-  const selectedCollections = ["bestSeller", "newReleases", "carousel", "employeeRecommendations"];
+  const selectedCollections = [
+    "bestSeller",
+    "newReleases",
+    "carousel",
+    "employeeRecommendations",
+  ];
 
   const fetchBooks = async () => {
     const results = [];
@@ -102,7 +91,7 @@ const DeleteBooks = (props) => {
 
   const deleteBook = async (bookId) => {
     for (const collectionName of selectedCollections) {
-       await deleteDoc(doc(db, collectionName, bookId));
+      await deleteDoc(doc(db, collectionName, bookId));
     }
     fetchBooks();
   };
@@ -121,8 +110,9 @@ const DeleteBooks = (props) => {
 
   const handleDelete = async () => {
     for (const collectionName of selectedCollections) {
-      const checkedBooks = searchResults.filter((result) =>
-        checked.includes(result.id) && result.collection === collectionName
+      const checkedBooks = searchResults.filter(
+        (result) =>
+          checked.includes(result.id) && result.collection === collectionName
       );
 
       for (const book of checkedBooks) {
@@ -134,55 +124,25 @@ const DeleteBooks = (props) => {
     fetchBooks();
   };
 
-
   return (
     <div>
-      <Navigation
-        name={name}
-        setName={setName}
-        verified={verified}
-        setVerified={setVerified}
-        employee={employee}
-        setEmployee={setEmployee}
-        signOn={signOn}
-        setSignOn={setSignOn}
-        displayCart={displayCart}
-        setDisplayCart={setDisplayCart}
-        users={users}
-        setUsers={setUsers}
-        search={search}
-        setSearch={setSearch}
-        books={books}
-        setBooks={setBooks}
-        bookCategory={bookCategory}
-        setBookCategory={setBookCategory}
-      />
-      <LogonForm
-        signOn={signOn}
-        setSignOn={setSignOn}
-        setVerified={setVerified}
-        employee={employee}
-        setEmployee={setEmployee}
-        users={users}
-        setUsers={setUsers}
-      />
       <h1>Delete Books</h1>
 
       <ul>
-  {selectedCollections.map((collectionName) => (
-    <li key={collectionName}>
-      <label>
-        <input
-          type="radio"
-          name="collection"
-          value={collectionName}
-          onChange={() => fetchCollection(collectionName)}
-        />
-        {collectionName}
-      </label>
-    </li>
-  ))}
-</ul>
+        {selectedCollections.map((collectionName) => (
+          <li key={collectionName}>
+            <label>
+              <input
+                type="radio"
+                name="collection"
+                value={collectionName}
+                onChange={() => fetchCollection(collectionName)}
+              />
+              {collectionName}
+            </label>
+          </li>
+        ))}
+      </ul>
 
       <input
         type="text"
@@ -195,7 +155,7 @@ const DeleteBooks = (props) => {
         {searchResults.map((result) => (
           <li key={result.id}>
             <input
-type="checkbox"
+              type="checkbox"
               onChange={(e) => handleCheck(e, result.id)}
               checked={checked.includes(result.id)}
             />
@@ -203,7 +163,6 @@ type="checkbox"
             <p>Author: {result.author}</p>
             <p>Description: {result.description}</p>
             <p>ID: {result.id}</p>
-
           </li>
         ))}
       </ul>
