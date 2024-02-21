@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import BookTile from "../BookTile/BookTile";
 import { getDocs, collection } from "firebase/firestore";
-import { db } from "../../config/fireBaseConfig";
+// import { db } from "../../config/fireBaseConfig";
+import db from "../../provider/Dexie";
 
 const Rows = (props) => {
   const { cartItems, setCartItems } = props;
@@ -9,40 +10,40 @@ const Rows = (props) => {
   const [showMore, setShowMore] = useState(false); // Add showMore state
   const [showMore1, setShowMore1] = useState(false);
   const [showMore2, setShowMore2] = useState(false);
+  console.log(db?.WhateverIwant?.toArray());
+  //   const fetchBooks = async () => {
+  //     let releases;
+  //     let best;
+  //     let employee;
+  //     await getDocs(collection(db, "newReleases")).then((querySnapshot) => {
+  //       const newData = querySnapshot.docs.map((doc) => ({
+  //         ...doc.data(),
+  //         id: doc.id,
+  //       }));
+  //       releases = newData;
+  //     });
+  //     await getDocs(collection(db, "bestSeller")).then((querySnapshot) => {
+  //       const newData = querySnapshot.docs.map((doc) => ({
+  //         ...doc.data(),
+  //         id: doc.id,
+  //       }));
+  //       best = newData;
+  //     });
+  //     await getDocs(collection(db, "employeeRecommendations")).then(
+  //       (querySnapshot) => {
+  //         const newData = querySnapshot.docs.map((doc) => ({
+  //           ...doc.data(),
+  //           id: doc.id,
+  //         }));
+  //         employee = newData;
+  //       }
+  //     );
+  //     setPageData({ releases, best, employee });
+  //   };
 
-  const fetchBooks = async () => {
-    let releases;
-    let best;
-    let employee;
-    await getDocs(collection(db, "newReleases")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      releases = newData;
-    });
-    await getDocs(collection(db, "bestSeller")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      best = newData;
-    });
-    await getDocs(collection(db, "employeeRecommendations")).then(
-      (querySnapshot) => {
-        const newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        employee = newData;
-      }
-    );
-    setPageData({ releases, best, employee });
-  };
-
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+//   useEffect(() => {
+//     fetchBooks();
+//   }, []);
 
   const handleShowMore = () => {
     setShowMore(!showMore);

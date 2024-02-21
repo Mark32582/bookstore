@@ -8,19 +8,19 @@ import { Carousel as Slider } from "react-responsive-carousel";
 const Carousel = () => {
   const [carouselBooks, setCarouselBooks] = useState();
 
-  const fetchBooks = async () => {
-    await getDocs(collection(db, "carousel")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setCarouselBooks(newData);
-    });
-  };
+//   const fetchBooks = async () => {
+//     await getDocs(collection(db, "carousel")).then((querySnapshot) => {
+//       const newData = querySnapshot.docs.map((doc) => ({
+//         ...doc.data(),
+//         id: doc.id,
+//       }));
+//       setCarouselBooks(newData);
+//     });
+//   };
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+//   useEffect(() => {
+//     fetchBooks();
+//   }, []);
 
   return (
     <Slider autoPlay infiniteLoop interval="10000" showThumbs={false}>
