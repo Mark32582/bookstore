@@ -64,7 +64,7 @@ const Cart = (props) => {
                         checked={selectedItems.includes(i)}
                         onChange={() => handleCheckboxChange(i)}
                       />
-                      <b>Title:</b> {item.title}
+                      <b>Title:</b> {item?.title}
                     </div>
                     <div>
                       <b>Price:</b> {item.price}
