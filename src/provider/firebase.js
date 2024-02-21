@@ -5,7 +5,7 @@ import db from './Dexie.js';
 const useCacheCollections = (firestore) => {
   const cacheCollection = useCallback(async (collectionName) => {
     const querySnapshot = await getDocs(collection(firestore, collectionName));
-    const docs = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+    const docs = querySnapshot?.docs?.map((doc) => ({ id: doc.id, ...doc.data() }));
     await db[collectionName].bulkPut(docs);
   }, [firestore]);
 

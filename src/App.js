@@ -120,7 +120,7 @@ function App() {
             {/* <Route 
             path="/user" 
             element={
-              <Profile 
+              <UserProfile 
                 name={name} 
                 verified={verified}
                 setVerified={setVerified} 

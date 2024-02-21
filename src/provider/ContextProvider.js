@@ -15,10 +15,10 @@ export const FirestoreCacheProvider = ({ children }) => {
   const getCachedCollection = async (collectionName) => {
     let data = await db[collectionName].toArray();
 
-    if (data.length === 0) {
+    if (data?.length === 0) {
       // Cache is empty, fall back to Firestore
       const querySnapshot = await getDocs(collection(firestore, collectionName));
-      data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      data = querySnapshot?.docs?.map((doc) => ({ id: doc?.id, ...doc.data() }));
 
       // Cache the data for future use
       await db[collectionName].bulkPut(data);
