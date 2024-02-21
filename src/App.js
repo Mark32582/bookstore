@@ -5,7 +5,6 @@ import Book from "./components/Book/Book";
 import AddBooks from "./components/AddBooks/AddBook";
 import DeleteBooks from "./components/DeleteBooks/DeleteBooks";
 import Registration from "./components/Registration/Registration";
-import Dashboard from "./components/AdminDashboard/Dashboard";
 import Browse from "./components/Browse/Browse";
 import Checkout from "./components/Checkout/Checkout";
 import { FirestoreCacheProvider } from './provider/ContextProvider.js';
@@ -57,7 +56,7 @@ function App() {
           <Route
             path="/book/:bookId"
             element={
-              <Dashboard
+              <Book
                 name={name}
                 setName={setName}
                 verified={verified}
