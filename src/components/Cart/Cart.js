@@ -1,5 +1,4 @@
-import classNames from "classnames";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
@@ -8,28 +7,22 @@ const Cart = (props) => {
   const deliveryFee = 4.99;
 
   const [selectedItems, setSelectedItems] = useState([]);
-  const [totalCost, setTotalCost] = useState();
-  const [subTotalCost, setSubTotalCost] = useState();
-  const [taxes, setTaxes] = useState();
-  const [isChecked, setIsChecked] = useState(false); // New state for checkbox checked status
+  const [totalCost, setTotalCost] = useState(0);
+  const [subTotalCost, setSubTotalCost] = useState(0);
+  const [taxes, setTaxes] = useState(0);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     let subTotal = 0;
 
-    cartItems?.price?.map((item) => {
-      subTotal = subTotal + Number(item);
-      console.log(item);
-      return subTotal;
+    cartItems?.forEach((item) => {
+      subTotal += Number(item.price);
     });
 
-    // Calculate taxes and total cost
-    const calculateCost = () => {
-      setTaxes(subTotalCost * 0.06);
-      setTotalCost(4.99 + taxes + subTotalCost);
-    };
-
-    calculateCost();
-  }, [cartItems, subTotalCost, taxes]);
+    setSubTotalCost(subTotal);
+    setTaxes(subTotal * 0.06);
+    setTotalCost(deliveryFee + subTotal + (subTotal * 0.06));
+  }, [cartItems]);
 
   const handleDeleteSelected = () => {
     const updatedCartItems = cartItems.filter(
@@ -37,7 +30,7 @@ const Cart = (props) => {
     );
     setCartItems(updatedCartItems);
     setSelectedItems([]);
-    setIsChecked(false); // Reset checkbox status
+    setIsChecked(false);
   };
 
   const handleCheckboxChange = (index) => {
@@ -46,7 +39,7 @@ const Cart = (props) => {
     } else {
       setSelectedItems([...selectedItems, index]);
     }
-    setIsChecked(!isChecked); // Update checkbox status
+    setIsChecked(!isChecked);
   };
 
   const handleCheckout = () => {
@@ -54,10 +47,8 @@ const Cart = (props) => {
   };
 
   return (
-    <div
-      className={classNames({ "hide-cart": !cart }, { "cart-container": cart })}
-    >
-      <div className={classNames({ "hide-cart": !cart }, { cart: cart })}>
+    <div className={`cart-container ${cart ? "" : "hide-cart"}`}>
+      <div className={`cart ${cart ? "" : "hide-cart"}`}>
         <div className="cart-headline">
           <h1>Shopping Cart</h1>
         </div>
@@ -66,17 +57,17 @@ const Cart = (props) => {
             {cartItems?.length > 0 &&
               cartItems?.map((item, i) => {
                 return (
-                  <div key={i + "cartItem"} className="cart-items">
+                  <div key={`${i}-cartItem`} className="cart-items">
                     <div>
                       <input
                         type="checkbox"
                         checked={selectedItems.includes(i)}
                         onChange={() => handleCheckboxChange(i)}
                       />
-                      <b>Title:</b> {item?.title}
+                      <b>Title:</b> {item.title}
                     </div>
                     <div>
-                      <b>Price:</b> {item?.price}
+                      <b>Price:</b> {item.price}
                     </div>
                     <div>
                       <b>Count:</b> 1
@@ -90,14 +81,14 @@ const Cart = (props) => {
             <em>Delivery Fee:</em> ${deliveryFee}
           </span>
           <span>(if applicable)</span>
-          <h2>SubTotal: ${subTotalCost}</h2>
-          <span>Taxes: ${taxes}</span>
+          <h2>SubTotal: ${subTotalCost.toFixed(2)}</h2>
+          <span>Taxes: ${taxes.toFixed(2)}</span>
           <span>
-            <h2>Total Cost: ${totalCost}</h2>
+            <h2>Total Cost: ${totalCost.toFixed(2)}</h2>
           </span>
         </div>
         <div>
-          {selectedItems.length > 0 && ( // Render the button only if checkboxes are checked
+          {selectedItems.length > 0 && (
             <button onClick={handleDeleteSelected}>Delete Selected</button>
           )}
         </div>
