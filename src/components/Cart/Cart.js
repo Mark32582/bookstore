@@ -21,7 +21,7 @@ const Cart = (props) => {
 
     setSubTotalCost(subTotal);
     setTaxes(subTotal * 0.06);
-    setTotalCost(deliveryFee + subTotal + taxes);
+    setTotalCost(deliveryFee + subTotal + (subTotal * 0.06));
   }, [cartItems]);
 
   const handleDeleteSelected = () => {
