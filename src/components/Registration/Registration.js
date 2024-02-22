@@ -13,17 +13,15 @@ const Registration = (props) => {
 
   console.log(setUsers);
   return (
-    <div>
-      <RegisterForm
-        verified={verified}
-        setVerified={setVerified}
-        setName={setName}
-        employee={employee}
-        setEmployee={setEmployee}
-        users={users}
-        setUsers={setUsers}
-      />
-    </div>
+    <RegisterForm
+      verified={verified}
+      setVerified={setVerified}
+      setName={setName}
+      employee={employee}
+      setEmployee={setEmployee}
+      users={users}
+      setUsers={setUsers}
+    />
   );
 };
 export default Registration;

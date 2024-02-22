@@ -12,6 +12,9 @@ body {
   font-family: "Courier New", Courier, monospace;
   background-color: blanchedalmond;
 }
+.page{
+    position: relative;
+}
 
 @import "./components/AddBooks/styles/addbooks.scss";
 @import "./components/AdminDashboard/styles/dashboard.scss";

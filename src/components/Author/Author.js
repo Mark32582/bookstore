@@ -12,7 +12,7 @@ const Author = (props) => {
     if (booksByAuthor === undefined) {
       axios
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=inAuthor${author}&key=${api}`
+          `https://www.googleapis.com/books/v1/volumes?q=inauthor:"${author}"&key=${api}`
         )
         .then((res) => {
           setBooksByAuthor(res?.data?.items);

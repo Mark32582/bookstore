@@ -1,8 +1,8 @@
-import React, { createContext, useContext } from 'react';
-import { useFirestore } from 'react-redux-firebase';
-import useCacheCollections from './firebase.js';
-import db from './Dexie.js';
-import { getDocs, collection } from 'firebase/firestore';
+import React, { createContext, useContext } from "react";
+import { useFirestore } from "react-redux-firebase";
+import useCacheCollections from "./firebase.js";
+import db from "./Dexie.js";
+import { getDocs, collection } from "firebase/firestore";
 
 const FirestoreCacheContext = createContext();
 
@@ -13,15 +13,26 @@ export const FirestoreCacheProvider = ({ children }) => {
   useCacheCollections(firestore);
 
   const getCachedCollection = async (collectionName) => {
+    console.log(collectionName + " cache called");
     let data = await db[collectionName].toArray();
 
     if (data?.length === 0) {
       // Cache is empty, fall back to Firestore
-      const querySnapshot = await getDocs(collection(firestore, collectionName));
-      data = querySnapshot?.docs?.map((doc) => ({ id: doc?.id, ...doc.data() }));
+      const querySnapshot = await getDocs(
+        collection(firestore, collectionName)
+      );
+      data = querySnapshot?.docs?.map((doc) => ({
+        id: doc?.id,
+        ...doc.data(),
+      }));
 
       // Cache the data for future use
       await db[collectionName].bulkPut(data);
+      console.log("--------------test");
+      localStorage.setItem(
+        `${collectionName}_date`,
+        JSON.stringify(Date.now())
+      );
     }
 
     return data;

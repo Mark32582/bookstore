@@ -17,6 +17,7 @@ in the terminal type `npm i axios`
 in the terminal type `npm i react-responsive-carousel`
 in the terminal type `npm install --legacy-peer-deps react-redux-firebase redux-firestore`
 in the terminal type `npm i --legacy-peer-deps dexie`
+in the terminal type `npm i react dexie dexie-react-hooks --force`
 
 if you have followed all these steps you can now launch the framework
 
