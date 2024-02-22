@@ -15,6 +15,9 @@ const Grid = () => {
   const handleDeleteClick = () => {
     navigate("/deletebooks");
   };
+  const handleClockClick = () => {
+    navigate("/clock");
+  };
 
   return (
     <div className="grid-container">
@@ -81,7 +84,7 @@ const Grid = () => {
         <span>
           <h2>Time Clock</h2>
         </span>
-        <button onClick={handleDeleteClick}>Clock In/Out</button>
+        <button onClick={handleClockClick}>Clock In/Out</button>
       </div>
     </div>
   );
