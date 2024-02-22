@@ -11,6 +11,7 @@ import { FirestoreCacheProvider } from "./provider/ContextProvider.js";
 import Navigation from "./components/Navigation/Navigation.js";
 import LogonForm from "./components/LogonForm/LogonForm.js";
 import Cart from "./components/Cart/Cart.js";
+import Footer from "./components/Footer/Footer.js";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -25,7 +26,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   return (
     <FirestoreCacheProvider>
-      <div>
+      <div className="page">
         <BrowserRouter>
           <Navigation
             verified={verified}
@@ -249,6 +250,7 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
         </BrowserRouter>
       </div>
     </FirestoreCacheProvider>
