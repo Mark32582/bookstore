@@ -66,19 +66,19 @@ const Inventory = () => {
 
       <div className="inventory-list">
         {searchResults?.map((result) => (
-          <div key={result.id} className="inventory-item">
-            <img src={result.thumbnail} alt={result.title} />
+          <div key={result?.id} className="inventory-item">
+            <img src={result?.thumbnail} alt={result?.title} />
             <div className="item-details">
-              <h2>{result.title}</h2>
-              <p>Author: {result.author}</p>
-              <p>Description: {result.description}</p>
-              <p>ID: {result.id}</p>
+              <h2>{result?.title}</h2>
+              <p>Author: {result?.author}</p>
+              <p>Description: {result?.description}</p>
+              <p>ID: {result?.id}</p>
               <p
                 style={{
-                  color: result.inventoryCount <= 2 ? "red" : "inherit",
+                  color: result?.inventoryCount <= 2 ? "red" : "inherit",
                 }}
               >
-                Inventory Count: {result.inventoryCount}
+                Inventory Count: {result?.inventoryCount}
               </p>
             </div>
           </div>
