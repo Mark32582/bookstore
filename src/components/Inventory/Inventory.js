@@ -32,8 +32,6 @@ const Inventory = () => {
       collection: selectedCategory,
       id: doc.id,
       title: doc.data().title,
-      author: doc.data().author,
-      description: doc.data().description,
       thumbnail: doc.data().thumbnail,
       inventoryCount: doc.data().inventoryCount,
     }));
@@ -67,11 +65,9 @@ const Inventory = () => {
       <div className="inventory-list">
         {searchResults?.map((result) => (
           <div key={result?.id} className="inventory-item">
-            <img src={result?.thumbnail} alt={result?.title} />
+            <img src={result?.thumbnail} alt={result?.title} height="200px" />
             <div className="item-details">
               <h2>{result?.title}</h2>
-              <p>Author: {result?.author}</p>
-              <p>Description: {result?.description}</p>
               <p>ID: {result?.id}</p>
               <p
                 style={{
