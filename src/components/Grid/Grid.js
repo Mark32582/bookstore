@@ -15,6 +15,15 @@ const Grid = () => {
   const handleDeleteClick = () => {
     navigate("/deletebooks");
   };
+  const handleClockClick = () => {
+    navigate("/clock");
+  };
+  const handleInventoryClick = () => {
+    navigate("/inventory");
+  };
+  const handleAccountingClick = () => {
+    navigate("/accounting");
+  };
 
   return (
     <div className="grid-container">
@@ -61,7 +70,7 @@ const Grid = () => {
         <span>
           <h2>Store Inventory</h2>
         </span>
-        <button onClick="">Check Inventory</button>
+        <button onClick={handleInventoryClick}>Check Inventory</button>
       </div>
       <div className="grid-tiles">
         <img
@@ -72,7 +81,7 @@ const Grid = () => {
         <span>
           <h2>Records of Payment</h2>
         </span>
-        <button onClick={handleDeleteClick}>Accounting</button>
+        <button onClick={handleAccountingClick}>Accounting</button>
       </div>
       <div className="grid-tiles">
       <img
@@ -81,7 +90,7 @@ const Grid = () => {
         <span>
           <h2>Time Clock</h2>
         </span>
-        <button onClick={handleDeleteClick}>Clock In/Out</button>
+        <button onClick={handleClockClick}>Clock In/Out</button>
       </div>
     </div>
   );

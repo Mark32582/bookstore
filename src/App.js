@@ -12,6 +12,9 @@ import Navigation from "./components/Navigation/Navigation.js";
 import LogonForm from "./components/LogonForm/LogonForm.js";
 import Cart from "./components/Cart/Cart.js";
 import Footer from "./components/Footer/Footer.js";
+import TimeClock from "./components/TimeClock/TimeClock.js";
+import Accounting from "./components/Accounting/Accounting.js";
+import Inventory from "./components/Inventory/Inventory.js";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -237,6 +240,9 @@ function App() {
                 />
               }
             />
+            <Route path="/clock" element={<TimeClock />} />
+            <Route path="/accounting" element={<Accounting />} />
+            <Route path="/inventory" element={<Inventory />} />
             <Route
               path="/checkout"
               element={
