@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
-const StoreInventory = () => {
+const Inventory = () => {
   const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -90,4 +90,4 @@ const StoreInventory = () => {
   );
 };
 
-export default StoreInventory;
+export default Inventory;
