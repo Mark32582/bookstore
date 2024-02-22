@@ -12,6 +12,7 @@ import Navigation from "./components/Navigation/Navigation.js";
 import LogonForm from "./components/LogonForm/LogonForm.js";
 import Cart from "./components/Cart/Cart.js";
 import Footer from "./components/Footer/Footer.js";
+import TimeClock from "./components/TimeClock/TimeClock.js";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -237,6 +238,7 @@ function App() {
                 />
               }
             />
+            <Route path="/clock" element={<TimeClock />} />
             <Route
               path="/checkout"
               element={

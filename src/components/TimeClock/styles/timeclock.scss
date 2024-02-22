@@ -1,0 +1,39 @@
+.employee-clock{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:0;
+}
+.clock-container {
+  margin: 24px auto;
+  padding: 12px;
+  background-color: blanchedalmond;
+  width:350px;
+  border-radius: 12px;
+}
+.clock{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.buttons{
+    margin-top: 24px;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap:32px;
+}
+.employee-status{
+    background-color: blanchedalmond;
+    border-radius: 12px;
+    margin: 24px auto;
+    padding: 12px;
+    font-weight: 700;
+    max-height: 200px;
+    min-width: 400px;
+}
+.content{
+    padding:12px;
+}
