@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import db from "./Dexie.js";
 import { db as fireStoreDb } from "../config/fireBaseConfig.js";
@@ -12,7 +12,6 @@ const cacheCollection = async (fs, collectionName) => {
       ...doc.data(),
     }));
     await db[collectionName]?.bulkPut(docs);
-    console.log("--------------test");
     localStorage.setItem(`${collectionName}_date`, JSON.stringify(Date.now()));
   }
 };
