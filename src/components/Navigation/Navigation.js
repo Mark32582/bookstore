@@ -158,14 +158,16 @@ const Navigation = (props) => {
         </div>
         <div className="navigation--right">
           <input
+            id="search"
             type="text"
             name="search"
             placeholder="search for books or authors"
             onChange={(e) => setSearch(e.target.value)}
+            autoComplete="off"
           />
           <button type="submit" onClick={handleSearch}>
             Search
-          </button>{" "}
+          </button>
           <NavLink>
             {cartItems?.length > 0 ? (
               <img
