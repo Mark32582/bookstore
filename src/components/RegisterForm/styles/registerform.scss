@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   background: none;
+  
 }
 
 .form-container {
@@ -26,7 +27,7 @@
   padding: 24px;
 }
 input {
-  margin: 0 2px;
+  margin: 5px 5px;
   font-family: "Courier New", Courier, monospace;
 }
 .success {
@@ -34,4 +35,23 @@ input {
   font-family: "Arial Narrow Bold", sans-serif;
   font-size: 12px;
   font-weight: 600;
+}
+
+.register-form label.inputs{
+  font-weight: bold;
+  width: 100%;
+}
+
+.register-form button.signup-button {
+  font-weight: bold;
+  margin: 5px 5px;
+}
+
+p.signupMsg{
+  font-size: 24px;
+  
+}
+
+div.error{
+  font-size: 15px;
 }
