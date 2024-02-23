@@ -160,6 +160,7 @@ const Navigation = (props) => {
             Search
           </button>{" "}
           <NavLink>
+            
             {cartItems?.length > 0 ? (
               <img
                 className="cart-icon"
