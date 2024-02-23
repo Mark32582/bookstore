@@ -23,6 +23,7 @@ const Navigation = (props) => {
     cartItems,
     redirect,
     setRedirect,
+    employee
   } = props;
 
   const api = googleBooks?.key;
@@ -188,6 +189,17 @@ const Navigation = (props) => {
                 height="24px"
               />
             )}
+          </NavLink>
+          <NavLink to="/user">
+            {verified && !employee ?(
+              <img
+                className="cart-icon"
+                src={process.env.PUBLIC_URL + "/user.png"}
+                alt="cart"
+                width="24px"
+                height="24px"
+              />
+            ): null}
           </NavLink>
         </div>
       </div>

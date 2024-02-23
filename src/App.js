@@ -15,6 +15,7 @@ import Footer from "./components/Footer/Footer.js";
 import TimeClock from "./components/TimeClock/TimeClock.js";
 import Accounting from "./components/Accounting/Accounting.js";
 import Inventory from "./components/Inventory/Inventory.js";
+import UserProfile from "./components/UserProfile/UserProfile.js";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -128,16 +129,16 @@ function App() {
                 />
               }
             />
-            {/* <Route 
-            path="/user" 
-            element={
-              <UserProfile 
-                name={name} 
-                verified={verified}
-                setVerified={setVerified} 
-              />
-            } 
-          /> */}
+            <Route
+              path="/user"
+              element={
+                <UserProfile
+                  name={name}
+                  verified={verified}
+                  setVerified={setVerified}
+                />
+              }
+            />
             <Route
               path="/signup"
               element={
