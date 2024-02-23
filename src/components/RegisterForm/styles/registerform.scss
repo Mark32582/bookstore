@@ -14,9 +14,11 @@
   justify-content: center;
   align-items: center;
   width: fit-content;
-  padding: 24px;
+  padding:12px 24px;
   z-index: 10;
   border-radius: 10px;
+  background-color: blanchedalmond;
+  margin:24px auto;
 }
 .register-form {
   display: flex;
@@ -27,24 +29,24 @@
   padding: 24px;
 }
 input {
-  margin: 5px 5px;
+  margin: 4px 8px;
   font-family: "Courier New", Courier, monospace;
 }
 .success {
   color: green;
   font-family: "Arial Narrow Bold", sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .register-form label.inputs{
-  font-weight: bold;
+  font-weight: 600;
   width: 100%;
 }
 
 .register-form button.signup-button {
-  font-weight: bold;
-  margin: 5px 5px;
+  font-weight: 500;
+  margin: 4px 8px;
 }
 
 p.signupMsg{
