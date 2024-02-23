@@ -64,6 +64,7 @@ function App() {
             setBooks={setBooks}
             cartItems={cartItems}
             setCartItems={setCartItems}
+            setDisplayCart={setDisplayCart}
           />
           <Routes>
             <Route
