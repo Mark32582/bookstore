@@ -6,7 +6,7 @@ import Author from "../Author/Author";
 const Book = (props) => {
   const { bookId } = useParams();
   const [currentBook, setCurrentBook] = useState();
-  const { cartItems, setCartItems } = props;
+  const { cartItems, setCartItems, setRedirect } = props;
 
   useEffect(() => {
     axios
@@ -48,7 +48,10 @@ const Book = (props) => {
             </div>
           </div>
         </div>
-        <Author author={currentBook?.volumeInfo?.authors} />
+        <Author
+          author={currentBook?.volumeInfo?.authors}
+          setRedirect={setRedirect}
+        />
       </div>
     </>
   );

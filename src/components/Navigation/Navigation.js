@@ -21,6 +21,8 @@ const Navigation = (props) => {
     bookCategory,
     setBookCategory,
     cartItems,
+    redirect,
+    setRedirect,
   } = props;
 
   const api = googleBooks?.key;
@@ -34,9 +36,8 @@ const Navigation = (props) => {
       setUsers(undefined);
     }, 500);
   };
-  const [redirect, setRedirect] = useState();
 
-  const handleSearch = () => { 
+  const handleSearch = () => {
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {
@@ -66,7 +67,7 @@ const Navigation = (props) => {
   }, [api, bookCategory, setBooks]);
 
   useEffect(() => {
-    if (redirect === true) {
+    if (redirect) {
       navigate("/browse");
     }
   }, [redirect, books, bookCategory, navigate]);
@@ -142,7 +143,7 @@ const Navigation = (props) => {
             </button>
             <button
               id="childrens"
-              onClick={() => setBookCategory("juvenile fiction")}
+              onClick={() => handleCategory("juvenile fiction")}
             >
               Children's
             </button>

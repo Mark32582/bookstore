@@ -27,6 +27,7 @@ function App() {
   const [books, setBooks] = useState();
   const [bookCategory, setBookCategory] = useState();
   const [cartItems, setCartItems] = useState([]);
+  const [redirect, setRedirect] = useState();
   return (
     <FirestoreCacheProvider>
       <div className="page">
@@ -48,6 +49,8 @@ function App() {
             bookCategory={bookCategory}
             setBookCategory={setBookCategory}
             cartItems={cartItems}
+            redirect={redirect}
+            setRedirect={setRedirect}
           />
           <LogonForm
             signOn={signOn}
@@ -57,6 +60,7 @@ function App() {
             setEmployee={setEmployee}
             users={users}
             setUsers={setUsers}
+            setRedirect={setRedirect}
           />
           <Cart
             cart={displayCart}
@@ -91,6 +95,7 @@ function App() {
                   setBookCategory={setBookCategory}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
+                  setRedirect={setRedirect}
                 />
               }
             />
@@ -119,6 +124,7 @@ function App() {
                   setBookCategory={setBookCategory}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
+                  setRedirect={setRedirect}
                 />
               }
             />
@@ -238,6 +244,7 @@ function App() {
                   setBookCategory={setBookCategory}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
+                  setRedirect={setRedirect}
                 />
               }
             />

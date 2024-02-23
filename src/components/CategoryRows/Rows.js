@@ -4,7 +4,7 @@ import db from "../../provider/Dexie";
 import { useLiveQuery } from "dexie-react-hooks";
 
 const Rows = (props) => {
-  const { cartItems, setCartItems } = props;
+  const { cartItems, setCartItems, setRedirect } = props;
   const [pageData, setPageData] = useState();
   const [showMore, setShowMore] = useState(false); // Add showMore state
   const [showMore1, setShowMore1] = useState(false);
@@ -53,6 +53,7 @@ const Rows = (props) => {
                     key={`newReleases-${book?.id}`}
                     cartItems={cartItems}
                     setCartItems={setCartItems}
+                    setRedirect={setRedirect}
                   />
                 );
               })}
@@ -77,6 +78,7 @@ const Rows = (props) => {
                     key={i + "bestSellers"}
                     cartItems={cartItems}
                     setCartItems={setCartItems}
+                    setRedirect={setRedirect}
                   />
                 );
               })}
@@ -101,6 +103,7 @@ const Rows = (props) => {
                     key={i + "employee"}
                     cartItems={cartItems}
                     setCartItems={setCartItems}
+                    setRedirect={setRedirect}
                   />
                 );
               })}
