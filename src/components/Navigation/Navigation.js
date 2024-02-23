@@ -72,6 +72,10 @@ const Navigation = (props) => {
     }
   }, [redirect, books, bookCategory, navigate]);
 
+  const handleMoreButton = () => {
+    setRedirect(false);
+  };
+
   return (
     <div>
       <div className="navigation">
@@ -83,7 +87,10 @@ const Navigation = (props) => {
             { "hide-register": verified }
           )}
         >
-          Register <NavLink to="/signUp"> here!</NavLink>
+          Register{" "}
+          <NavLink to="/signUp">
+            <span onClick={handleMoreButton}>here!</span>{" "}
+          </NavLink>
         </span>
         <span></span>
 
