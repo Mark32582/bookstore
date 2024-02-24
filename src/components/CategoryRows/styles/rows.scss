@@ -53,10 +53,10 @@
 
 // Full width
 .static-books {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
   
 // For tablets
 @media (min-width: 768px) and (max-width: 1024px) {
