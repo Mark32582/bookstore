@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Navigation = (props) => {
   const {
@@ -26,7 +26,30 @@ const Navigation = (props) => {
     employee
   } = props;
 
-  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+  const navRef = useRef(null);
+  const [navState, setNavState] = useState('default');
+  useEffect(() => {
+    const updateNavState = () => {
+      const width = navRef.current.clientWidth;
+      if (width < 768) {
+        setNavState('mobile');
+      } else {
+        setNavState('default');
+      }
+    };
+  
+    window.addEventListener('resize', updateNavState);
+    // Set the initial state
+    updateNavState();
+  
+    return () => window.removeEventListener('resize', updateNavState);
+  }, []);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   const api = googleBooks?.key;
   const navigate = useNavigate();
@@ -80,9 +103,9 @@ const Navigation = (props) => {
   };
 
   return (
+    <div ref={navRef}>
     <div>
       <div className="navigation">
-      <div className="navigation--hamburger" onClick={() => setIsMobileMenuVisible(!isMobileMenuVisible)}>&#9776;</div>
         <span className="navigation--title">The Bookstore</span>
 
         <span
@@ -110,8 +133,13 @@ const Navigation = (props) => {
           )}
         </div>
       </div>
-      {isMobileMenuVisible && (
-        <div className="mobile-menu">
+      <>
+      <div className="navigation--hamburger" onClick={toggleMenu}>
+        &#9776;
+      </div>
+      {navState === 'mobile' ? (
+        
+        <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/signUp">Register</NavLink>
           {!verified ? (
@@ -129,15 +157,11 @@ const Navigation = (props) => {
           <button onClick={() => handleCategory("sciFi")}>Science-Fiction</button>
           <button onClick={() => handleCategory("Youth")}>Young Adult</button>
           <button onClick={() => handleCategory("juvenile fiction")}>Children's</button>
-          <input
-            type="text"
-            placeholder="Search for books or authors"
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          />
+          <input type="text" placeholder="Search for books or authors" onChange={(e) => setSearch(e.target.value)} value={search} />
           <button type="submit" onClick={handleSearch}>Search</button>
+          <button onClick={toggleMenu}>Close Menu</button>
         </div>
-      )}
+      ) : (
       <div className="navigation--secondary-nav">
         <div>
           <div className="navigation--buttons">
@@ -153,10 +177,7 @@ const Navigation = (props) => {
             <button id="fiction" onClick={() => handleCategory("Fiction")}>
               Fiction
             </button>
-            <button
-              id="nonFiction"
-              onClick={() => handleCategory("nonFiction")}
-            >
+            <button id="nonFiction" onClick={() => handleCategory("nonFiction")}>
               Non-Fiction
             </button>
             <button id="mystery" onClick={() => handleCategory("Mystery")}>
@@ -180,10 +201,7 @@ const Navigation = (props) => {
             <button id="youngAdult" onClick={() => handleCategory("Youth")}>
               Young Adult
             </button>
-            <button
-              id="childrens"
-              onClick={() => handleCategory("juvenile fiction")}
-            >
+            <button id="childrens"  onClick={() => handleCategory("juvenile fiction")}>
               Children's
             </button>
           </div>
@@ -234,6 +252,9 @@ const Navigation = (props) => {
           </NavLink>
         </div>
       </div>
+      )}
+      </>
+    </div>
     </div>
   );
 };

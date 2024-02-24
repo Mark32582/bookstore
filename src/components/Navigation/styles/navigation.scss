@@ -140,3 +140,7 @@
   align-items: center;
   z-index: 1000;
 }
+
+.mobile-menu.open {
+  display: flex;
+}
