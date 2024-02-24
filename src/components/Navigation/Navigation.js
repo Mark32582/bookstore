@@ -26,6 +26,8 @@ const Navigation = (props) => {
     employee
   } = props;
 
+  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
+
   const api = googleBooks?.key;
   const navigate = useNavigate();
   const signOff = () => {
@@ -80,6 +82,7 @@ const Navigation = (props) => {
   return (
     <div>
       <div className="navigation">
+      <div className="navigation--hamburger" onClick={() => setIsMobileMenuVisible(!isMobileMenuVisible)}>&#9776;</div>
         <span className="navigation--title">The Bookstore</span>
 
         <span
@@ -107,6 +110,34 @@ const Navigation = (props) => {
           )}
         </div>
       </div>
+      {isMobileMenuVisible && (
+        <div className="mobile-menu">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/signUp">Register</NavLink>
+          {!verified ? (
+            <button onClick={() => setSignOn(!signOn)}>Sign On</button>
+          ) : (
+            <button onClick={signOff}>Sign Off</button>
+          )}
+          <button onClick={() => handleCategory("Fiction")}>Fiction</button>
+          <button onClick={() => handleCategory("nonFiction")}>Non-Fiction</button>
+          <button onClick={() => handleCategory("Mystery")}>Mystery</button>
+          <button onClick={() => handleCategory("Romance")}>Romance</button>
+          <button onClick={() => handleCategory("Poetry")}>Poetry</button>
+          <button onClick={() => handleCategory("Horror")}>Horror</button>
+          <button onClick={() => handleCategory("Suspense")}>Suspense</button>
+          <button onClick={() => handleCategory("sciFi")}>Science-Fiction</button>
+          <button onClick={() => handleCategory("Youth")}>Young Adult</button>
+          <button onClick={() => handleCategory("juvenile fiction")}>Children's</button>
+          <input
+            type="text"
+            placeholder="Search for books or authors"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+          <button type="submit" onClick={handleSearch}>Search</button>
+        </div>
+      )}
       <div className="navigation--secondary-nav">
         <div>
           <div className="navigation--buttons">
