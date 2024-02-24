@@ -4,7 +4,7 @@ import axios from "axios";
 import { googleBooks } from "../../config/googlebooks";
 
 const Author = (props) => {
-  const { author } = props;
+  const { author, setRedirect } = props;
   const [booksByAuthor, setBooksByAuthor] = useState();
   const api = googleBooks?.key;
 
@@ -35,7 +35,13 @@ const Author = (props) => {
           </div>
           <div className="static-books">
             {booksByAuthor?.map((book, i) => {
-              return <BookTile books={book} key={i+"authorBooks"} />;
+              return (
+                <BookTile
+                  books={book}
+                  key={i + "authorBooks"}
+                  setRedirect={setRedirect}
+                />
+              );
             })}
           </div>
         </div>

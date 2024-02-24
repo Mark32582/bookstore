@@ -21,6 +21,9 @@ const Navigation = (props) => {
     bookCategory,
     setBookCategory,
     cartItems,
+    redirect,
+    setRedirect,
+    employee
   } = props;
 
   const api = googleBooks?.key;
@@ -34,9 +37,8 @@ const Navigation = (props) => {
       setUsers(undefined);
     }, 500);
   };
-  const [redirect, setRedirect] = useState();
 
-  const handleSearch = () => { 
+  const handleSearch = () => {
     axios
       .get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api}`)
       .then((res) => {
@@ -66,10 +68,14 @@ const Navigation = (props) => {
   }, [api, bookCategory, setBooks]);
 
   useEffect(() => {
-    if (redirect === true) {
+    if (redirect) {
       navigate("/browse");
     }
   }, [redirect, books, bookCategory, navigate]);
+
+  const handleMoreButton = () => {
+    setRedirect(false);
+  };
 
   return (
     <div>
@@ -82,7 +88,10 @@ const Navigation = (props) => {
             { "hide-register": verified }
           )}
         >
-          Register <NavLink to="/signUp"> here!</NavLink>
+          Register{" "}
+          <NavLink to="/signUp">
+            <span onClick={handleMoreButton}>here!</span>{" "}
+          </NavLink>
         </span>
         <span></span>
 
@@ -142,7 +151,7 @@ const Navigation = (props) => {
             </button>
             <button
               id="childrens"
-              onClick={() => setBookCategory("juvenile fiction")}
+              onClick={() => handleCategory("juvenile fiction")}
             >
               Children's
             </button>
@@ -150,14 +159,16 @@ const Navigation = (props) => {
         </div>
         <div className="navigation--right">
           <input
+            id="search"
             type="text"
             name="search"
             placeholder="search for books or authors"
             onChange={(e) => setSearch(e.target.value)}
+            autoComplete="off"
           />
           <button type="submit" onClick={handleSearch}>
             Search
-          </button>{" "}
+          </button>
           <NavLink>
             {cartItems?.length > 0 ? (
               <img
@@ -178,6 +189,17 @@ const Navigation = (props) => {
                 height="24px"
               />
             )}
+          </NavLink>
+          <NavLink to="/user">
+            {verified && !employee ?(
+              <img
+                className="cart-icon"
+                src={process.env.PUBLIC_URL + "/user.png"}
+                alt="cart"
+                width="24px"
+                height="24px"
+              />
+            ): null}
           </NavLink>
         </div>
       </div>

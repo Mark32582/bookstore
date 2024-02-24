@@ -14,6 +14,7 @@ const HomePage = (props) => {
     bookCategory,
     cartItems,
     setCartItems,
+    setRedirect,
   } = props;
 
 
@@ -42,6 +43,7 @@ const HomePage = (props) => {
             setBooks={setBooks}
             cartItems={cartItems}
             setCartItems={setCartItems}
+            setRedirect={setRedirect}
           />
         </div>
       </div>
