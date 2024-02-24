@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import classNames from "classnames";
 import { googleBooks } from "../../config/googlebooks";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const Navigation = (props) => {
   const {
@@ -25,6 +25,31 @@ const Navigation = (props) => {
     setRedirect,
     employee
   } = props;
+
+  const navRef = useRef(null);
+  const [navState, setNavState] = useState('default');
+  useEffect(() => {
+    const updateNavState = () => {
+      const width = navRef.current.clientWidth;
+      if (width < 768) {
+        setNavState('mobile');
+      } else {
+        setNavState('default');
+      }
+    };
+  
+    window.addEventListener('resize', updateNavState);
+    // Set the initial state
+    updateNavState();
+  
+    return () => window.removeEventListener('resize', updateNavState);
+  }, []);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   const api = googleBooks?.key;
   const navigate = useNavigate();
@@ -78,6 +103,7 @@ const Navigation = (props) => {
   };
 
   return (
+    <div ref={navRef}>
     <div>
       <div className="navigation">
         <span className="navigation--title">The Bookstore</span>
@@ -107,6 +133,35 @@ const Navigation = (props) => {
           )}
         </div>
       </div>
+      <>
+      <div className="navigation--hamburger" onClick={toggleMenu}>
+        &#9776;
+      </div>
+      {navState === 'mobile' ? (
+        
+        <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/signUp">Register</NavLink>
+          {!verified ? (
+            <button onClick={() => setSignOn(!signOn)}>Sign On</button>
+          ) : (
+            <button onClick={signOff}>Sign Off</button>
+          )}
+          <button onClick={() => handleCategory("Fiction")}>Fiction</button>
+          <button onClick={() => handleCategory("nonFiction")}>Non-Fiction</button>
+          <button onClick={() => handleCategory("Mystery")}>Mystery</button>
+          <button onClick={() => handleCategory("Romance")}>Romance</button>
+          <button onClick={() => handleCategory("Poetry")}>Poetry</button>
+          <button onClick={() => handleCategory("Horror")}>Horror</button>
+          <button onClick={() => handleCategory("Suspense")}>Suspense</button>
+          <button onClick={() => handleCategory("sciFi")}>Science-Fiction</button>
+          <button onClick={() => handleCategory("Youth")}>Young Adult</button>
+          <button onClick={() => handleCategory("juvenile fiction")}>Children's</button>
+          <input type="text" placeholder="Search for books or authors" onChange={(e) => setSearch(e.target.value)} value={search} />
+          <button type="submit" onClick={handleSearch}>Search</button>
+          <button onClick={toggleMenu}>Close Menu</button>
+        </div>
+      ) : (
       <div className="navigation--secondary-nav">
         <div>
           <div className="navigation--buttons">
@@ -122,10 +177,7 @@ const Navigation = (props) => {
             <button id="fiction" onClick={() => handleCategory("Fiction")}>
               Fiction
             </button>
-            <button
-              id="nonFiction"
-              onClick={() => handleCategory("nonFiction")}
-            >
+            <button id="nonFiction" onClick={() => handleCategory("nonFiction")}>
               Non-Fiction
             </button>
             <button id="mystery" onClick={() => handleCategory("Mystery")}>
@@ -149,10 +201,7 @@ const Navigation = (props) => {
             <button id="youngAdult" onClick={() => handleCategory("Youth")}>
               Young Adult
             </button>
-            <button
-              id="childrens"
-              onClick={() => handleCategory("juvenile fiction")}
-            >
+            <button id="childrens"  onClick={() => handleCategory("juvenile fiction")}>
               Children's
             </button>
           </div>
@@ -203,6 +252,9 @@ const Navigation = (props) => {
           </NavLink>
         </div>
       </div>
+      )}
+      </>
+    </div>
     </div>
   );
 };

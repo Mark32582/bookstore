@@ -10,6 +10,13 @@
   border-bottom: 2px solid black;
   background-color: blanchedalmond;
 
+  &--hamburger {
+    display: none; // Hidden on larger screens
+    cursor: pointer;
+    font-size: 2rem;
+    margin-right: 20px;
+  }
+
   &--title {
     font-family: "courier", "Arial Narrow", Arial, sans-serif;
     width: 70%;
@@ -108,4 +115,32 @@
     font-size: 1.1rem;
     font-weight: 900;
   }
+}
+
+@media (max-width: 768px) {
+  .navigation--hamburger {
+    display: block; // Show hamburger menu on small screens
+  }
+
+  .navigation--buttons, .navigation--secondary-nav, .navigation--title, .navigation--right {
+    display: none; // Hide on small screens
+  }
+}
+
+.mobile-menu {
+  display:none; // Hidden by default
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mobile-menu.open {
+  display: flex;
 }
