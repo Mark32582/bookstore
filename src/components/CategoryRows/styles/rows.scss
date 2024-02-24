@@ -50,8 +50,24 @@
       
     }
 }
-.static-books{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
+
+// Full width
+.static-books {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+  
+// For tablets
+@media (min-width: 768px) and (max-width: 1024px) {
+  .static-books {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+  
+// For phones
+@media (max-width: 767px) {
+  .static-books {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
