@@ -141,6 +141,13 @@
   z-index: 1000;
 }
 
+.mobile-menu button {
+  margin: 10px;
+  width: 200px; /* Adjust this value to change the width of the buttons */
+  height: 25px; /* Adjust this value to change the height of the buttons */
+  font-weight: bold; /* Makes the text on the buttons bold */
+}
+
 .mobile-menu.open {
   display: flex;
 }
