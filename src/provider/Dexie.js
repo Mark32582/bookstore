@@ -15,7 +15,7 @@ db.open().catch((error) => {
 
 const checkCache = async (collectionName) => {
   const data = await db[collectionName]?.toArray();
-  console.log(`Data for ${collectionName}:`, data);
+//   console.log(`Data for ${collectionName}:`, data);
 };
 
 // Call this function after you cache the data

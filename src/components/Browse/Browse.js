@@ -2,16 +2,23 @@ import Rows from "../CategoryRows/Rows";
 
 import { NavLink } from "react-router-dom";
 const Browse = (props) => {
-  const { books, setBooks, bookCategory, cartItems, setCartItems, setRedirect } = props;
+  const {
+    books,
+    setBooks,
+    bookCategory,
+    cartItems,
+    setCartItems,
+    setRedirect,
+  } = props;
   const onAddToCart = (title, price) => {
     let count = 0;
     count = count++;
     setCartItems([...cartItems, { title: title, price: price, count: count }]);
   };
 
-  const handleMoreButton = () =>{
-    setRedirect(false)
-  }
+  const handleMoreButton = () => {
+    setRedirect(false);
+  };
   return (
     <>
       <div className="body-content">
@@ -38,9 +45,8 @@ const Browse = (props) => {
           {books &&
             books.map((book, i) => {
               const bookId = book?.id;
-              console.log(book);
               return (
-                <div className="row" id="search" key={i + "search"}>
+                <div className="row" id="search" key={`${i}-search`}>
                   <div className="row--image">
                     <img
                       src={book?.volumeInfo?.imageLinks?.thumbnail}
@@ -59,8 +65,13 @@ const Browse = (props) => {
                       <p>{book?.volumeInfo?.description}</p>
                     </div>
                     <div className="row--text__actions">
-                      <NavLink to={`/book/${bookId}`} >
-                        <span onClick={handleMoreButton} className="row--text__info">More Info</span>
+                      <NavLink to={`/book/${bookId}`}>
+                        <span
+                          onClick={handleMoreButton}
+                          className="row--text__info"
+                        >
+                          More Info
+                        </span>
                       </NavLink>
                       {book?.saleInfo?.listPrice?.amount ? (
                         <>
@@ -86,7 +97,12 @@ const Browse = (props) => {
                 </div>
               );
             })}
-          <Rows bookCategory={bookCategory} books={books} setBooks={setBooks} setRedirect={setRedirect} />
+          <Rows
+            bookCategory={bookCategory}
+            books={books}
+            setBooks={setBooks}
+            setRedirect={setRedirect}
+          />
         </div>
       </div>
     </>

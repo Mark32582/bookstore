@@ -21,8 +21,6 @@ const Rows = (props) => {
     fetchBooks();
   }, [fetchBooks]);
 
-  console.log(pageData);
-
   const handleShowMore = () => {
     setShowMore(!showMore);
   };
@@ -75,7 +73,7 @@ const Rows = (props) => {
                 return (
                   <BookTile
                     books={book}
-                    key={i + "bestSellers"}
+                    key={`${i}_bestSellers`}
                     cartItems={cartItems}
                     setCartItems={setCartItems}
                     setRedirect={setRedirect}
@@ -100,7 +98,7 @@ const Rows = (props) => {
                 return (
                   <BookTile
                     books={book}
-                    key={i + "employee"}
+                    key={`${i}_employee`}
                     cartItems={cartItems}
                     setCartItems={setCartItems}
                     setRedirect={setRedirect}

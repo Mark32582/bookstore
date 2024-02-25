@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
 const BookTile = (props) => {
-  const { books, cartItems, setCartItems, setRedirect } = props;
+  const { books, cartItems, setCartItems, setRedirect, price: bookPrice } = props;
   const bookId = books?.googleId || books?.id;
   const url = books?.thumbnail || books?.volumeInfo?.imageLinks?.thumbnail;
   const title = books?.title || books?.volumeInfo?.title;
   const author = books?.author || books?.volumeInfo?.authors;
-  const price = books?.retailPrice || books?.saleInfo?.retailPrice?.amount;
+  const price = books?.retailPrice || books?.saleInfo?.retailPrice?.amount || bookPrice;
 
   const onAddToCart = () => {
     let count = 0;

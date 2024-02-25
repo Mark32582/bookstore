@@ -4,7 +4,7 @@ import axios from "axios";
 import { googleBooks } from "../../config/googlebooks";
 
 const Author = (props) => {
-  const { author, setRedirect } = props;
+  const { author, setRedirect, price } = props;
   const [booksByAuthor, setBooksByAuthor] = useState();
   const api = googleBooks?.key;
 
@@ -16,7 +16,6 @@ const Author = (props) => {
         )
         .then((res) => {
           setBooksByAuthor(res?.data?.items);
-          console.log(booksByAuthor);
         })
         .catch((err) => console.log(err));
     }
@@ -38,8 +37,9 @@ const Author = (props) => {
               return (
                 <BookTile
                   books={book}
-                  key={i + "authorBooks"}
+                  key={`${i}-authorBooks`}
                   setRedirect={setRedirect}
+                  price={price}
                 />
               );
             })}

@@ -13,7 +13,6 @@ export const FirestoreCacheProvider = ({ children }) => {
   useCacheCollections(firestore);
 
   const getCachedCollection = async (collectionName) => {
-    console.log(collectionName + " cache called");
     let data = await db[collectionName].toArray();
 
     if (data?.length === 0) {
@@ -28,7 +27,6 @@ export const FirestoreCacheProvider = ({ children }) => {
 
       // Cache the data for future use
       await db[collectionName].bulkPut(data);
-      console.log("--------------test");
       localStorage.setItem(
         `${collectionName}_date`,
         JSON.stringify(Date.now())

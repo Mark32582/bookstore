@@ -26,7 +26,7 @@ const Footer = () => {
         <h2>Opening Hours</h2>
         <ul>
           {Object.entries(openingHours).map(([day, hours]) => (
-            <li key={day}>
+            <li key={`${day}-hours`}>
               <strong>{day.charAt(0).toUpperCase() + day.slice(1)}:</strong>{" "}
               {hours}
             </li>

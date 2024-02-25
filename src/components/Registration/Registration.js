@@ -11,7 +11,6 @@ const Registration = (props) => {
     setUsers,
   } = props;
 
-  console.log(setUsers);
   return (
     <RegisterForm
       verified={verified}

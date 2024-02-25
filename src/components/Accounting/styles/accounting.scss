@@ -1,0 +1,107 @@
+.accounting {
+  margin: 24px;
+  background-color: blanchedalmond;
+  border-radius: 16px;
+
+  &--header-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+
+    &__total-sales {
+      border: 3px solid darkslategray;
+      border-radius: 16px;
+      background-color: antiquewhite;
+      margin-top: 16px;
+      margin-left: 24px;
+      padding: 16px;
+    }
+    &__location {
+      border: 3px solid darkslategray;
+      border-radius: 16px;
+      background-color: antiquewhite;
+      margin-top: 16px;
+      padding: 16px;
+    }
+    &__top-sellers {
+      border: 3px solid darkslategray;
+      border-radius: 16px;
+      background-color: antiquewhite;
+      margin-top: 16px;
+      margin-right: 24px;
+      padding: 16px;
+    }
+  }
+  &--sales-container {
+    width: 100%;
+    padding-bottom: 24px;
+
+    &__all-sales {
+      border: 3px solid darkslategray;
+      border-radius: 16px;
+      background-color: antiquewhite;
+      margin: 16px 24px;
+      overflow: hidden;
+    }
+  }
+}
+.title-today {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  margin-top: 0;
+}
+.today-sales {
+  font-size: 54px;
+  font-weight: 800;
+  display: flex;
+  justify-content: flex-end;
+}
+.location {
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+.top {
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+.book {
+  font-weight: 700;
+  margin-right: 8px;
+}
+.all-sales-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding:8px 24px;
+  border-bottom: 3px solid darkslategray;
+  margin: 0;
+}
+.all-sales {
+  margin-top: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+}
+.grid-orders {
+  border: 1px solid darkslategray;
+  padding-left: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.grid-head {
+  background-color: lightgray;
+  font-weight: 700;
+}
+
+.spreadsheet {
+  width: 100%;
+  min-height: 400px;
+}

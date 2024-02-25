@@ -16,6 +16,7 @@ body {
     position: relative;
 }
 
+@import "./components/Accounting/styles/accounting.scss";
 @import "./components/AddBooks/styles/addbooks.scss";
 @import "./components/AdminDashboard/styles/dashboard.scss";
 @import "./components/Author/styles/author.scss";
