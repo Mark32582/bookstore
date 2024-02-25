@@ -10,13 +10,20 @@
   border-bottom: 2px solid black;
   background-color: blanchedalmond;
 
+  &--hamburger {
+    display: none; // Hidden on larger screens
+    cursor: pointer;
+    padding: 10px;
+    background-color: blanchedalmond;
+    font-size: 3rem;
+  }
+
   &--title {
     font-family: "courier", "Arial Narrow", Arial, sans-serif;
     width: 70%;
     margin-left: 24px;
     font-size: 4rem;
     font-weight: 800px;
-    
   }
 
   &--buttons {
@@ -38,7 +45,7 @@
     .sign-on:hover {
       background-color: darkslategray;
       border-radius: 12px;
-      color:blanchedalmond;
+      color: blanchedalmond;
     }
     .sign-on:focus {
       display: flex;
@@ -63,15 +70,15 @@
     align-items: center;
     background-color: blanchedalmond;
   }
-  &--right{
-    display:flex;
+  &--right {
+    display: flex;
     align-items: center;
-    gap:8px;
+    gap: 8px;
   }
-//   &--search{
-//     display:flex;
-//     align-items: center;
-//   }
+  //   &--search{
+  //     display:flex;
+  //     align-items: center;
+  //   }
 
   &--employee-nav {
     display: flex;
@@ -104,8 +111,46 @@
     font-weight: 900;
   }
   a:visited {
-    color:steelblue;
+    color: steelblue;
     font-size: 1.1rem;
     font-weight: 900;
   }
+}
+
+@media (max-width: 768px) {
+  .navigation--hamburger {
+    display: block; // Show hamburger menu on small screens
+  }
+
+  .navigation--buttons,
+  .navigation--secondary-nav,
+  .navigation--title,
+  .navigation--right {
+    display: none; // Hide on small screens
+  }
+}
+
+.mobile-menu {
+  display: none; // Hidden by default
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mobile-menu button {
+  margin: 10px;
+  width: 200px; /* Adjust this value to change the width of the buttons */
+  height: 25px; /* Adjust this value to change the height of the buttons */
+  font-weight: bold; /* Makes the text on the buttons bold */
+}
+
+.mobile-menu.open {
+  display: flex;
 }

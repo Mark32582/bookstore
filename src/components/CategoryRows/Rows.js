@@ -21,6 +21,8 @@ const Rows = (props) => {
     fetchBooks();
   }, [fetchBooks]);
 
+  console.log(pageData);
+
   const handleShowMore = () => {
     setShowMore(!showMore);
   };

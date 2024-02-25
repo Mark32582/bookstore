@@ -1,57 +1,74 @@
 .row {
-    display:flex;
-    flex: row;
-    align-items: flex-end;
-    padding: 8px;
-    overflow: hidden;
-    border:none;
-    height:120px;
+  display: flex;
+  flex: row;
+  align-items: flex-end;
+  padding: 8px;
+  overflow: hidden;
+  border: none;
+  height: 120px;
 
-    &--image {
-        margin-right:16px;
-    }
-    &--text{
-        display:flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-end;
-        margin-right:24px;
+  &--image {
+    margin-right: 16px;
+  }
+  &--text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin-right: 24px;
 
-        &__description{
-            overflow: hidden;
-            display:block;
-            text-overflow: ellipsis;
-            max-height: 65px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-        &__actions{
-            margin-top:8px;
-            
-        }
-        &__info{
-            margin-right:12px;
-        }
+    &__description {
+      overflow: hidden;
+      display: block;
+      text-overflow: ellipsis;
+      max-height: 65px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
-    &--category{
-        display:flex;
-        justify-content: space-between;
-        width:100%;
-        margin-bottom: 8px;
-        flex-direction: row;
-        color:blanchedalmond;
-        font-family: 'Courier New', Courier, monospace;
-        border-bottom: 1px solid blanchedalmond;
-        h2 {
-            padding:0 0;
-            margin:0;
-        }
-      
+    &__actions {
+      margin-top: 8px;
     }
+    &__info {
+      margin-right: 12px;
+    }
+  }
+  &--category {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+    flex-direction: row;
+    color: blanchedalmond;
+    font-family: "Courier New", Courier, monospace;
+    border-bottom: 1px solid blanchedalmond;
+    h2 {
+      padding: 0 0;
+      margin: 0;
+    }
+  }
 }
-.static-books{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
+
+// Full width
+.static-books {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+// For tablets
+@media (min-width: 768px) and (max-width: 1024px) {
+  .static-books {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// For phones
+@media (max-width: 767px) {
+  .row {
+    padding: 0;
+  }
+  .static-books {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
