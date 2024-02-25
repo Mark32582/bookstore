@@ -1,0 +1,97 @@
+$color-alert: #b10000;
+$color-alert-background: #2505059c;
+
+@media (max-width: 800px) {
+    #contact-form {
+        max-width: 100%;
+    }
+    .contact-btn {
+        justify-self: center;
+        margin: auto;
+        padding: 0.5em 0.75em;
+    }
+    .message-form-card {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .message-block {
+        height: 25vh;
+    }
+}
+@media (min-width: 800px) {
+    #contact-form {
+        max-width: 70%;
+    }
+    .contact-btn {
+        justify-self: left;
+        padding: 0.5em 0.75em;
+    }
+    .message-form-card {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+    .message-block {
+        height: 25vh;
+    }
+}
+
+.message-form-card {
+    margin-top: 7.5%;
+    margin-bottom: 5%;
+}
+.message-status {
+    font-size: 1rem;
+    color: $color-alert;
+    background-color: $color-alert-background;
+    border-radius: 15px;
+}
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-right: auto;
+}
+.contact-btn {
+    margin-left: 0;
+    max-width: max-content;
+}
+.text-under-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: start;
+}
+.input-label {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 70%;
+}
+.input-text {
+    margin-left: 0;
+}
+.input-alert {
+    text-align: left;
+    padding-left: .5%;
+    padding-right: .5%;
+    max-width: max-content;
+    font-size: 1rem;
+    color: $color-alert;
+    background-color: $color-alert-background;
+}
+.char-limit {
+    margin: 0%;
+    text-align: left;
+}
+.message-block {
+    width: 80%;
+}
