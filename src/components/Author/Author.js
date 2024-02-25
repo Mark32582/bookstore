@@ -4,7 +4,7 @@ import axios from "axios";
 import { googleBooks } from "../../config/googlebooks";
 
 const Author = (props) => {
-  const { author, setRedirect } = props;
+  const { author, setRedirect, price } = props;
   const [booksByAuthor, setBooksByAuthor] = useState();
   const api = googleBooks?.key;
 
@@ -39,6 +39,7 @@ const Author = (props) => {
                   books={book}
                   key={`${i}-authorBooks`}
                   setRedirect={setRedirect}
+                  price={price}
                 />
               );
             })}

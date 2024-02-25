@@ -1,5 +1,21 @@
+import { employeeID } from "../../config/employeeID";
+import { useState } from "react";
+
 const Accounting = () => {
-    
+  const [print, setPrint] = useState();
+  const handleSpreadSheet = () => {
+    if (employeeID?.pin === Number(print)) {
+      ifTrue();
+    }
+    return null;
+  };
+
+  const ifTrue = () =>
+    window.open(
+      "https://docs.google.com/spreadsheets/d/1hBDO-LKGtgo_1LsNYRiK9yLvllepdaVLBjVVtDBWuzY/edit#gid=0",
+      "_blank",
+      "rel=noopener noreferrer"
+    );
   return (
     <div className="accounting">
       <div className="accounting--header-container">
@@ -48,7 +64,14 @@ const Accounting = () => {
               title="spreadsheets"
               className="spreadsheet"
             ></iframe>
-            <span className="all-sales-title"><button onClick={()=>window.open("https://docs.google.com/spreadsheets/d/1hBDO-LKGtgo_1LsNYRiK9yLvllepdaVLBjVVtDBWuzY/edit#gid=0", "_blank", "rel=noopener noreferrer")} >Go to Spreadsheet</button></span>
+            <span className="all-sales-title">
+              Enter Pin:{" "}
+              <input
+                type="password"
+                onChange={(e) => setPrint(e.target.value)}
+              />
+              <button onClick={handleSpreadSheet}>Go to Spreadsheet</button>
+            </span>
           </div>
         </div>
       </div>

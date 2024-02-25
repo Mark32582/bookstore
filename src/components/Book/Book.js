@@ -149,6 +149,7 @@ const Book = (props) => {
         <Author
           author={currentBook?.volumeInfo?.authors}
           setRedirect={setRedirect}
+          price={price}
         />
       </div>
     </>
