@@ -27,7 +27,7 @@ const Checkout = ({cartItems, setCartItems}) => {
             {cartItems?.length > 0 ?(
                 <div>
                     {cartItems?.map((item, index) => (
-                        <div key={index+"cart"}>
+                        <div key={`${index}--cartItem`}>
                             <h2>{item.title}</h2>
                             <p2>{item.description}</p2>
                             <p>Price: ${item.price}</p>

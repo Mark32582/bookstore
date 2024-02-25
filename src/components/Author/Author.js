@@ -37,7 +37,7 @@ const Author = (props) => {
               return (
                 <BookTile
                   books={book}
-                  key={i + "authorBooks"}
+                  key={`${i}-authorBooks`}
                   setRedirect={setRedirect}
                 />
               );

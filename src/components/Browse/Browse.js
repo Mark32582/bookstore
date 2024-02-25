@@ -46,7 +46,7 @@ const Browse = (props) => {
             books.map((book, i) => {
               const bookId = book?.id;
               return (
-                <div className="row" id="search" key={i + "search"}>
+                <div className="row" id="search" key={`${i}-search`}>
                   <div className="row--image">
                     <img
                       src={book?.volumeInfo?.imageLinks?.thumbnail}
