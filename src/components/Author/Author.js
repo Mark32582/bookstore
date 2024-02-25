@@ -16,7 +16,6 @@ const Author = (props) => {
         )
         .then((res) => {
           setBooksByAuthor(res?.data?.items);
-          console.log(booksByAuthor);
         })
         .catch((err) => console.log(err));
     }
