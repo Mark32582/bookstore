@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
@@ -25,6 +25,7 @@ const RegisterForm = (props) => {
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
+  const [isVerified, setIsVerified] = useState(false);
 
   const {
     employee,
@@ -58,54 +59,61 @@ const RegisterForm = (props) => {
 
   useEffect(() => {
     if (!employee) {
-      if (verified) {
+      if (isVerified) {
         navigate("/");
       }
     }
-  }, [verified, navigate, employee]);
+  }, [isVerified, navigate, employee]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const docRef = setDoc(doc(db, "users", userCredential.user.uid), {
-          fName: fName,
-          lName: lName,
-          streetNumber: streetNum,
-          address: address,
-          city: city,
-          state: state,
-          zip: zip,
-          phone: phone,
-          email: email,
-          rewardNumber: rewardNum,
-          rewards: 0,
-          type: type,
-        });
-        if (employee) {
-          setSuccess("Registration Successful!");
-          docRef();
-        }
-        setVerified(true);
-        docRef();
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
-        if (errorMessage !== "docRef is not a function") {
-          setError(
-            "Email has already been used. Please login or use another email."
-          );
-        }
-        // ..
+  
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+  
+      // Signed in
+      const docRef = setDoc(doc(db, "users", userCredential.user.uid), {
+        fName: fName,
+        lName: lName,
+        streetNumber: streetNum,
+        address: address,
+        city: city,
+        state: state,
+        zip: zip,
+        phone: phone,
+        email: email,
+        rewardNumber: rewardNum,
+        rewards: 0,
+        type: type,
       });
+  
+      if (employee) {
+        setSuccess("Registration Successful!");
+        docRef();
+      } else {
+         // Set initial verification status to true
+        await sendEmailVerification(auth.currentUser);
+        setSuccess("Please Verify your Email to Complete Registration.");
+      }
+  
+      setTimeout(() => {
+        navigate("/");
+      }, 4000);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+  
+      if (errorMessage !== "docRef is not a function") {
+        setError(
+          "Email has already been used. Please login or use another email."
+        );
+      }
+    }
   };
 
   const handleChange = () => {

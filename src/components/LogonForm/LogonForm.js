@@ -25,6 +25,10 @@ const LogonForm = (props) => {
 
   const onLogin = (e) => {
     e.preventDefault();
+    if (auth.currentUser && !auth.currentUser.emailVerified) {
+      setError("Email not verified. Please verify your email to sign in.");
+      return;
+    }
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -66,6 +70,12 @@ const LogonForm = (props) => {
       fetchPost();
     }
   }, [userId]);
+
+  useEffect(() => {
+    if (auth.currentUser && !auth.currentUser.emailVerified) {
+      setError("Confirm Email to Complete Registration");
+    }
+  }, []);
   return (
     <div className={classNames({ "hide-logon": !signOn })}>
       <div className="form-container-sign-on">
