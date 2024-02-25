@@ -28,13 +28,9 @@ const RegisterForm = (props) => {
 
   const {
     employee,
-    setEmployee,
     verified,
     setVerified,
-    users: globalUsers,
-    setUsers: setGlobalUsers,
   } = props;
-  console.log(employee);
   const fetchPost = async () => {
     await getDocs(collection(db, "users")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({

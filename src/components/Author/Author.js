@@ -4,7 +4,7 @@ import axios from "axios";
 import { googleBooks } from "../../config/googlebooks";
 
 const Author = (props) => {
-  const { author } = props;
+  const { author, setRedirect } = props;
   const [booksByAuthor, setBooksByAuthor] = useState();
   const api = googleBooks?.key;
 
@@ -12,11 +12,10 @@ const Author = (props) => {
     if (booksByAuthor === undefined) {
       axios
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=inAuthor${author}&key=${api}`
+          `https://www.googleapis.com/books/v1/volumes?q=inauthor:"${author}"&key=${api}`
         )
         .then((res) => {
           setBooksByAuthor(res?.data?.items);
-          console.log(booksByAuthor);
         })
         .catch((err) => console.log(err));
     }
@@ -35,7 +34,13 @@ const Author = (props) => {
           </div>
           <div className="static-books">
             {booksByAuthor?.map((book, i) => {
-              return <BookTile books={book} key={i+"authorBooks"} />;
+              return (
+                <BookTile
+                  books={book}
+                  key={`${i}-authorBooks`}
+                  setRedirect={setRedirect}
+                />
+              );
             })}
           </div>
         </div>

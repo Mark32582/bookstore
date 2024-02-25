@@ -1,33 +1,33 @@
-/* eslint-disable no-lone-blocks */
-import { db } from "../../config/fireBaseConfig";
-import { getDocs, collection } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import db from "../../provider/Dexie";
+import { useLiveQuery } from "dexie-react-hooks";
+import { useCallback, useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel as Slider } from "react-responsive-carousel";
+import { NavLink } from "react-router-dom";
 
-const Carousel = () => {
+const Carousel = ({ cartItems, setCartItems }) => {
   const [carouselBooks, setCarouselBooks] = useState();
-
-  const fetchBooks = async () => {
-    await getDocs(collection(db, "carousel")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setCarouselBooks(newData);
-    });
-  };
+  const newBooks = useLiveQuery(() => db.carousel?.toArray());
+  const FetchBooks = useCallback(() => {
+    setCarouselBooks(newBooks);
+  }, [newBooks]);
 
   useEffect(() => {
-    fetchBooks();
-  }, []);
+    FetchBooks();
+  }, [FetchBooks]);
+
+  const onAddToCart = (title, price) => {
+    let count = 0;
+    count = count++;
+    setCartItems([...cartItems, { title: title, price: price, count: count }]);
+  };
 
   return (
     <Slider autoPlay infiniteLoop interval="10000" showThumbs={false}>
       {carouselBooks &&
         carouselBooks.map((book, i) => {
           return (
-            <div className="carousel" key={i+"carousel"}>
+            <div className="carousel" key={`${i}-carousel`}>
               <div className="carousel--image" key={i}>
                 <img
                   src={book?.thumbnail}
@@ -45,6 +45,23 @@ const Carousel = () => {
                 </span>
                 <div className="carousel--text__description">
                   <p>{book?.description}</p>
+                </div>
+                <div className="carousel--actions">
+                  <div>
+                    <button
+                      onClick={() =>
+                        onAddToCart(book?.title, book?.retailPrice)
+                      }
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                  <div>${book?.retailPrice}</div>
+                  <div>{book?.category}</div>
+                  <div>Published: {book?.publisherDate}</div>
+                  <div>
+                    <NavLink to={`/book/${book?.googleId}`}>More Info</NavLink>
+                  </div>
                 </div>
               </div>
             </div>

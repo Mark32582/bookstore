@@ -1,21 +1,32 @@
 html {
-    overflow-y: hidden;
-    min-height: 800px;
+  overflow-y: hidden;
+  min-height: 800px;
 }
 body {
-    overflow:auto;
-    background-color: darkslategray;
+  overflow: auto;
+  background-color: darkslategray;
 }
-.carousel-container{
-    height:400px;
-    overflow: hidden;
-    margin:0;
+.carousel-container {
+  height: 400px;
+  overflow: hidden;
+  margin: 0;
 }
-.body-content{
-    margin: 16px 24px ;
-
+.body-content {
+  margin: 16px 24px;
 }
-.row-container a{
-    color:darkslategray;
+.row-container a {
+  color: darkslategray;
 }
-
+.about-container {
+  display: flex;
+  flex-direction: row;
+  padding: 0 24px;
+  padding-bottom: 12px;
+  align-items: center;
+  background-color: rgb(200, 181, 153);
+  position: relative;
+  bottom: 0;
+}
+.about {
+  width: 70%;
+}

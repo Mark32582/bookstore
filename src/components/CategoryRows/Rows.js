@@ -1,49 +1,25 @@
-import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import BookTile from "../BookTile/BookTile";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../../config/fireBaseConfig";
+import db from "../../provider/Dexie";
+import { useLiveQuery } from "dexie-react-hooks";
 
 const Rows = (props) => {
-  const { books, setBooks, cartItems, setCartItems } = props;
+  const { cartItems, setCartItems, setRedirect } = props;
   const [pageData, setPageData] = useState();
   const [showMore, setShowMore] = useState(false); // Add showMore state
   const [showMore1, setShowMore1] = useState(false);
   const [showMore2, setShowMore2] = useState(false);
+  const newBooks = useLiveQuery(() => db.newReleases?.toArray());
+  const bestBooks = useLiveQuery(() => db.bestSeller?.toArray());
+  const employee = useLiveQuery(() => db.employeeRecommendations?.toArray());
 
-  const fetchBooks = async () => {
-    let releases;
-    let best;
-    let employee;
-    await getDocs(collection(db, "newReleases")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      releases = newData;
-    });
-    await getDocs(collection(db, "bestSeller")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      best = newData;
-    });
-    await getDocs(collection(db, "employeeRecommendations")).then(
-      (querySnapshot) => {
-        const newData = querySnapshot.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        employee = newData;
-      }
-    );
-    setPageData({ releases, best, employee });
-  };
+  const fetchBooks = useCallback(() => {
+    setPageData({ newBooks, bestBooks, employee });
+  }, [bestBooks, employee, newBooks]);
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, [fetchBooks]);
 
   const handleShowMore = () => {
     setShowMore(!showMore);
@@ -57,7 +33,7 @@ const Rows = (props) => {
 
   return (
     <>
-      {pageData?.releases?.length >= 1 && (
+      {pageData?.newBooks?.length >= 1 && (
         <>
           <div className="row--category" id="newRelease">
             <h2>New Releases</h2>{" "}
@@ -66,18 +42,23 @@ const Rows = (props) => {
             </button>
           </div>
           <div className="static-books">
-
-            {pageData?.releases
+            {pageData?.newBooks
               ?.slice(0, showMore ? undefined : 3)
-              .map((book, i) => {
-                return <BookTile books={book} key={i+"new-release"} cartItems={cartItems}
-                  setCartItems={setCartItems}/>;
+              .map((book) => {
+                return (
+                  <BookTile
+                    books={book}
+                    key={`newReleases-${book?.id}`}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                    setRedirect={setRedirect}
+                  />
+                );
               })}
-
           </div>
         </>
       )}
-      {pageData?.best?.length >= 1 && (
+      {pageData?.bestBooks?.length >= 1 && (
         <>
           <div className="row--category" id="bestSeller">
             <h2>Best Sellers</h2>{" "}
@@ -86,15 +67,19 @@ const Rows = (props) => {
             </button>
           </div>
           <div className="static-books">
-
-            {pageData?.best
+            {pageData?.bestBooks
               ?.slice(0, showMore1 ? undefined : 3)
               .map((book, i) => {
-                return <BookTile books={book}  key={i + "bestSellers"}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems} />;
+                return (
+                  <BookTile
+                    books={book}
+                    key={`${i}_bestSellers`}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                    setRedirect={setRedirect}
+                  />
+                );
               })}
-
           </div>
         </>
       )}
@@ -107,15 +92,19 @@ const Rows = (props) => {
             </button>
           </div>
           <div className="static-books">
-
             {pageData?.employee
               ?.slice(0, showMore2 ? undefined : 3)
               .map((book, i) => {
-                return <BookTile books={book} key={i + "employee"}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems} />;
+                return (
+                  <BookTile
+                    books={book}
+                    key={`${i}_employee`}
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                    setRedirect={setRedirect}
+                  />
+                );
               })}
-
           </div>
         </>
       )}

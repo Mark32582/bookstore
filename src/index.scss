@@ -12,7 +12,11 @@ body {
   font-family: "Courier New", Courier, monospace;
   background-color: blanchedalmond;
 }
+.page{
+    position: relative;
+}
 
+@import "./components/Accounting/styles/accounting.scss";
 @import "./components/AddBooks/styles/addbooks.scss";
 @import "./components/AdminDashboard/styles/dashboard.scss";
 @import "./components/Author/styles/author.scss";
@@ -29,5 +33,6 @@ body {
 @import "./components/RegisterForm/styles/registerform.scss";
 @import "./components/Registration/styles/registration.scss";
 @import "./components/CategoryRows/styles/rows.scss";
+@import "./components/TimeClock/styles/timeclock.scss";
 @import "./components/UserProfile/styles/userprofile.scss";
 @import "./components/Verification/styles/verification.scss";

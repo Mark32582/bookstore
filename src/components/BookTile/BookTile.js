@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const BookTile = (props) => {
-  const { books, cartItems, setCartItems } = props;
+  const { books, cartItems, setCartItems, setRedirect } = props;
   const bookId = books?.googleId || books?.id;
   const url = books?.thumbnail || books?.volumeInfo?.imageLinks?.thumbnail;
   const title = books?.title || books?.volumeInfo?.title;
@@ -12,6 +12,10 @@ const BookTile = (props) => {
     let count = 0;
     count = count++;
     setCartItems([...cartItems, { title: title, price: price, count: count }]);
+  };
+
+  const handleMoreButton = () => {
+    setRedirect(false);
   };
   return (
     <div className="tile">
@@ -27,7 +31,9 @@ const BookTile = (props) => {
         </span>
 
         <Link to={`/book/${bookId}`}>
-          <span className="row--text__info">More Info</span>
+          <span onClick={handleMoreButton} className="row--text__info">
+            More Info
+          </span>
         </Link>
 
         <div className="row--text__actions">

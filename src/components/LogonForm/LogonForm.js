@@ -11,10 +11,10 @@ const LogonForm = (props) => {
     signOn,
     setSignOn,
     setVerified,
-    employee,
     setEmployee,
     users: globalUsers,
     setUsers: setGlobalUsers,
+    setRedirect,
   } = props;
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -30,6 +30,7 @@ const LogonForm = (props) => {
         // Signed in
         setUserId(userCredential.user.uid);
         setVerified(true);
+        setRedirect(false)
         setTimeout(() => {
           setError(undefined);
         }, 500);
