@@ -75,10 +75,11 @@
 }
 .all-sales-title {
   display: flex;
-  align-items: flex-start;
-  padding-left: 24px;
+  align-items: center;
+  justify-content: flex-start;
+  padding:8px 24px;
   border-bottom: 3px solid darkslategray;
-  margin-bottom: 0;
+  margin: 0;
 }
 .all-sales {
   margin-top: 0;
@@ -86,7 +87,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
-  
 }
 .grid-orders {
   border: 1px solid darkslategray;
@@ -99,4 +99,9 @@
 .grid-head {
   background-color: lightgray;
   font-weight: 700;
+}
+
+.spreadsheet {
+  width: 100%;
+  min-height: 400px;
 }

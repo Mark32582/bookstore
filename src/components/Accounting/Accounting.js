@@ -1,44 +1,5 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-
 const Accounting = () => {
-  const [accountingData, setAccountingData] = useState();
-
-  const fetchAccountingData = () => {
-    const accountingUrl =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vQcOHSw-zIhQqj3x6Am1HYtwgIBbqhK69KIArKw7PQJk4qfRZsTV5boH3BnTafmoXG72VtcMvNTywCT/pub?output=csv";
-    axios
-      .get(accountingUrl)
-      .then((response) => {
-        const parsedCsvData = parseCSV(response.data);
-        setAccountingData(parsedCsvData);
-        console.log(parsedCsvData);
-      })
-      .catch((error) => {
-        console.error("Error fetching CSV data:", error);
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    fetchAccountingData();
-  }, []);
-
-  function parseCSV(csvText) {
-    const rows = csvText.split(/\r?\n/); // Split CSV text into rows, handling '\r' characters
-    const headers = rows[0].split(","); // Extract headers (assumes the first row is the header row)
-    const data = []; // Initialize an array to store parsed data
-    for (let i = 1; i < rows.length; i++) {
-      const rowData = rows[i].split(","); // Split the row, handling '\r' characters
-      const rowObject = {};
-      for (let j = 0; j < headers.length; j++) {
-        rowObject[headers[j]] = rowData[j];
-      }
-      data.push(rowObject);
-    }
-    return data;
-  }
-  console.log(accountingData);
+    
   return (
     <div className="accounting">
       <div className="accounting--header-container">
@@ -61,13 +22,19 @@ const Accounting = () => {
           <h2 className="title-today">Top Sellers:</h2>
           <div>
             <div className="top">
-              <span className="book">book title:</span> num copies
+              <span className="book">Jujutsu Kaisen, Vol.1:</span> 6 units
             </div>
             <div className="top">
-              <span className="book">book title:</span> num copies
+              <span className="book">A Court of Thorns and Roses:</span> 6 units
             </div>
             <div className="top">
-              <span className="book">book title:</span> num copies
+              <span className="book">The Warm Hands of Ghosts:</span> 6 units
+            </div>
+            <div className="top">
+              <span className="book">Waverider:</span> 6 units
+            </div>
+            <div className="top">
+              <span className="book">What Moves the Dead:</span> 6 units
             </div>
           </div>
         </div>
@@ -76,18 +43,12 @@ const Accounting = () => {
         <div className="accounting--sales-container__all-sales">
           <div>
             <h2 className="all-sales-title">Customer Purchase</h2>
-            <div className="all-sales">
-              <div className="grid-orders grid-head">Date</div>
-              <div className="grid-orders grid-head">Order Number</div>
-              <div className="grid-orders grid-head">Customer Name</div>
-              <div className="grid-orders grid-head">Units Sold</div>
-              <div className="grid-orders grid-head">Book Title</div>
-              <div className="grid-orders grid-head">Price</div>
-              <div className="grid-orders grid-head">Taxes</div>
-              <div className="grid-orders grid-head">Total Cost</div>
-              <div className="grid-orders grid-head">Shipping</div>
-              <div className="grid-orders grid-head">Order Location</div>
-            </div>
+            <iframe
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQcOHSw-zIhQqj3x6Am1HYtwgIBbqhK69KIArKw7PQJk4qfRZsTV5boH3BnTafmoXG72VtcMvNTywCT/pubhtml?widget=true&amp;headers=false"
+              title="spreadsheets"
+              className="spreadsheet"
+            ></iframe>
+            <span className="all-sales-title"><button onClick={()=>window.open("https://docs.google.com/spreadsheets/d/1hBDO-LKGtgo_1LsNYRiK9yLvllepdaVLBjVVtDBWuzY/edit#gid=0", "_blank", "rel=noopener noreferrer")} >Go to Spreadsheet</button></span>
           </div>
         </div>
       </div>
