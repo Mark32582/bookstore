@@ -14,14 +14,14 @@ const Rows = (props) => {
   const employee = useLiveQuery(() => db.employeeRecommendations?.toArray());
 
   const fetchBooks = useCallback(() => {
-    setPageData({newBooks, bestBooks, employee});
+    setPageData({ newBooks, bestBooks, employee });
   }, [bestBooks, employee, newBooks]);
 
   useEffect(() => {
     fetchBooks();
   }, [fetchBooks]);
 
-  console.log(pageData)
+  console.log(pageData);
 
   const handleShowMore = () => {
     setShowMore(!showMore);
