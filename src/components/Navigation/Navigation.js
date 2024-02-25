@@ -143,7 +143,9 @@ const Navigation = (props) => {
           <NavLink to="/">
             <button onClick={() => setRedirect(false)}>Home</button>
           </NavLink>
-          <NavLink to="/signUp">Register</NavLink>
+          <NavLink to="/signUp">
+            <button onClick={() => setRedirect(false)}>Register</button>
+          </NavLink>
           {!verified ? (
             <button onClick={() => setSignOn(!signOn)}>Sign On</button>
           ) : (
