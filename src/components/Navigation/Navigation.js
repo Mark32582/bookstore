@@ -140,7 +140,9 @@ const Navigation = (props) => {
       {navState === 'mobile' ? (
         
         <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">
+            <button onClick={() => setRedirect(false)}>Home</button>
+          </NavLink>
           <NavLink to="/signUp">Register</NavLink>
           {!verified ? (
             <button onClick={() => setSignOn(!signOn)}>Sign On</button>
