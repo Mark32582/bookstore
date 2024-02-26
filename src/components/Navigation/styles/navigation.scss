@@ -172,15 +172,16 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
+  button {
+    margin: 7px;
+    width: 200px; /* Adjust this value to change the width of the buttons */
+    height: 30px; /* Adjust this value to change the height of the buttons */
+    font-weight: bold; /* Makes the text on the buttons bold */
+    font-size: 1rem; /* Adjust this value to change the font size of the buttons */
+  }
 }
 
 .mobile-menu.open {
   display: flex;
-}
-
-.mobile-menu button {
-  margin: 10px;
-  width: 200px; /* Adjust this value to change the width of the buttons */
-  height: 25px; /* Adjust this value to change the height of the buttons */
-  font-weight: bold; /* Makes the text on the buttons bold */
 }
