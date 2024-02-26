@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
+
 const fetchCollection = async (collectionName, setSearchResults) => {
   //  const collectionRef = collection(db, collectionName);
   //  const querySnapshot = await getDocs(collectionRef);
@@ -126,52 +127,62 @@ const DeleteBooks = () => {
 
   return (
     <div>
-      <h1>Delete Books</h1>
+       <div className="delete-books">
+            <div className="delete-container">
+              <h1>Delete Books </h1>
+              <p>Select a collection or search a book:</p>
+              
+                <ul>
+                  {selectedCollections.map((collectionName) => (
+                    <li key={collectionName}>
+                      <label>
+                        <input
+                          type="radio"
+                          name="collection"
+                          value={collectionName}
+                          onChange={() => fetchCollection(collectionName)}
+                        />
+                        {collectionName}
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+              
+              
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search by title, author, or ID"
+                />
+                <div className= "search-button">
+                <button onClick={handleSearch}>Search</button>
+              </div>
+                <ul>
+                  {searchResults.map((result) => (
+                    <li key={result.id}>
+                      <input
+                        type="checkbox"
+                        onChange={(e) => handleCheck(e, result.id)}
+                        checked={checked.includes(result.id)}
+                      />
+                      <h2>{result.title}</h2>
+                      <p>Author: {result.author}</p>
+                      <p>Description: {result.description}</p>
+                      <p>ID: {result.id}</p>
+                    </li>
+                  ))}
+                </ul>
+              
+              {checked.length > 0 && (
+                <button onClick={handleDelete}>Delete Selected Books</button>
+              )}
 
-      <ul>
-        {selectedCollections.map((collectionName) => (
-          <li key={collectionName}>
-            <label>
-              <input
-                type="radio"
-                name="collection"
-                value={collectionName}
-                onChange={() => fetchCollection(collectionName)}
-              />
-              {collectionName}
-            </label>
-          </li>
-        ))}
-      </ul>
-
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Search by title, author, or ID"
-      />
-      <button onClick={handleSearch}>Search</button>
-      <ul>
-        {searchResults.map((result) => (
-          <li key={result.id}>
-            <input
-              type="checkbox"
-              onChange={(e) => handleCheck(e, result.id)}
-              checked={checked.includes(result.id)}
-            />
-            <h2>{result.title}</h2>
-            <p>Author: {result.author}</p>
-            <p>Description: {result.description}</p>
-            <p>ID: {result.id}</p>
-          </li>
-        ))}
-      </ul>
-      {checked.length > 0 && (
-        <button onClick={handleDelete}>Delete Selected Books</button>
-      )}
-      <button onClick={() => navigate("/")}>Go back</button>
+              <button onClick={() => navigate("/")}>Go back</button>
+            </div>
+          </div>
     </div>
-  );
+);
 };
 
 export default DeleteBooks;

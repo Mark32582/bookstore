@@ -10,10 +10,10 @@ const AddBooks = (props) => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [collection, setCollection] = useState("null");
   const selectedCollections = [
-    "bestSeller",
-    "newReleases",
-    "carousel",
-    "employeeRecommendations",
+    "Best Seller",
+    "New Releases",
+    "Carousel",
+    "Employee Recommendations",
   ];
   const [orderQuantity, setOrderQuantity] = useState(1);
   const [orderSuccess, setOrderSuccess] = useState(false);
@@ -57,102 +57,107 @@ const AddBooks = (props) => {
     //       publisherDate: selectedBook.volumeInfo.publisherDate,
     //       retailPrice: selectedBook.volumeInfo.retailPrice,
     //       thumbnail: selectedBook.volumeInfo.thumbnail,
-  };
+    //     };
 
-  //     // Logic for adding the new book to the collection
-  //     // Example: setBooks([...books, newBook]);
+    //     // Logic for adding the new book to the collection
+    //     // Example: setBooks([...books, newBook]);
 
-  //     setTitle("");
-  //     setAuthor("");
-  //     setQuantity("");
-  //     setSelectedBook(null);
-  //     setOrderQuantity(1);
-  //     setOrderSuccess(true);
-  //     setOrderError(false);
-  //   } else {
-  //     setOrderError(true);
-  //     setOrderSuccess(false);
-  //   }
-  // };
+    //     setTitle("");
+    //     setAuthor("");
+    //     setQuantity("");
+    //     setSelectedBook(null);
+    //     setOrderQuantity(1);
+    //     setOrderSuccess(true);
+    //     setOrderError(false);
+    //   } else {
+    //     setOrderError(true);
+    //     setOrderSuccess(false);
+    //   }
+    // };
 
-  const handleBookLinkClick = (bookUrl) => {
-    console.log(`Opening book URL: ${bookUrl}`);
-    // Open the book URL in a new tab or window
+    const handleBookLinkClick = (bookUrl) => {
+      console.log(`Opening book URL: ${bookUrl}`);
+      // Open the book URL in a new tab or window
+    };
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {selectedCollections.map((collectionName) => (
-            <li key={collectionName}>
-              <label>
-                <input
-                  type="radio"
-                  name="collection"
-                  value={collectionName}
-                  onChange={() => fetchCollection(collectionName)}
-                />
-                {collectionName}
-              </label>
-            </li>
-          ))}
-        </ul>
-      </form>
+      <div className="add-books">
+        <div className="add-container">
+          <h2>Search Books</h2>
+          <form onSubmit={handleSubmit}>
+            <ul>
+              {selectedCollections.map((collectionName) => (
+                <li key={collectionName}>
+                  <label>
+                    <input
+                      type="radio"
+                      name="collection"
+                      value={collectionName}
+                      onChange={() => fetchCollection(collectionName)}
+                    />
+                    {collectionName}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </form>
 
-      <div>
-        <h2>Search Books</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Enter search term"
-          />
-          <button onClick={handleSearch}>Search</button>
-        </form>
-        <button type="submit">Add Book</button>
-
-        {books?.map((book) => (
-          <li key={book.id}>
-            <div onClick={() => handleBookClick(book)}>
-              <a
-                href={book.volumeInfo.infoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={book.volumeInfo.imageLinks?.thumbnail}
-                  alt="Book Thumbnail"
-                />
-              </a>
-              <div>
-                <h3>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Enter search term"
+              />
+              <button onClick={handleSearch}>Search</button>
+            </form>
+            <div className="add-book">
+              <button type="submit">Add Book</button> 
+            </div>
+            {books?.map((book) => (
+              <li key={book.id}>
+                <div onClick={() => handleBookClick(book)}>
                   <a
                     href={book.volumeInfo.infoLink}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {book.volumeInfo.title}
+                    <img
+                      src={book.volumeInfo.imageLinks?.thumbnail}
+                      alt="Book Thumbnail"
+                    />
                   </a>
-                </h3>
-                <p>{book.volumeInfo.description}</p>
-                <p>Price: {book.saleInfo?.listPrice?.amount}</p>
-              </div>
-            </div>
-            <form onSubmit={handleOrderQuantityChange}>
-              <input
-                type="number"
-                value={orderQuantity}
-                onChange={handleOrderQuantityChange}
-                placeholder="Quantity"
-              />
-              <button type="submit">Order</button>
-            </form>
-          </li>
-        ))}
+                  <div>
+                    <h3>
+                      <a
+                        href={book.volumeInfo.infoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {book.volumeInfo.title}
+                      </a>
+                    </h3>
+                    <p>{book.volumeInfo.description}</p>
+                    <p>Price: {book.saleInfo?.listPrice?.amount}</p>
+                  </div>
+                </div>
+                <form onSubmit={handleOrderQuantityChange}>
+                  <input
+                    type="number"
+                    value={orderQuantity}
+                    onChange={handleOrderQuantityChange}
+                    placeholder="Quantity"
+                  />
+                  <button type="submit">Order</button>
+                </form>
+              </li>
+            ))}
+          </div>
+        </div>
       </div>
-
       {selectedBook && (
         <div>
           <h2>Selected Book</h2>
@@ -166,6 +171,7 @@ const AddBooks = (props) => {
             onChange={handleOrderQuantityChange}
             placeholder="Quantity"
           />
+
           <button type="submit">Order Book</button>
         </div>
       )}

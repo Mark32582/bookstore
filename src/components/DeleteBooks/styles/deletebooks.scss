@@ -1,0 +1,29 @@
+.delete-books {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:none;
+  }
+
+  .delete-container {
+    font-family: "Courier New", Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding:12px 24px;
+    z-index: 10;
+    border-radius: 10px;
+    background-color: blanchedalmond;
+    margin:24px auto;
+  }
+  .search-button {
+      margin: 20px 20px;
+      font-family: "Courier New", Courier, monospace;
+      justify-content: center;
+      align-items: center;
+      width: fit-content;
+      padding: 25px;
+    }

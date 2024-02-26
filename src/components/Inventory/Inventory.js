@@ -35,38 +35,42 @@ setSelectedCategory(category);
 
 return (
 <div>
-<h1>Store Inventory</h1>
-<div className="collection-buttons">
-    {selectedCollections?.map((collectionName) => (
-      <button
-        key={collectionName}
-        onClick={() => handleCategorySelect(collectionName)}
-        className={selectedCategory === collectionName ? "active" : ""}
-      >
-        {collectionName}
-      </button>
-    ))}
-  </div>
-
-  <div className="inventory-list">
-    {searchResults?.map((result) => (
-      <div key={result?.id} className="inventory-item">
-        <img src={result?.thumbnail} alt={result?.title} height="200px" />
-        <div className="item-details">
-          <h2>{result?.title}</h2>
-          <p
-            style={{
-              color: result?.inventoryCount <= 2 ? "red" : "inherit",
-            }}
+  <div className="inventory">
+    <div className="inventory-container"> 
+      <h1>Store Inventory</h1>
+      <div className="collection-buttons">
+        {selectedCollections?.map((collectionName) => (
+          <button
+            key={collectionName}
+            onClick={() => handleCategorySelect(collectionName)}
+            className={selectedCategory === collectionName ? "active" : ""}
           >
-            Inventory Count: {result?.inventoryCount}
-          </p>
-        </div>
+            {collectionName}
+          </button>
+        ))}
       </div>
-    ))}
-  </div>
+  
+      <div className="inventory-list">
+        {searchResults?.map((result) => (
+          <div key={result?.id} className="inventory-item">
+            <img src={result?.thumbnail} alt={result?.title} height="200px" />
+            <div className="item-details">
+              <h2>{result?.title}</h2>
+              <p
+                style={{
+                  color: result?.inventoryCount <= 2 ? "red" : "inherit",
+                }}
+              >
+                Inventory Count: {result?.inventoryCount}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
 
-  <button onClick={() => navigate("/")}>Go back</button>
+      <button onClick={() => navigate("/")}>Go back</button>
+    </div>
+  </div>
 </div>
 );
 };
