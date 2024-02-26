@@ -60,15 +60,14 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .static-books {
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 5px;
   }
 }
 
 // For phones
 @media (max-width: 767px) {
-  .row {
-    padding: 0;
-  }
   .static-books {
     grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0px;
   }
 }
