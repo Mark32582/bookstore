@@ -121,6 +121,12 @@
   .navigation--hamburger {
     display: block; // Show hamburger menu on small screens
   }
+  .mobile-navigation-top {
+    display: flex;
+  }
+  .mobile-search {
+    display: flex;
+  }
 
   .navigation--buttons,
   .navigation--secondary-nav,
@@ -145,7 +151,7 @@
 }
 
 .mobile-navigation-top {
-  display: flex;
+  display: none; // Hidden by default
   justify-content: space-between;
   background-color: blanchedalmond;
   align-items: center;
@@ -153,7 +159,7 @@
 }
 
 .mobile-search {
-  display: flex;
+  display: none; // Hidden by default
   align-items: center;
   justify-content: center;
   width: 100%;
