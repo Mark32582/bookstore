@@ -134,15 +134,15 @@ const Navigation = (props) => {
             </NavLink>
           </div>
           <div className="navigation--mobile-search">
-          <input
-            type="text"
-            placeholder="Search title/author"
-            onChange={(e) => setSearch(e.target.value)}
-            value={search}
-          />
-          <button type="submit" onClick={handleSearch}>
-            Search
-          </button>
+            <input
+              type="text"
+              placeholder="Search title/author"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
+            />
+            <button type="submit" onClick={handleSearch}>
+              Search
+            </button>
           </div>
           {navState === "mobile" ? (
             <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
