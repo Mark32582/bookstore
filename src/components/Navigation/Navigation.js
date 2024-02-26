@@ -133,6 +133,17 @@ const Navigation = (props) => {
               )}
             </NavLink>
           </div>
+          <div className="mobile-search">
+          <input
+            type="text"
+            placeholder="Search title/author"
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
+          />
+          <button type="submit" onClick={handleSearch}>
+            Search
+          </button>
+          </div>
           {navState === "mobile" ? (
             <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
               <NavLink to="/">
@@ -165,15 +176,6 @@ const Navigation = (props) => {
               </button>
               <button onClick={() => handleCategory("juvenile fiction")}>
                 Children's
-              </button>
-              <input
-                type="text"
-                placeholder="Search for books or authors"
-                onChange={(e) => setSearch(e.target.value)}
-                value={search}
-              />
-              <button type="submit" onClick={handleSearch}>
-                Search
               </button>
               <button onClick={toggleMenu}>Close Menu</button>
             </div>

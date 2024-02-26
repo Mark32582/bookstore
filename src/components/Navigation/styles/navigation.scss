@@ -152,6 +152,15 @@
   width: 100%;
 }
 
+.mobile-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+  background-color: darkslategray;
+}
+
 .mobile-menu button {
   margin: 10px;
   width: 200px; /* Adjust this value to change the width of the buttons */
