@@ -147,36 +147,36 @@ const Navigation = (props) => {
           {navState === "mobile" ? (
             <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
               <NavLink to="/">
-                <button onClick={() => setRedirect(false)}>Home</button>
+                <button onClick={() => { setRedirect(false); toggleMenu(); }}>Home</button>
               </NavLink>
               {!verified ? (
                 <>
                   <NavLink to="/signUp">
-                    <button onClick={() => setRedirect(false)}>Register</button>
+                    <button onClick={() => { setRedirect(false); toggleMenu(); }}>Register</button>
                   </NavLink>
-                  <button onClick={() => setSignOn(!signOn)}>Sign On</button>
+                  <button onClick={() => { setSignOn(!signOn); toggleMenu(); }}>Sign On</button>
                 </>
               ) : (
-                <button onClick={signOff}>Sign Off</button>
+                <button onClick={() => { signOff(); toggleMenu(); }}>Sign Off</button>
               )}
-              <button onClick={() => handleCategory("Fiction")}>Fiction</button>
-              <button onClick={() => handleCategory("nonFiction")}>
+              <button onClick={() => { handleCategory("Fiction"); toggleMenu(); }}>Fiction</button>
+              <button onClick={() => { handleCategory("nonFiction"); toggleMenu(); }}>
                 Non-Fiction
               </button>
-              <button onClick={() => handleCategory("Mystery")}>Mystery</button>
-              <button onClick={() => handleCategory("Romance")}>Romance</button>
-              <button onClick={() => handleCategory("Poetry")}>Poetry</button>
-              <button onClick={() => handleCategory("Horror")}>Horror</button>
-              <button onClick={() => handleCategory("Suspense")}>
+              <button onClick={() => { handleCategory("Mystery"); toggleMenu(); }}>Mystery</button>
+              <button onClick={() => { handleCategory("Romance"); toggleMenu(); }}>Romance</button>
+              <button onClick={() => { handleCategory("Poetry"); toggleMenu(); }}>Poetry</button>
+              <button onClick={() => { handleCategory("Horror"); toggleMenu(); }}>Horror</button>
+              <button onClick={() => { handleCategory("Suspense"); toggleMenu(); }}>
                 Suspense
               </button>
-              <button onClick={() => handleCategory("sciFi")}>
+              <button onClick={() => { handleCategory("sciFi"); toggleMenu(); }}>
                 Science-Fiction
               </button>
-              <button onClick={() => handleCategory("Youth")}>
+              <button onClick={() => { handleCategory("Youth"); toggleMenu(); }}>
                 Young Adult
               </button>
-              <button onClick={() => handleCategory("juvenile fiction")}>
+              <button onClick={() => { handleCategory("juvenile fiction"); toggleMenu(); }}>
                 Children's
               </button>
               <button onClick={toggleMenu}>Close Menu</button>
