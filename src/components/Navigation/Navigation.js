@@ -107,7 +107,7 @@ const Navigation = (props) => {
       <div>
         <>
           <span className="navigation--hamburger">The Bookstore</span>
-          <div className="mobile-navigation-top">
+          <div className="navigation--mobile">
             <div className="navigation--hamburger" onClick={toggleMenu}>
               &#9776;
             </div>
@@ -133,7 +133,7 @@ const Navigation = (props) => {
               )}
             </NavLink>
           </div>
-          <div className="mobile-search">
+          <div className="navigation--mobile-search">
           <input
             type="text"
             placeholder="Search title/author"
