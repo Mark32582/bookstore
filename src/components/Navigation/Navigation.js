@@ -106,7 +106,7 @@ const Navigation = (props) => {
     <div ref={navRef}>
       <div>
         <>
-          <span className="navigation--hamburger">The Bookstore</span>
+          <span className="navigation--mobile-title">The Bookstore</span>
           <div className="navigation--mobile">
             <div className="navigation--hamburger" onClick={toggleMenu}>
               &#9776;
