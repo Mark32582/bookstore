@@ -107,8 +107,31 @@ const Navigation = (props) => {
       <div>
         <>
           <span className="navigation--hamburger">The Bookstore</span>
-          <div className="navigation--hamburger" onClick={toggleMenu}>
-            &#9776;
+          <div className="mobile-navigation-top">
+            <div className="navigation--hamburger" onClick={toggleMenu}>
+              &#9776;
+            </div>
+            <NavLink>
+              {cartItems?.length > 0 ? (
+                <img
+                  className="cart-icon"
+                  src={process.env.PUBLIC_URL + "/full-cart.png"}
+                  alt="cart"
+                  onClick={() => setDisplayCart(!displayCart)}
+                  width="24px"
+                  height="24px"
+                />
+              ) : (
+                <img
+                  className="cart-icon"
+                  src={process.env.PUBLIC_URL + "/empty-cart.png"}
+                  alt="cart"
+                  onClick={() => setDisplayCart(!displayCart)}
+                  width="50px"
+                  height="50px"
+                />
+              )}
+            </NavLink>
           </div>
           {navState === "mobile" ? (
             <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
