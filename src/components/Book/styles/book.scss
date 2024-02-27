@@ -39,3 +39,19 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .book-container {
+    flex-direction: column;
+    
+  }
+  .book {
+    &--image {
+      margin-right: 0;
+      margin-bottom: 16px;
+    }
+    &--text {
+      align-items: center;
+    }
+  }
+}
