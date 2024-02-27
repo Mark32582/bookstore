@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const contactOnClick = () => {
+    navigate('/contact');
+  }
+
   const openingHours = {
     monday: "9:00 AM - 6:00 PM",
     tuesday: "9:00 AM - 6:00 PM",
@@ -21,6 +29,10 @@ const Footer = () => {
           Our bookstore is located in the heart of Texas, and we take pride in
           providing a wide range of reading options for our community.
         </p>
+        <div className="help-section">
+          <h2>Need help?</h2>
+          <button className="contact-btn" onClick={() => contactOnClick()}>Contact us</button>
+        </div>
       </div>
       <div className="hours">
         <h2>Opening Hours</h2>
