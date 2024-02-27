@@ -19,6 +19,8 @@ in the terminal type `npm install --legacy-peer-deps react-redux-firebase redux-
 in the terminal type `npm i --legacy-peer-deps dexie`
 in the terminal type `npm i react dexie dexie-react-hooks --force`
 in the terminal type `npm i react-clock --force`  
+in the terminal type `npm i --legacy-peer-deps react-hook-form`
+in the terminal type `npm i --legacy-peer-deps @emailjs/browser`
 
 if you have followed all these steps you can now launch the framework
 
