@@ -36,12 +36,22 @@
     justify-content: center;
   }
 
+  &--mobile-profile {
+    display: none; // Hidden by default
+    cursor: pointer;
+
+    justify-content: right;
+    width: 100%;
+
+    background-color: blanchedalmond;
+  }
+
   &--mobile-search {
     display: none; // Hidden by default
+    cursor: pointer;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 10px;
     background-color: blanchedalmond;
   }
 
@@ -148,6 +158,7 @@
   .navigation--hamburger,
   .navigation--mobile,
   .navigation--mobile-title,
+  .navigation--mobile-profile,
   .navigation--mobile-search {
     display: flex; // Show hamburger menu on small screens
   }

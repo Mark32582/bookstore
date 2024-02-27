@@ -118,8 +118,8 @@ const Navigation = (props) => {
                   src={process.env.PUBLIC_URL + "/full-cart.png"}
                   alt="cart"
                   onClick={() => setDisplayCart(!displayCart)}
-                  width="24px"
-                  height="24px"
+                  width="50px"
+                  height="50px"
                 />
               ) : (
                 <img
@@ -131,6 +131,19 @@ const Navigation = (props) => {
                   height="50px"
                 />
               )}
+            </NavLink>
+          </div>
+          <div className="navigation--mobile-profile">
+            <NavLink to="/user">
+              {verified && !employee ? (
+                <img
+                  className="cart-icon"
+                  src={process.env.PUBLIC_URL + "/user.png"}
+                  alt="cart"
+                  width="50px"
+                  height="50px"
+                />
+              ) : null}
             </NavLink>
           </div>
           <div className="navigation--mobile-search">
@@ -147,36 +160,124 @@ const Navigation = (props) => {
           {navState === "mobile" ? (
             <div className={`mobile-menu ${isOpen ? "open" : ""}`}>
               <NavLink to="/">
-                <button onClick={() => { setRedirect(false); toggleMenu(); }}>Home</button>
+                <button
+                  onClick={() => {
+                    setRedirect(false);
+                    toggleMenu();
+                  }}
+                >
+                  Home
+                </button>
               </NavLink>
               {!verified ? (
                 <>
                   <NavLink to="/signUp">
-                    <button onClick={() => { setRedirect(false); toggleMenu(); }}>Register</button>
+                    <button
+                      onClick={() => {
+                        setRedirect(false);
+                        toggleMenu();
+                      }}
+                    >
+                      Register
+                    </button>
                   </NavLink>
-                  <button onClick={() => { setSignOn(!signOn); toggleMenu(); }}>Sign On</button>
+                  <button
+                    onClick={() => {
+                      setSignOn(!signOn);
+                      toggleMenu();
+                    }}
+                  >
+                    Sign On
+                  </button>
                 </>
               ) : (
-                <button onClick={() => { signOff(); toggleMenu(); }}>Sign Off</button>
+                <button
+                  onClick={() => {
+                    signOff();
+                    toggleMenu();
+                  }}
+                >
+                  Sign Off
+                </button>
               )}
-              <button onClick={() => { handleCategory("Fiction"); toggleMenu(); }}>Fiction</button>
-              <button onClick={() => { handleCategory("nonFiction"); toggleMenu(); }}>
+              <button
+                onClick={() => {
+                  handleCategory("Fiction");
+                  toggleMenu();
+                }}
+              >
+                Fiction
+              </button>
+              <button
+                onClick={() => {
+                  handleCategory("nonFiction");
+                  toggleMenu();
+                }}
+              >
                 Non-Fiction
               </button>
-              <button onClick={() => { handleCategory("Mystery"); toggleMenu(); }}>Mystery</button>
-              <button onClick={() => { handleCategory("Romance"); toggleMenu(); }}>Romance</button>
-              <button onClick={() => { handleCategory("Poetry"); toggleMenu(); }}>Poetry</button>
-              <button onClick={() => { handleCategory("Horror"); toggleMenu(); }}>Horror</button>
-              <button onClick={() => { handleCategory("Suspense"); toggleMenu(); }}>
+              <button
+                onClick={() => {
+                  handleCategory("Mystery");
+                  toggleMenu();
+                }}
+              >
+                Mystery
+              </button>
+              <button
+                onClick={() => {
+                  handleCategory("Romance");
+                  toggleMenu();
+                }}
+              >
+                Romance
+              </button>
+              <button
+                onClick={() => {
+                  handleCategory("Poetry");
+                  toggleMenu();
+                }}
+              >
+                Poetry
+              </button>
+              <button
+                onClick={() => {
+                  handleCategory("Horror");
+                  toggleMenu();
+                }}
+              >
+                Horror
+              </button>
+              <button
+                onClick={() => {
+                  handleCategory("Suspense");
+                  toggleMenu();
+                }}
+              >
                 Suspense
               </button>
-              <button onClick={() => { handleCategory("sciFi"); toggleMenu(); }}>
+              <button
+                onClick={() => {
+                  handleCategory("sciFi");
+                  toggleMenu();
+                }}
+              >
                 Science-Fiction
               </button>
-              <button onClick={() => { handleCategory("Youth"); toggleMenu(); }}>
+              <button
+                onClick={() => {
+                  handleCategory("Youth");
+                  toggleMenu();
+                }}
+              >
                 Young Adult
               </button>
-              <button onClick={() => { handleCategory("juvenile fiction"); toggleMenu(); }}>
+              <button
+                onClick={() => {
+                  handleCategory("juvenile fiction");
+                  toggleMenu();
+                }}
+              >
                 Children's
               </button>
               <button onClick={toggleMenu}>Close Menu</button>
