@@ -30,3 +30,9 @@ body {
 .about {
   width: 70%;
 }
+
+@media (max-width: 768px) {
+  .carousel-container {
+      height: 800px;
+  }
+}
