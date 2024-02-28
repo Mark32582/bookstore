@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
-  const { cart, cartItems, setCartItems, setDisplayCart } = props;
+  const { cart, cartItems, setCartItems, setDisplayCart, setRedirect } = props;
   const navigate = useNavigate();
   const deliveryFee = 4.99;
 
@@ -43,6 +43,7 @@ const Cart = (props) => {
   };
 
   const handleCheckout = () => {
+    setRedirect(false)
     setDisplayCart(false)
     navigate("/checkout");
   };

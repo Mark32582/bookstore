@@ -73,6 +73,7 @@ function App() {
             cartItems={cartItems}
             setCartItems={setCartItems}
             setDisplayCart={setDisplayCart}
+            setRedirect={setRedirect}
           />
           <Routes>
             <Route
