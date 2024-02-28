@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
-  const { cart, cartItems, setCartItems, setDisplayCart } = props;
+  const { cart, cartItems, setCartItems, setDisplayCart, location, userInfo } = props;
   const navigate = useNavigate();
   const deliveryFee = 4.99;
 
@@ -10,7 +10,6 @@ const Cart = (props) => {
   const [totalCost, setTotalCost] = useState(0);
   const [subTotalCost, setSubTotalCost] = useState(0);
   const [taxes, setTaxes] = useState(0);
-  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     let subTotal = 0;
@@ -21,7 +20,7 @@ const Cart = (props) => {
 
     setSubTotalCost(subTotal);
     setTaxes(subTotal * 0.06);
-    setTotalCost(deliveryFee + subTotal + (subTotal * 0.06));
+    setTotalCost(deliveryFee + subTotal + subTotal * 0.06);
   }, [cartItems]);
 
   const handleDeleteSelected = () => {
@@ -30,7 +29,6 @@ const Cart = (props) => {
     );
     setCartItems(updatedCartItems);
     setSelectedItems([]);
-    setIsChecked(false);
   };
 
   const handleCheckboxChange = (index) => {
@@ -39,12 +37,11 @@ const Cart = (props) => {
     } else {
       setSelectedItems([...selectedItems, index]);
     }
-    setIsChecked(!isChecked);
   };
 
   const handleCheckout = () => {
-    setDisplayCart(false)
-    navigate("/checkout");
+    setDisplayCart(false);
+    navigate("/checkout", { state: { cartItems, userInfo } });
   };
 
   return (
@@ -91,6 +88,19 @@ const Cart = (props) => {
         <div>
           {selectedItems?.length > 0 && (
             <button onClick={handleDeleteSelected}>Delete Selected</button>
+          )}
+        </div>
+        <div>
+          {/* Display user information */}
+          <h3>User Information:</h3>
+          {userInfo ? (
+            <>
+              <p>Name: {userInfo.name}</p>
+              <p>Email: {userInfo.email}</p>
+              <p>Address: {userInfo.address}</p>
+            </>
+          ) : (
+            <p>Loading user information...</p>
           )}
         </div>
         <div>

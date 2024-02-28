@@ -16,6 +16,7 @@ import TimeClock from "./components/TimeClock/TimeClock.js";
 import Accounting from "./components/Accounting/Accounting.js";
 import Inventory from "./components/Inventory/Inventory.js";
 import UserProfile from "./components/UserProfile/UserProfile.js";
+import Verification from "./components/Verification/Verification.js";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -29,6 +30,13 @@ function App() {
   const [bookCategory, setBookCategory] = useState();
   const [cartItems, setCartItems] = useState([]);
   const [redirect, setRedirect] = useState();
+  const [userInfo, setUserInfo] = useState(null);
+  const [paymentInfo, setPaymentInfo]=useState(null);
+
+  const handleUserInfoUpdate = (newUserInfo) => {
+    setUserInfo(newUserInfo);
+  };
+
   return (
     <FirestoreCacheProvider>
       <div className="page">
@@ -70,6 +78,7 @@ function App() {
             cartItems={cartItems}
             setCartItems={setCartItems}
             setDisplayCart={setDisplayCart}
+            userInfo={userInfo}
           />
           <Routes>
             <Route
@@ -261,6 +270,32 @@ function App() {
                   setVerified={setVerified}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
+                  userInfo={userInfo}
+                  books={books}
+                  setBooks={setBooks}
+                  setDisplayCart={setDisplayCart}
+                  paymentInfo={paymentInfo}
+                  setPaymentInfo={setPaymentInfo}
+                  
+                />
+              }
+            />
+            <Route
+              path="/verification"
+              element={
+                <Verification
+                  name={name}
+                  verified={verified}
+                  setVerified={setVerified}
+                  cartItems={cartItems}
+                  setCartItems={setCartItems}
+                  userInfo={userInfo}
+                  books={books}
+                  setBooks={setBooks}
+                  setDisplayCart={setDisplayCart}
+                  paymentInfo={paymentInfo}
+                  setPaymentInfo={setPaymentInfo}
+                  
                 />
               }
             />
