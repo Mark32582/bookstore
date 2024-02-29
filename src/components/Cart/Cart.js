@@ -2,12 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
-  const { cart, cartItems, setCartItems, setDisplayCart, location, userInfo, setRedirect, totalCost, setTotalCost } = props;
+  const {
+    cart,
+    cartItems,
+    setCartItems,
+    setDisplayCart,
+    location,
+    userInfo,
+    setRedirect,
+    totalCost,
+    setTotalCost,
+  } = props;
   const navigate = useNavigate();
   const deliveryFee = 4.99;
 
   const [selectedItems, setSelectedItems] = useState([]);
- 
+
   const [subTotalCost, setSubTotalCost] = useState(0);
   const [taxes, setTaxes] = useState(0);
 
@@ -40,8 +50,8 @@ const Cart = (props) => {
   };
 
   const handleCheckout = () => {
-    setRedirect(false)
-    setDisplayCart(false)
+    setRedirect(false);
+    setDisplayCart(false);
     navigate("/checkout");
   };
 
@@ -69,7 +79,7 @@ const Cart = (props) => {
                       <b>Price:</b> {item?.price}
                     </div>
                     <div>
-                      <b>Count:</b> 1
+                      <b>Quantity:</b> 1
                     </div>
                   </div>
                 );
@@ -89,19 +99,6 @@ const Cart = (props) => {
         <div>
           {selectedItems?.length > 0 && (
             <button onClick={handleDeleteSelected}>Delete Selected</button>
-          )}
-        </div>
-        <div>
-          {/* Display user information */}
-          <h3>User Information:</h3>
-          {userInfo ? (
-            <>
-              <p>Name: {userInfo.name}</p>
-              <p>Email: {userInfo.email}</p>
-              <p>Address: {userInfo.address}</p>
-            </>
-          ) : (
-            <p>Loading user information...</p>
           )}
         </div>
         <div>
