@@ -40,9 +40,10 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
       {paymentInfo && paymentInfo.cardNumber ? (
         <>
           <p>Order Number: BST-{Math.random() * 10 * 10000}</p>
+          <p>Total cost of: </p>
           <p>
             Card Number: **** **** **** ****{" "}
-            {paymentInfo.cardNumber.slice(0, -4)}
+            {paymentInfo.cardNumber.slice(0, -3)}
           </p>
         </>
       ) : (
@@ -53,7 +54,7 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
         </p>
       )}
 
-      <h4>User Information:</h4>
+      <h4>Shipping Information:</h4>
       {userProfile && userProfile.name ? (
         <>
           <p>Name: {userProfile.name}</p>
@@ -67,7 +68,7 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
             : "Loading user information..."}
         </p>
       )}
-
+            <div><span>Thank you for shopping with us!</span></div>
       <button onClick={handleConfirmOrder}>Continue Shopping</button>
     </div>
   );
