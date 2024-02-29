@@ -17,6 +17,9 @@ import Accounting from "./components/Accounting/Accounting.js";
 import Inventory from "./components/Inventory/Inventory.js";
 import UserProfile from "./components/UserProfile/UserProfile.js";
 import Verification from "./components/Verification/Verification.js";
+import ContactMain from "./components/Contact/ContactMain/ContactMain.js";
+import ContactEmailForm from "./components/Contact/ContactEmailForm/ContactEmailForm.js";
+import PrivacyPolicy from "./components/Contact/PrivacyPolicy/PrivacyPolicy.js";
 
 function App() {
   const [name, setName] = useState("Guest");
@@ -79,6 +82,7 @@ function App() {
             setCartItems={setCartItems}
             setDisplayCart={setDisplayCart}
             userInfo={userInfo}
+            setRedirect={setRedirect}
           />
           <Routes>
             <Route
@@ -299,6 +303,10 @@ function App() {
                 />
               }
             />
+            <Route path="/contact" element={<ContactMain/>}/>
+            <Route path="/contact/privacy" element={<PrivacyPolicy/>}/>
+            <Route path="/contact/email-form" element={<ContactEmailForm/>}/>
+            <Route path="/contact/email-form/privacy" element={<PrivacyPolicy/>}/>
           </Routes>
           <Footer />
         </BrowserRouter>

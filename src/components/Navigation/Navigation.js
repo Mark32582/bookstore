@@ -149,9 +149,10 @@ const Navigation = (props) => {
           <div className="navigation--mobile-search">
             <input
               type="text"
+            //   value={search}
               placeholder="Search title/author"
               onChange={(e) => setSearch(e.target.value)}
-              value={search}
+
             />
             <button type="submit" onClick={handleSearch}>
               Search

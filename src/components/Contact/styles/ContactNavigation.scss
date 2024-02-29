@@ -1,0 +1,12 @@
+.contact-navigation {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-navigation * {
+    display: inline-block;
+    margin: 0 .15em;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+}

@@ -52,6 +52,21 @@ const HandleCheckout = () => {
 };
 
 const Checkout = ({ cartItems, userInfo, paymentInfo, handlePaymentInfoChange, handleCheckout }) => {
+  const handleCheckout = () => {
+    if (
+      cartItems.length > 0 &&
+      paymentInfo.cardNumber &&
+      paymentInfo.expiryDate &&
+      paymentInfo.cvv
+    ) {
+      console.log("Payment Information:", paymentInfo);
+      setCartItems();
+    } else {
+      console.log(
+        "Invalid checkout request. Please Check your cart and payment information."
+      );
+    }
+  };
   return (
     <div className="checkout">
       <h1>Checkout</h1>
@@ -60,7 +75,7 @@ const Checkout = ({ cartItems, userInfo, paymentInfo, handlePaymentInfoChange, h
           {cartItems?.map((item, index) => (
             <div key={`${index}--cartItem`}>
               <h2>{item.title}</h2>
-              <p2>{item.description}</p2>
+              <p>{item.description}</p>
               <p>Price: ${item.price}</p>
             </div>
           ))}

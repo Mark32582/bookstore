@@ -12,17 +12,17 @@ import { db } from "../../config/fireBaseConfig";
 
 
 const fetchCollection = async (collectionName, setSearchResults) => {
-  //  const collectionRef = collection(db, collectionName);
-  //  const querySnapshot = await getDocs(collectionRef);
-  //  const results = querySnapshot.docs.map((doc) => ({
-  //    collection: collectionName,
-  //    id: doc.id,
-  //    title: doc.data().title,
-  //    author: doc.data().author,
-  //    description: doc.data().description,
-  //    thumbnail: doc.data().thumbnail,
-  //  }));
-  //  setSearchResults(results);
+   const collectionRef = collection(db, collectionName);
+   const querySnapshot = await getDocs(collectionRef);
+   const results = querySnapshot.docs.map((doc) => ({
+     collection: collectionName,
+     id: doc.id,
+     title: doc.data().title,
+     author: doc.data().author,
+     description: doc.data().description,
+     thumbnail: doc.data().thumbnail,
+   }));
+   setSearchResults(results);
 };
 
 const DeleteBooks = () => {
@@ -40,48 +40,48 @@ const DeleteBooks = () => {
   const fetchBooks = async () => {
     const results = [];
 
-    // for (const collectionName of selectedCollections) {
-    //    const collectionRef = collection(db, collectionName);
+    for (const collectionName of selectedCollections) {
+       const collectionRef = collection(db, collectionName);
 
-    //    const queryTitle = query(collectionRef, where("title", "==", searchQuery));
-    //    const queryAuthor = query(collectionRef, where("author", "==", searchQuery));
-    //    const queryId = query(collectionRef, where("id", "==", searchQuery));
+       const queryTitle = query(collectionRef, where("title", "==", searchQuery));
+       const queryAuthor = query(collectionRef, where("author", "==", searchQuery));
+       const queryId = query(collectionRef, where("id", "==", searchQuery));
 
-    //    const [snapshotTitle, snapshotAuthor, snapshotId] = await Promise.all([
-    //      getDocs(queryTitle),
-    //      getDocs(queryAuthor),
-    //      getDocs(queryId)
-    //    ]);
+       const [snapshotTitle, snapshotAuthor, snapshotId] = await Promise.all([
+         getDocs(queryTitle),
+         getDocs(queryAuthor),
+         getDocs(queryId)
+       ]);
 
-    //    const resultsTitle = snapshotTitle.docs.map((doc) => ({
-    //      collection: collectionName,
-    //      id: doc.id,
-    //      title: doc.data().title,
-    //      author: doc.data().author,
-    //      description: doc.data().description,
-    //      thumbnail: doc.data().thumbnail,
-    //    }));
+       const resultsTitle = snapshotTitle.docs.map((doc) => ({
+         collection: collectionName,
+         id: doc.id,
+         title: doc.data().title,
+         author: doc.data().author,
+         description: doc.data().description,
+         thumbnail: doc.data().thumbnail,
+       }));
 
-    //    const resultsAuthor = snapshotAuthor.docs.map((doc) => ({
-    //      collection: collectionName,
-    //      id: doc.id,
-    //      title: doc.data().title,
-    //      author: doc.data().author,
-    //      description: doc.data().description,
-    //      thumbnail: doc.data().thumbnail,
-    //    }));
+       const resultsAuthor = snapshotAuthor.docs.map((doc) => ({
+         collection: collectionName,
+         id: doc.id,
+         title: doc.data().title,
+         author: doc.data().author,
+         description: doc.data().description,
+         thumbnail: doc.data().thumbnail,
+       }));
 
-    //    const resultsId = snapshotId.docs.map((doc) => ({
-    //      collection: collectionName,
-    //      id: doc.id,
-    //      title: doc.data().title,
-    //      author: doc.data().author,
-    //      description: doc.data().description,
-    //      thumbnail: doc.data().thumbnail,
-    //    }));
+       const resultsId = snapshotId.docs.map((doc) => ({
+         collection: collectionName,
+         id: doc.id,
+         title: doc.data().title,
+         author: doc.data().author,
+         description: doc.data().description,
+         thumbnail: doc.data().thumbnail,
+       }));
 
-    //    results.push(...resultsTitle, ...resultsAuthor, ...resultsId);
-    // }
+       results.push(...resultsTitle, ...resultsAuthor, ...resultsId);
+    }
 
     setSearchResults(results);
   };
@@ -90,12 +90,12 @@ const DeleteBooks = () => {
     fetchBooks();
   }, [searchQuery, selectedCollections]);
 
-  const deleteBook = async (bookId) => {
-    for (const collectionName of selectedCollections) {
-      await deleteDoc(doc(db, collectionName, bookId));
-    }
-    fetchBooks();
-  };
+//   const deleteBook = async (bookId) => {
+//     for (const collectionName of selectedCollections) {
+//       await deleteDoc(doc(db, collectionName, bookId));
+//     }
+//     fetchBooks();
+//   };
 
   const handleSearch = () => {
     fetchBooks();
@@ -117,7 +117,7 @@ const DeleteBooks = () => {
       );
 
       for (const book of checkedBooks) {
-        //  await deleteDoc(doc(db, collectionName, book.id));
+         await deleteDoc(doc(db, collectionName, book.id));
       }
     }
 

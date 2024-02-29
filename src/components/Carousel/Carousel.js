@@ -28,7 +28,7 @@ const Carousel = ({ cartItems, setCartItems }) => {
         carouselBooks.map((book, i) => {
           return (
             <div className="carousel" key={`${i}-carousel`}>
-              <div className="carousel--image" key={i}>
+              <div className="carousel--image" key={`${i}-carousel--image`}>
                 <img
                   src={book?.thumbnail}
                   height="350px"
@@ -36,7 +36,7 @@ const Carousel = ({ cartItems, setCartItems }) => {
                   alt=""
                 />
               </div>
-              <div key={i} className="carousel--text">
+              <div key={`${i}-carousel--text`} className="carousel--text">
                 <span>
                   <h1>{book?.title}</h1>
                 </span>
