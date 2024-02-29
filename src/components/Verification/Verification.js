@@ -1,18 +1,17 @@
-import React from 'react';
+import React from "react";
 
-const Verification = ({ userInfo, cartItems, paymentInfo }) => {
+const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
+  console.log(purchasedItems);
   const handleConfirmOrder = () => {
     const orderDetails = {
-      cartItems: cartItems.map((item) => item.title),
-      totalCost: calculateTotalCost(cartItems),
+      cartItems: purchasedItems.map((item) => item.title),
+      totalCost: calculateTotalCost(purchasedItems),
       paymentInfo: paymentInfo || {},
       shippingInfo: {
-        name: userInfo?.name || '',
-        address: userInfo?.address || '',
+        name: userProfile?.name || "",
+        address: userProfile?.address || "",
       },
     };
-
-    console.log('Order Details:', orderDetails);
   };
 
   const calculateTotalCost = (cartItems) => {
@@ -25,11 +24,11 @@ const Verification = ({ userInfo, cartItems, paymentInfo }) => {
 
   return (
     <div className="verification">
-      <h1>Order Verification</h1>
-      <h2>Items in Cart:</h2>
-      {cartItems.length > 0 ? (
+      <h1>Order Confirmation</h1>
+      <h2>Items Purchased:</h2>
+      {purchasedItems?.length > 0 ? (
         <ul>
-          {cartItems.map((item, index) => (
+          {purchasedItems.map((item, index) => (
             <li key={`${index}--verificationItem`}>{item.title}</li>
           ))}
         </ul>
@@ -40,26 +39,36 @@ const Verification = ({ userInfo, cartItems, paymentInfo }) => {
       <h4>Payment Information:</h4>
       {paymentInfo && paymentInfo.cardNumber ? (
         <>
-          <p>Card Number: {paymentInfo.cardNumber}</p>
-          <p>Expiry Date: {paymentInfo.expiryDate}</p>
-          <p>CVV: {paymentInfo.cvv}</p>
+          <p>Order Number: BST-{Math.random() * 10 * 10000}</p>
+          <p>
+            Card Number: **** **** **** ****{" "}
+            {paymentInfo.cardNumber.slice(0, -4)}
+          </p>
         </>
       ) : (
-        <p>{paymentInfo ? 'No payment information available.' : 'Loading payment information...'}</p>
+        <p>
+          {paymentInfo
+            ? "No payment information available."
+            : "Loading payment information..."}
+        </p>
       )}
 
       <h4>User Information:</h4>
-      {userInfo && userInfo.name ? (
+      {userProfile && userProfile.name ? (
         <>
-          <p>Name: {userInfo.name}</p>
-          <p>Email: {userInfo.email}</p>
-          <p>Shipping Address: {userInfo.address}</p>
+          <p>Name: {userProfile.name}</p>
+          <p>Email: {userProfile.email}</p>
+          <p>Shipping Address: {userProfile.address}</p>
         </>
       ) : (
-        <p>{userInfo ? 'No user information available.' : 'Loading user information...'}</p>
+        <p>
+          {userProfile
+            ? "No user information available."
+            : "Loading user information..."}
+        </p>
       )}
 
-      <button onClick={handleConfirmOrder}>Confirm Order</button>
+      <button onClick={handleConfirmOrder}>Continue Shopping</button>
     </div>
   );
 };

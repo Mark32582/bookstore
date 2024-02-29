@@ -33,12 +33,14 @@ function App() {
   const [bookCategory, setBookCategory] = useState();
   const [cartItems, setCartItems] = useState([]);
   const [redirect, setRedirect] = useState();
-  const [userInfo, setUserInfo] = useState(null);
-  const [paymentInfo, setPaymentInfo]=useState(null);
-
-  const handleUserInfoUpdate = (newUserInfo) => {
-    setUserInfo(newUserInfo);
-  };
+  const [purchasedItems, setPurchasedItems] = useState([]);
+  const [userProfile, setUserProfile] = useState(null);
+  const [totalCost, setTotalCost] = useState(0);
+  const [paymentInfo, setPaymentInfo] = useState({
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+  });
 
   return (
     <FirestoreCacheProvider>
@@ -81,8 +83,9 @@ function App() {
             cartItems={cartItems}
             setCartItems={setCartItems}
             setDisplayCart={setDisplayCart}
-            userInfo={userInfo}
             setRedirect={setRedirect}
+            totalCost={totalCost}
+            setTotalCost={setTotalCost}
           />
           <Routes>
             <Route
@@ -146,9 +149,8 @@ function App() {
               path="/user"
               element={
                 <UserProfile
-                  name={name}
-                  verified={verified}
-                  setVerified={setVerified}
+                  userProfile={userProfile}
+                  setUserProfile={setUserProfile}
                 />
               }
             />
@@ -269,18 +271,16 @@ function App() {
               path="/checkout"
               element={
                 <Checkout
-                  name={name}
                   verified={verified}
-                  setVerified={setVerified}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
-                  userInfo={userInfo}
-                  books={books}
-                  setBooks={setBooks}
-                  setDisplayCart={setDisplayCart}
                   paymentInfo={paymentInfo}
                   setPaymentInfo={setPaymentInfo}
-                  
+                  purchasedItems={purchasedItems}
+                  setPurchasedItems={setPurchasedItems}
+                  userProfile={userProfile}
+                  setUserProfile={setUserProfile}
+                  totalCost={totalCost}
                 />
               }
             />
@@ -288,25 +288,22 @@ function App() {
               path="/verification"
               element={
                 <Verification
-                  name={name}
                   verified={verified}
-                  setVerified={setVerified}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                  userInfo={userInfo}
-                  books={books}
-                  setBooks={setBooks}
-                  setDisplayCart={setDisplayCart}
+                  purchasedItems={purchasedItems}
                   paymentInfo={paymentInfo}
                   setPaymentInfo={setPaymentInfo}
-                  
+                  userProfile={userProfile}
+                  totalCost={totalCost}
                 />
               }
             />
-            <Route path="/contact" element={<ContactMain/>}/>
-            <Route path="/contact/privacy" element={<PrivacyPolicy/>}/>
-            <Route path="/contact/email-form" element={<ContactEmailForm/>}/>
-            <Route path="/contact/email-form/privacy" element={<PrivacyPolicy/>}/>
+            <Route path="/contact" element={<ContactMain />} />
+            <Route path="/contact/privacy" element={<PrivacyPolicy />} />
+            <Route path="/contact/email-form" element={<ContactEmailForm />} />
+            <Route
+              path="/contact/email-form/privacy"
+              element={<PrivacyPolicy />}
+            />
           </Routes>
           <Footer />
         </BrowserRouter>

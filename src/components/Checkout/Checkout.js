@@ -1,57 +1,18 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const HandleCheckout = () => {
+const Checkout = ({
+  cartItems,
+  setCartItems,
+  paymentInfo,
+  setPaymentInfo,
+  useProfile,
+  setUserProfile,
+  verified,
+  setPurchasedItems,
+}) => {
   const navigate = useNavigate();
 
-  const [cartItems, setCartItems] = useState([
-    // Your cart items
-  ]);
-
-  const [userInfo, setUserInfo] = useState({
-    // Your user information
-  });
-
-  const [paymentInfo, setPaymentInfo] = useState({
-    cardNumber: '',
-    expiryDate: '',
-    cvv: '',
-  });
-
-  const handlePaymentInfoChange = (e) => {
-    const { name, value } = e.target;
-    setPaymentInfo((prevPaymentInfo) => ({
-      ...prevPaymentInfo,
-      [name]: value,
-    }));
-  };
-
-  const handleCheckout = () => {
-    if (cartItems.length > 0 && paymentInfo.cardNumber && paymentInfo.expiryDate && paymentInfo.cvv) {
-      console.log('Payment Information:', paymentInfo);
-      // Perform any necessary payment processing or order placement here
-      navigate('/verification', { state: { cartItems, userInfo, paymentInfo } }); // Navigate to success page after successful checkout
-    } else {
-      console.log('Invalid checkout request. Please check your cart and payment information.');
-    }
-  };
-
-  return (
-    <div>
-      <h1>Handle Checkout</h1>
-      <Checkout
-        cartItems={cartItems}
-        userInfo={userInfo}
-        paymentInfo={paymentInfo}
-        handlePaymentInfoChange={handlePaymentInfoChange}
-        handleCheckout={handleCheckout}
-      />
-    </div>
-  );
-};
-
-const Checkout = ({ cartItems, userInfo, paymentInfo, handlePaymentInfoChange, handleCheckout }) => {
   const handleCheckout = () => {
     if (
       cartItems.length > 0 &&
@@ -60,7 +21,11 @@ const Checkout = ({ cartItems, userInfo, paymentInfo, handlePaymentInfoChange, h
       paymentInfo.cvv
     ) {
       console.log("Payment Information:", paymentInfo);
-      setCartItems();
+      setPurchasedItems(cartItems);
+      setTimeout(() => {
+        setCartItems([]);
+      }, 200);
+      navigate("/verification");
     } else {
       console.log(
         "Invalid checkout request. Please Check your cart and payment information."
@@ -83,39 +48,51 @@ const Checkout = ({ cartItems, userInfo, paymentInfo, handlePaymentInfoChange, h
       ) : (
         <p>Your cart is empty.</p>
       )}
+      <div>
+        <h2>Checkout as Guest or Sign in!</h2>
+        {verified ? (
+          <div></div>
+        ) : (
+          <div>
+            <form></form>
+          </div>
+        )}
+      </div>
       <div className="payment-section">
         <label>Card Number:</label>
         <input
           type="text"
           name="cardNumber"
           value={paymentInfo.cardNumber}
-          onChange={handlePaymentInfoChange}
+          onChange={(e) =>
+            setPaymentInfo({ ...paymentInfo, cardNumber: e.target.value })
+          }
+          required
         />
         <label>Expiry Date:</label>
         <input
-          type="text"
+          type="date"
           name="expiryDate"
           value={paymentInfo.expiryDate}
-          onChange={handlePaymentInfoChange}
+          onChange={(e) =>
+            setPaymentInfo({ ...paymentInfo, expiryDate: e.target.value })
+          }
+          required
         />
         <label>CVV:</label>
         <input
           type="text"
           name="cvv"
           value={paymentInfo.cvv}
-          onChange={handlePaymentInfoChange}
+          onChange={(e) =>
+            setPaymentInfo({ ...paymentInfo, cvv: e.target.value })
+          }
+          required
         />
-        <Link
-          to={{
-            pathname: '/verification',
-            state: { cartItems, userInfo, paymentInfo },
-          }}
-        >
-          <button onClick={handleCheckout}>Proceed to Checkout</button>
-        </Link>
+        <button onClick={handleCheckout}>Proceed to Checkout</button>
       </div>
     </div>
   );
 };
 
-export default HandleCheckout;
+export default Checkout;

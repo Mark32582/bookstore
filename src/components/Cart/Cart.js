@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
-  const { cart, cartItems, setCartItems, setDisplayCart, location, userInfo, setRedirect } = props;
+  const { cart, cartItems, setCartItems, setDisplayCart, location, userInfo, setRedirect, totalCost, setTotalCost } = props;
   const navigate = useNavigate();
   const deliveryFee = 4.99;
 
   const [selectedItems, setSelectedItems] = useState([]);
-  const [totalCost, setTotalCost] = useState(0);
+ 
   const [subTotalCost, setSubTotalCost] = useState(0);
   const [taxes, setTaxes] = useState(0);
 
