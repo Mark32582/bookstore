@@ -50,7 +50,7 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
       <h2>Payment Information:</h2>
       {paymentInfo && paymentInfo.cardNumber ? (
         <>
-          <p>Order Number: BST-{Math.random() * 10 * 10000}</p>
+          <p>Order Number: BST-{Math.floor(Math.random() * 10 * 10000)}</p>
           <p>Total cost of: {calculateTotalCost(purchasedItems)} </p>
           <p>
             Card Number: **** **** **** ****{" "}
