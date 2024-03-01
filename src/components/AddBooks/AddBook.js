@@ -83,7 +83,7 @@ const AddBooks = (props) => {
 
   return (
     <div>
-      <div className="add-books">
+      <div className="add">
         <div className="add-container">
           <h2>Search Books</h2>
           <form onSubmit={handleSubmit}>

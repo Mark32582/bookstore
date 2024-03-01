@@ -1,8 +1,6 @@
-html {
-    font-size: 80%;
-  }
 
-.add-books {
+
+.add{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -11,17 +9,17 @@ html {
     }
   
     .add-container {
-      font-family: "Courier New", Courier, monospace;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: fit-content;
-      padding:12px 24px;
-      z-index: 10;
-      border-radius: 10px;
-      background-color: blanchedalmond;
-      margin:24px auto;
+    font-family: "Courier New", Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding:12px 24px;
+    z-index: 10;
+    border-radius: 10px;
+    background-color: rgb(200, 181, 153);
+    margin:24px auto;
     }
     .add-book {
         margin: 20px 20px;

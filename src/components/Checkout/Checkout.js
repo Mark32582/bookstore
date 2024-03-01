@@ -30,6 +30,7 @@ const Checkout = ({ cartItems, setCartItems }) => {
   };
   return (
     <div className="checkout">
+      <div className="checkout-container">
       <h1>Checkout</h1>
       {cartItems?.length > 0 ? (
         <div>
@@ -59,15 +60,18 @@ const Checkout = ({ cartItems, setCartItems }) => {
           value={paymentInfo.expiryDate}
           onChange={handlePaymentInfoChange}
         />
-        <label>CVV</label>
+        <label>CVV:</label>
         <input
           type="text"
           name="cvv"
           value={paymentInfo.cvv}
           onChange={handlePaymentInfoChange}
         />
+      <div className="proceed-to-checkout" >
         <button onClick={handleCheckout}>Proceed to Checkout</button>
+      </div>     
       </div>
+        </div>
     </div>
   );
 };

@@ -128,7 +128,7 @@ const RegisterForm = (props) => {
               {employee ? (
                 <h1 className="title">Register User or Employee</h1>
               ) : (
-                <h1 className="title">Register today, Read Tomorrow!</h1>
+                <h1 className="title">Register and Read Today!</h1>
               )}
               {employee ? (
                 <p className="signupMsg">Please sign up new User</p>

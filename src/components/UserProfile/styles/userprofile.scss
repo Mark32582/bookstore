@@ -1,67 +1,68 @@
 // userprofile.scss
 
-$primary-color: #0056b3;
-$secondary-color: #6c757d;
-$text-color: #333;
-$background-color: #f9f9f9;
-$border-color: #ddd;
 
 .user-profile {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid $border-color;
-  border-radius: 8px;
-  background-color: $background-color;
-
-  h2 {
-    color: $text-color;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  p, label {
-    color: darken($text-color, 20%);
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-  }
-
-  input[type="text"],
-  input[type="email"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 20px;
-    border: 1px solid $border-color;
-    border-radius: 4px;
-  }
-
-  button {
-    cursor: pointer;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    background-color: $primary-color;
-    color: white;
-    font-size: 14px;
-    margin-right: 10px;
-
-    &.cancel {
-      background-color: $secondary-color;
-    }
-
-    &:hover {
-      opacity: 0.9;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:none;
 }
+.user-profile-container {
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding:12px 24px;
+  z-index: 10;
+  border-radius: 10px;
+  background-color: rgb(200, 181, 153);
+  margin:24px auto;
+
+}
+.user-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:none;
+  }
+.update-button {
+      text-wrap: nowrap;
+      padding: 4px 8px;
+      height: 42px;
+      border: none;
+      background-color: rgb(200, 181, 153);
+      margin-right: 16px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+.user-changes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background:none;
+  }
+input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: 8px 16px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.save-cancel-changes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 16px 16px;
+  background:none;
+  }
+  
+
