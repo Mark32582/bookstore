@@ -1,25 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 
 const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
-  console.log(purchasedItems);
+  const [isUserSignedIn, setIsUserSignedIn] = useState(!!userProfile);
+
+
+
   const handleConfirmOrder = () => {
     const orderDetails = {
       cartItems: purchasedItems.map((item) => item.title),
       totalCost: calculateTotalCost(purchasedItems),
       paymentInfo: paymentInfo || {},
-      shippingInfo: {
-        name: userProfile?.name || "",
-        address: userProfile?.address || "",
-      },
+      shippingInfo: isUserSignedIn ? userProfile : null,
     };
   };
 
+  console.log(purchasedItems);
+  console.log(userProfile)
+
+
   const calculateTotalCost = (cartItems) => {
-    let total = 0;
+    let subtotal = 0;
+  
     cartItems.forEach((item) => {
-      total += item.price;
+      subtotal += item.price;
     });
-    return total;
+  
+    const taxPercent = 0.06;
+    const taxAmount = subtotal * taxPercent;
+    const deliveryFee = 4.99;
+  
+    const total = subtotal + taxAmount + deliveryFee;
+    return total.toFixed(2);
   };
 
   return (
@@ -36,14 +47,14 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
         <p>Your cart is empty.</p>
       )}
 
-      <h4>Payment Information:</h4>
+      <h2>Payment Information:</h2>
       {paymentInfo && paymentInfo.cardNumber ? (
         <>
           <p>Order Number: BST-{Math.random() * 10 * 10000}</p>
-          <p>Total cost of: </p>
+          <p>Total cost of: {calculateTotalCost(purchasedItems)} </p>
           <p>
             Card Number: **** **** **** ****{" "}
-            {paymentInfo.cardNumber.slice(0, -3)}
+            {paymentInfo.cardNumber.slice(0, -12)}
           </p>
         </>
       ) : (
@@ -54,19 +65,18 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
         </p>
       )}
 
-      <h4>Shipping Information:</h4>
-      {userProfile && userProfile.name ? (
+      <h2>Shipping Information:</h2>
+      {isUserSignedIn && userProfile && userProfile.name ? (
         <>
           <p>Name: {userProfile.name}</p>
-          <p>Email: {userProfile.email}</p>
           <p>Shipping Address: {userProfile.address}</p>
         </>
       ) : (
         <p>
-          {userProfile
-            ? "No user information available."
-            : "Loading user information..."}
-        </p>
+        {isUserSignedIn
+          ? "No user information available."
+          : "Loading user information..."}
+      </p>
       )}
             <div><span>Thank you for shopping with us!</span></div>
       <button onClick={handleConfirmOrder}>Continue Shopping</button>

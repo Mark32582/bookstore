@@ -1,37 +1,49 @@
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import React, {useState} from "react";
 
 const Checkout = ({
   cartItems,
   setCartItems,
   paymentInfo,
   setPaymentInfo,
-  useProfile,
-  setUserProfile,
   verified,
   setPurchasedItems,
+  setUserProfile,
+  userProfile
 }) => {
   const navigate = useNavigate();
+  const [showForm, setShowForm] = useState(false);
 
   const handleCheckout = () => {
     if (
       cartItems.length > 0 &&
       paymentInfo.cardNumber &&
       paymentInfo.expiryDate &&
-      paymentInfo.cvv
+      paymentInfo.cvv &&
+      userProfile.name &&
+      userProfile.address
     ) {
       console.log("Payment Information:", paymentInfo);
+      console.log("Shipping Information:", userProfile)
       setPurchasedItems(cartItems);
+      setUserProfile(userProfile);
       setTimeout(() => {
         setCartItems([]);
       }, 200);
       navigate("/verification");
     } else {
       console.log(
-        "Invalid checkout request. Please Check your cart and payment information."
+        "Invalid checkout request. Please Check your cart, payment information, and user profile."
       );
     }
   };
+
+  const handleGuestCheckout = () => {
+    setShowForm(true);
+    
+  };
+
   return (
     <div className="checkout">
       <h1>Checkout</h1>
@@ -54,7 +66,35 @@ const Checkout = ({
           <div></div>
         ) : (
           <div>
-            <form></form>
+             {!showForm ? (
+              <button onClick={handleGuestCheckout}>Check Out as Guest</button>
+            ) : (
+              <div className="guest-form">
+              <form>
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={userProfile.name}
+                onChange={(e) =>
+                  setUserProfile({ ...userProfile, name: e.target.value })
+                }
+                required
+              />
+                <label>Shipping Address:</label>
+                <input
+                  type="text"
+                  name="shipping address"
+                  value={userProfile.address}
+                  onChange={(e) =>
+                    setUserProfile({ ...userProfile, address: e.target.value })
+                  }
+                  required
+                />
+                
+              </form>
+            </div>
+            )}
           </div>
         )}
       </div>
