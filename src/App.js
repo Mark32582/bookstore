@@ -16,6 +16,7 @@ import TimeClock from "./components/TimeClock/TimeClock.js";
 import Accounting from "./components/Accounting/Accounting.js";
 import Inventory from "./components/Inventory/Inventory.js";
 import UserProfile from "./components/UserProfile/UserProfile.js";
+import Verification from "./components/Verification/Verification.js";
 import ContactMain from "./components/Contact/ContactMain/ContactMain.js";
 import ContactEmailForm from "./components/Contact/ContactEmailForm/ContactEmailForm.js";
 import PrivacyPolicy from "./components/Contact/PrivacyPolicy/PrivacyPolicy.js";
@@ -32,6 +33,15 @@ function App() {
   const [bookCategory, setBookCategory] = useState();
   const [cartItems, setCartItems] = useState([]);
   const [redirect, setRedirect] = useState();
+  const [purchasedItems, setPurchasedItems] = useState([]);
+  const [userProfile, setUserProfile] = useState(null);
+  const [totalCost, setTotalCost] = useState(0);
+  const [paymentInfo, setPaymentInfo] = useState({
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+  });
+
   return (
     <FirestoreCacheProvider>
       <div className="page">
@@ -74,6 +84,8 @@ function App() {
             setCartItems={setCartItems}
             setDisplayCart={setDisplayCart}
             setRedirect={setRedirect}
+            totalCost={totalCost}
+            setTotalCost={setTotalCost}
           />
           <Routes>
             <Route
@@ -137,9 +149,8 @@ function App() {
               path="/user"
               element={
                 <UserProfile
-                  name={name}
-                  verified={verified}
-                  setVerified={setVerified}
+                  userProfile={userProfile}
+                  setUserProfile={setUserProfile}
                 />
               }
             />
@@ -260,18 +271,39 @@ function App() {
               path="/checkout"
               element={
                 <Checkout
-                  name={name}
                   verified={verified}
-                  setVerified={setVerified}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
+                  paymentInfo={paymentInfo}
+                  setPaymentInfo={setPaymentInfo}
+                  purchasedItems={purchasedItems}
+                  setPurchasedItems={setPurchasedItems}
+                  userProfile={userProfile}
+                  setUserProfile={setUserProfile}
+                  totalCost={totalCost}
                 />
               }
             />
-            <Route path="/contact" element={<ContactMain/>}/>
-            <Route path="/contact/privacy" element={<PrivacyPolicy/>}/>
-            <Route path="/contact/email-form" element={<ContactEmailForm/>}/>
-            <Route path="/contact/email-form/privacy" element={<PrivacyPolicy/>}/>
+            <Route
+              path="/verification"
+              element={
+                <Verification
+                  verified={verified}
+                  purchasedItems={purchasedItems}
+                  paymentInfo={paymentInfo}
+                  setPaymentInfo={setPaymentInfo}
+                  userProfile={userProfile}
+                  totalCost={totalCost}
+                />
+              }
+            />
+            <Route path="/contact" element={<ContactMain />} />
+            <Route path="/contact/privacy" element={<PrivacyPolicy />} />
+            <Route path="/contact/email-form" element={<ContactEmailForm />} />
+            <Route
+              path="/contact/email-form/privacy"
+              element={<PrivacyPolicy />}
+            />
           </Routes>
           <Footer />
         </BrowserRouter>

@@ -2,15 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Cart = (props) => {
-  const { cart, cartItems, setCartItems, setDisplayCart, setRedirect } = props;
+  const {
+    cart,
+    cartItems,
+    setCartItems,
+    setDisplayCart,
+    location,
+    userInfo,
+    setRedirect,
+    totalCost,
+    setTotalCost,
+  } = props;
   const navigate = useNavigate();
   const deliveryFee = 4.99;
 
   const [selectedItems, setSelectedItems] = useState([]);
-  const [totalCost, setTotalCost] = useState(0);
+
   const [subTotalCost, setSubTotalCost] = useState(0);
   const [taxes, setTaxes] = useState(0);
-  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     let subTotal = 0;
@@ -21,7 +30,7 @@ const Cart = (props) => {
 
     setSubTotalCost(subTotal);
     setTaxes(subTotal * 0.06);
-    setTotalCost(deliveryFee + subTotal + (subTotal * 0.06));
+    setTotalCost(deliveryFee + subTotal + subTotal * 0.06);
   }, [cartItems]);
 
   const handleDeleteSelected = () => {
@@ -30,7 +39,6 @@ const Cart = (props) => {
     );
     setCartItems(updatedCartItems);
     setSelectedItems([]);
-    setIsChecked(false);
   };
 
   const handleCheckboxChange = (index) => {
@@ -39,12 +47,11 @@ const Cart = (props) => {
     } else {
       setSelectedItems([...selectedItems, index]);
     }
-    setIsChecked(!isChecked);
   };
 
   const handleCheckout = () => {
-    setRedirect(false)
-    setDisplayCart(false)
+    setRedirect(false);
+    setDisplayCart(false);
     navigate("/checkout");
   };
 
@@ -72,7 +79,7 @@ const Cart = (props) => {
                       <b>Price:</b> {item?.price}
                     </div>
                     <div>
-                      <b>Count:</b> 1
+                      <b>Quantity:</b> 1
                     </div>
                   </div>
                 );

@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Checkout = ({ cartItems, setCartItems }) => {
-  const [paymentInfo, setPaymentInfo] = useState({
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-  });
-  const handlePaymentInfoChange = (e) => {
-    const { name, value } = e.target;
-    setPaymentInfo((prevPaymentInfo) => ({
-      ...prevPaymentInfo,
-      [name]: value,
-    }));
-  };
+const Checkout = ({
+  cartItems,
+  setCartItems,
+  paymentInfo,
+  setPaymentInfo,
+  useProfile,
+  setUserProfile,
+  verified,
+  setPurchasedItems,
+}) => {
+  const navigate = useNavigate();
+
   const handleCheckout = () => {
     if (
       cartItems.length > 0 &&
@@ -21,7 +21,11 @@ const Checkout = ({ cartItems, setCartItems }) => {
       paymentInfo.cvv
     ) {
       console.log("Payment Information:", paymentInfo);
-      setCartItems();
+      setPurchasedItems(cartItems);
+      setTimeout(() => {
+        setCartItems([]);
+      }, 200);
+      navigate("/verification");
     } else {
       console.log(
         "Invalid checkout request. Please Check your cart and payment information."
@@ -44,31 +48,51 @@ const Checkout = ({ cartItems, setCartItems }) => {
       ) : (
         <p>Your cart is empty.</p>
       )}
+      <div>
+        <h2>Checkout as Guest or Sign in!</h2>
+        {verified ? (
+          <div></div>
+        ) : (
+          <div>
+            <form></form>
+          </div>
+        )}
+      </div>
       <div className="payment-section">
         <label>Card Number:</label>
         <input
           type="text"
           name="cardNumber"
           value={paymentInfo.cardNumber}
-          onChange={handlePaymentInfoChange}
+          onChange={(e) =>
+            setPaymentInfo({ ...paymentInfo, cardNumber: e.target.value })
+          }
+          required
         />
         <label>Expiry Date:</label>
         <input
-          type="text"
+          type="date"
           name="expiryDate"
           value={paymentInfo.expiryDate}
-          onChange={handlePaymentInfoChange}
+          onChange={(e) =>
+            setPaymentInfo({ ...paymentInfo, expiryDate: e.target.value })
+          }
+          required
         />
-        <label>CVV</label>
+        <label>CVV:</label>
         <input
           type="text"
           name="cvv"
           value={paymentInfo.cvv}
-          onChange={handlePaymentInfoChange}
+          onChange={(e) =>
+            setPaymentInfo({ ...paymentInfo, cvv: e.target.value })
+          }
+          required
         />
         <button onClick={handleCheckout}>Proceed to Checkout</button>
       </div>
     </div>
   );
 };
+
 export default Checkout;

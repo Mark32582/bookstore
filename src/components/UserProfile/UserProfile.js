@@ -9,8 +9,8 @@ import { auth } from '../../config/fireBaseConfig'; // Make sure to import auth 
 import './styles/userprofile.scss';
 
 
-const UserProfile = () => {
-  const [userProfile, setUserProfile] = useState(null);
+const UserProfile = ({userProfile, setUserProfile}) => {
+
   const [isEditing, setIsEditing] = useState(false);
   const [updatedInfo, setUpdatedInfo] = useState({ name: '', email: '', address: '' });
 
