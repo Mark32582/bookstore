@@ -292,6 +292,7 @@ function App() {
                   purchasedItems={purchasedItems}
                   paymentInfo={paymentInfo}
                   setPaymentInfo={setPaymentInfo}
+                  setUserProfile={setUserProfile}
                   userProfile={userProfile}
                   totalCost={totalCost}
                 />
