@@ -64,7 +64,7 @@ const Footer = () => {
               <img src={process.env.PUBLIC_URL + "/twitter.png"} alt="TW"/>
             </a>
             <a
-              href="https://www.linkedin.com/in/the-bookstore-94929b2b7/"
+              href="https://www.linkedin.com/company/group3bookstore/"
               target="_blank"
               rel="noopener noreferrer"
             >
