@@ -7,11 +7,11 @@
   left: 50vw;
   transform: translate(-50%, -50%);
   padding: 20px;
-  border: 1px double blanchedalmond;
+  border: 1px double rgb(200, 181, 153);
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 100;
-  color: blanchedalmond;
+  color: rgb(200, 181, 153);
   background-color: darkslategray;
 }
 .cart {
@@ -36,7 +36,7 @@
     margin-bottom:8px;
     gap: 16px;
     width: 100%;
-    border-bottom: 1px solid blanchedalmond;
+    border-bottom: 1px solid rgb(200, 181, 153);
 
 
   }

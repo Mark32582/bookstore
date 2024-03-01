@@ -14,14 +14,14 @@
     display: none; // Hidden on larger screens
     cursor: pointer;
     padding: 10px;
-    background-color: blanchedalmond;
+    background-color: rgb(200, 181, 153);
     font-size: 3rem;
   }
 
   &--mobile {
     display: none; // Hidden by default
     justify-content: space-between;
-    background-color: blanchedalmond;
+    background-color: rgb(200, 181, 153);
     align-items: center;
     width: 100%;
   }
@@ -29,7 +29,7 @@
   &--mobile-title {
     display: none; // Hidden by default
     padding: 10px;
-    background-color: blanchedalmond;
+    background-color: rgb(200, 181, 153);
     font-size: 3rem;
     font-weight: bold;
     align-items: center;
@@ -43,7 +43,7 @@
     justify-content: right;
     width: 100%;
 
-    background-color: blanchedalmond;
+    background-color: rgb(200, 181, 153);
   }
 
   &--mobile-search {
@@ -82,7 +82,7 @@
     .sign-on:hover {
       background-color: darkslategray;
       border-radius: 12px;
-      color: blanchedalmond;
+      color: rgb(200, 181, 153);
     }
     .sign-on:focus {
       display: flex;

@@ -1,6 +1,6 @@
 $color-alert: #b10000;
 $color-alert-background: #2505059c;
-$color-background: blanchedalmond;
+$color-background: rgb(200, 181, 153);
 
 :root {
   --background-color: rgba(0, 0, 0, 0.8);
@@ -14,7 +14,7 @@ body {
   padding: 0;
   height: 100%;
   font-family: "Courier New", Courier, monospace;
-  background-color: blanchedalmond;
+  background-color: rgb(200, 181, 153);
 }
 .page{
     position: relative;
