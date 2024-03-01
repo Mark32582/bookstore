@@ -5,6 +5,7 @@ import { auth } from "../../config/fireBaseConfig";
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const LogonForm = (props) => {
   const {
@@ -19,7 +20,9 @@ const LogonForm = (props) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //   const [users, setUsers] = useState();
+  const [resetPasswordSent, setResetPasswordSent] = useState(false);
+  const [resetPasswordError, setResetPasswordError] = useState(null);
+  const [resetPasswordMessage, setResetPasswordMessage] = useState(null);
   const [error, setError] = useState();
   const [userId, setUserId] = useState();
 
@@ -31,10 +34,9 @@ const LogonForm = (props) => {
     }
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         setUserId(userCredential.user.uid);
         setVerified(true);
-        setRedirect(false)
+        setRedirect(false);
         setTimeout(() => {
           setError(undefined);
         }, 500);
@@ -59,28 +61,36 @@ const LogonForm = (props) => {
     setGlobalUsers(newData);
   };
 
-  useEffect(() => {
-    if (globalUsers?.type === "employee") {
-      setEmployee(true);
-    }
-  }, [globalUsers?.type, setEmployee]);
+  const resetPassword = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setResetPasswordSent(true);
+        setResetPasswordError(null);
+        setResetPasswordMessage(
+          "A link to reset your password has been emailed to the provided email address."
+        );
 
-  useEffect(() => {
-    if (userId !== undefined) {
-      fetchPost();
-    }
-  }, [userId]);
+        setTimeout(() => {
+          setResetPasswordMessage(null);
+        }, 5000);
+      })
+      .catch((error) => {
+        setResetPasswordSent(false);
+        setResetPasswordError(error.message);
+        setResetPasswordMessage(null);
+      });
+  };
 
-  useEffect(() => {
-    if (auth.currentUser && !auth.currentUser.emailVerified) {
-      setError("Confirm Email to Complete Registration");
-    }
-  }, []);
   return (
     <div className={classNames({ "hide-logon": !signOn })}>
       <div className="form-container-sign-on">
         <form className="logon-form">
           {error ? <div className="error"> {error} </div> : null}
+          {resetPasswordMessage && (
+            <div className="reset-password-message">
+              {resetPasswordMessage}
+            </div>
+          )}
           <input
             id="email"
             type="email"
@@ -102,9 +112,16 @@ const LogonForm = (props) => {
           <button onClick={onLogin} className="signup-button">
             Login
           </button>
+          <button onClick={resetPassword} className="reset-password-button">
+            Reset Password
+          </button>
+          {resetPasswordError && (
+            <div className="error">{resetPasswordError}</div>
+          )}
         </form>
       </div>
     </div>
   );
 };
+
 export default LogonForm;
