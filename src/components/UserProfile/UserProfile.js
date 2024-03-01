@@ -59,7 +59,6 @@ const UserProfile = ({userProfile, setUserProfile}) => {
       {!isEditing ? (
         <>
         <div className="user-info"> 
-          <p><strong>User ID:</strong> {auth.currentUser.uid}</p>
           <p><strong>Name:</strong> {userProfile.name}</p>
           <p><strong>Email:</strong> {userProfile.email}</p>
           <p><strong>Address:</strong> {userProfile.address}</p>
