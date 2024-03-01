@@ -54,18 +54,25 @@ const UserProfile = ({userProfile, setUserProfile}) => {
 
   return (
     <div className="user-profile">
+    <div className="user-profile-container">
       <h2>User Profile</h2>
       {!isEditing ? (
         <>
+        <div className="user-info"> 
           <p><strong>User ID:</strong> {auth.currentUser.uid}</p>
           <p><strong>Name:</strong> {userProfile.name}</p>
           <p><strong>Email:</strong> {userProfile.email}</p>
           <p><strong>Address:</strong> {userProfile.address}</p>
+        </div>
+          <div className="update-button">
           <button onClick={() => setIsEditing(true)}>Update Information</button>
+       </div>
         </>
       ) : (
         <form onSubmit={handleSubmit}>
+          <div clasName="user-changes">
           <div>
+            
             <label>Name:</label>
             <input type="text" name="name" value={updatedInfo.name || ''} onChange={handleInputChange} />
           </div>
@@ -77,10 +84,14 @@ const UserProfile = ({userProfile, setUserProfile}) => {
             <label>Address:</label>
             <input type="text" name="address" value={updatedInfo.address || ''} onChange={handleInputChange} />
           </div>
+          <div className="save-cancel-changes">
           <button type="submit">Save Changes</button>
           <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+          </div>
+          </div>
         </form>
       )}
+    </div>
     </div>
   );
 };

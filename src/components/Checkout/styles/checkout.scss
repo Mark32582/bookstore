@@ -4,6 +4,19 @@
     align-items: center;
     padding: 16px;
 }
+.checkout-container{
+    font-family: "Courier New", Courier, monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding:12px 24px;
+    z-index: 10;
+    border-radius: 10px;
+    background-color: rgb(200, 181, 153);
+    margin:24px auto;
+}
 .payment-section{
     margin-top:16px;
 
@@ -12,14 +25,20 @@
         margin-bottom:8px;
     }
     input{
+        
         width:100%;
         padding:8px;
         margin-bottom:16px;
     }
     button{
-        padding:8px;
+        padding:15px;
+        margin: 20px 20px;
+        font-family: "Courier New", Courier, monospace;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
         background: color #3498db;
-        color:#fff;
+        color:#050404;
         cursor: pointer;
     }
 }

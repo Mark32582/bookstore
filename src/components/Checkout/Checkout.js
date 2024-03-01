@@ -34,6 +34,7 @@ const Checkout = ({
   };
   return (
     <div className="checkout">
+      <div className="checkout-container">
       <h1>Checkout</h1>
       {cartItems?.length > 0 ? (
         <div>
@@ -89,8 +90,11 @@ const Checkout = ({
           }
           required
         />
+      <div className="proceed-to-checkout" >
         <button onClick={handleCheckout}>Proceed to Checkout</button>
+      </div>     
       </div>
+        </div>
     </div>
   );
 };
