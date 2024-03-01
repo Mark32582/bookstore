@@ -75,7 +75,7 @@ const Checkout = ({
               <input
                 type="text"
                 name="name"
-                value={userProfile.name}
+                value={userProfile?.name || ""}
                 onChange={(e) =>
                   setUserProfile({ ...userProfile, name: e.target.value })
                 }
@@ -85,7 +85,7 @@ const Checkout = ({
                 <input
                   type="text"
                   name="shipping address"
-                  value={userProfile.address}
+                  value={userProfile?.address || ""}
                   onChange={(e) =>
                     setUserProfile({ ...userProfile, address: e.target.value })
                   }
