@@ -8,8 +8,7 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
       totalCost: calculateTotalCost(purchasedItems),
       paymentInfo: paymentInfo || {},
       shippingInfo: {
-        fname: userProfile?.fname || "",
-        lname: userProfile?.lname || "",
+        name: userProfile?.name || "",
         address: userProfile?.address || "",
       },
     };
@@ -58,8 +57,7 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
       <h4>Shipping Information:</h4>
       {userProfile && userProfile.name ? (
         <>
-          <p>First Name: {userProfile.fname}</p>
-          <p>Last Name: {userProfile.lname}</p>
+          <p>Name: {userProfile.name}</p>
           <p>Email: {userProfile.email}</p>
           <p>Shipping Address: {userProfile.address}</p>
         </>
