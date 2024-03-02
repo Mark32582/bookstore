@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
-  const [isUserSignedIn, setIsUserSignedIn] = useState(!!userProfile);
+  const [isUserSignedIn] = useState(!!userProfile);
 
 
 
@@ -69,7 +69,8 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
       {isUserSignedIn && userProfile && userProfile.name ? (
         <>
           <p>Name: {userProfile.name}</p>
-          <p>Shipping Address: {userProfile.address}</p>
+          <p>Shipping Address: {userProfile?.streetNumber}{" "}{userProfile?.address} </p>
+          <p>{userProfile?.city}{" "}{userProfile?.state}{" "}{userProfile?.zip}</p>
         </>
       ) : (
         <p>

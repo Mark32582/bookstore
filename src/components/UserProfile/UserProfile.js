@@ -12,7 +12,7 @@ import './styles/userprofile.scss';
 const UserProfile = ({userProfile, setUserProfile}) => {
 
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedInfo, setUpdatedInfo] = useState({ name: '', email: '', address: '' });
+  const [updatedInfo, setUpdatedInfo] = useState({ fName: '', lName: '', email: '', address: '' });
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -59,7 +59,7 @@ const UserProfile = ({userProfile, setUserProfile}) => {
       {!isEditing ? (
         <>
         <div className="user-info"> 
-          <p><strong>Name:</strong> {userProfile.name}</p>
+          <p><strong>Name:</strong> {userProfile.fName}{" "}{userProfile.lName}</p>
           <p><strong>Email:</strong> {userProfile.email}</p>
           <p><strong>Address:</strong> {userProfile.address}</p>
         </div>
@@ -69,11 +69,16 @@ const UserProfile = ({userProfile, setUserProfile}) => {
         </>
       ) : (
         <form onSubmit={handleSubmit}>
-          <div clasName="user-changes">
+          <div className="user-changes">
           <div>
             
-            <label>Name:</label>
-            <input type="text" name="name" value={updatedInfo.name || ''} onChange={handleInputChange} />
+            <label>First Name:</label>
+            <input type="text" name="name" value={updatedInfo.fName || ''} onChange={handleInputChange} />
+          </div>
+          <div>
+            
+            <label>Last Name:</label>
+            <input type="text" name="name" value={updatedInfo.lName || ''} onChange={handleInputChange} />
           </div>
           <div>
             <label>Email:</label>

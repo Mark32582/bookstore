@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import React, {useState} from "react";
 
 const Checkout = ({
@@ -15,13 +14,16 @@ const Checkout = ({
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
 
+
+  console.log(userProfile);
   const handleCheckout = () => {
     if (
       cartItems.length > 0 &&
       paymentInfo.cardNumber &&
       paymentInfo.expiryDate &&
       paymentInfo.cvv &&
-      userProfile.name &&
+      userProfile.fName &&
+      userProfile.lName &&
       userProfile.address
     ) {
       console.log("Payment Information:", paymentInfo);
@@ -48,6 +50,7 @@ const Checkout = ({
     <div className="checkout">
       <div className="checkout-container">
       <h1>Checkout</h1>
+      {userProfile?.fName && <h3>Welcome {userProfile?.fName}</h3>}
       {cartItems?.length > 0 ? (
         <div>
           {cartItems?.map((item, index) => (

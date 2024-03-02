@@ -40,47 +40,45 @@ const AddBooks = (props) => {
   };
 
   const handleSubmit = (event) => {
-    //   event.preventDefault();
-    //   if (selectedBook) {
-    //     const newBook = {
-    //       title: selectedBook.volumeInfo.title,
-    //       author: selectedBook.volumeInfo.authors[0],
-    //       quantity: orderQuantity,
-    //       category: selectedBook.volumeInfo.category,
-    //       cost: selectedBook.volumeInfo.cost,
-    //       description: selectedBook.volumeInfo.description,
-    //       googleId: selectedBook.volumeInfo.googleId,
-    //       id: selectedBook.volumeInfo.id,
-    //       inventoryCount: selectedBook.volumeInfo.inventoryCount,
-    //       pageCount: selectedBook.volumeInfo.pageCount,
-    //       publisher: selectedBook.volumeInfo.publisher,
-    //       publisherDate: selectedBook.volumeInfo.publisherDate,
-    //       retailPrice: selectedBook.volumeInfo.retailPrice,
-    //       thumbnail: selectedBook.volumeInfo.thumbnail,
-    //     };
+    event.preventDefault();
+    if (selectedBook) {
+      const newBook = {
+        title: selectedBook.volumeInfo.title,
+        author: selectedBook.volumeInfo.authors[0],
+        quantity: orderQuantity,
+        category: selectedBook.volumeInfo.category,
+        cost: selectedBook.volumeInfo.cost,
+        description: selectedBook.volumeInfo.description,
+        googleId: selectedBook.volumeInfo.googleId,
+        id: selectedBook.volumeInfo.id,
+        inventoryCount: selectedBook.volumeInfo.inventoryCount,
+        pageCount: selectedBook.volumeInfo.pageCount,
+        publisher: selectedBook.volumeInfo.publisher,
+        publisherDate: selectedBook.volumeInfo.publisherDate,
+        retailPrice: selectedBook.volumeInfo.retailPrice,
+        thumbnail: selectedBook.volumeInfo.thumbnail,
+      };
 
-    //     // Logic for adding the new book to the collection
-    //     // Example: setBooks([...books, newBook]);
+      // Logic for adding the new book to the collection
+      // Example: setBooks([...books, newBook]);
 
-    //     setTitle("");
-    //     setAuthor("");
-    //     setQuantity("");
-    //     setSelectedBook(null);
-    //     setOrderQuantity(1);
-    //     setOrderSuccess(true);
-    //     setOrderError(false);
-    //   } else {
-    //     setOrderError(true);
-    //     setOrderSuccess(false);
-    //   }
-    // };
-
-    const handleBookLinkClick = (bookUrl) => {
-      console.log(`Opening book URL: ${bookUrl}`);
-      // Open the book URL in a new tab or window
-    };
+      setTitle("");
+      setAuthor("");
+      setQuantity("");
+      setSelectedBook(null);
+      setOrderQuantity(1);
+      setOrderSuccess(true);
+      setOrderError(false);
+    } else {
+      setOrderError(true);
+      setOrderSuccess(false);
+    }
   };
 
+  const handleBookLinkClick = (bookUrl) => {
+    console.log(`Opening book URL: ${bookUrl}`);
+    // Open the book URL in a new tab or window
+  };
   return (
     <div>
       <div className="add">
@@ -115,7 +113,7 @@ const AddBooks = (props) => {
               <button onClick={handleSearch}>Search</button>
             </form>
             <div className="add-book">
-              <button type="submit">Add Book</button> 
+              <button type="submit">Add Book</button>
             </div>
             {books?.map((book) => (
               <li key={book.id}>

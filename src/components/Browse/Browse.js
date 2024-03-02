@@ -102,6 +102,8 @@ const Browse = (props) => {
             books={books}
             setBooks={setBooks}
             setRedirect={setRedirect}
+            setCartItems={setCartItems}
+            cartItems={cartItems}
           />
         </div>
       </div>
