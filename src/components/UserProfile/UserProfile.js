@@ -69,7 +69,7 @@ const UserProfile = ({userProfile, setUserProfile}) => {
         </>
       ) : (
         <form onSubmit={handleSubmit}>
-          <div clasName="user-changes">
+          <div className="user-changes">
           <div>
             
             <label>Name:</label>
