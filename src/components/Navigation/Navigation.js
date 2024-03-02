@@ -149,10 +149,9 @@ const Navigation = (props) => {
           <div className="navigation--mobile-search">
             <input
               type="text"
-            //   value={search}
+              //   value={search}
               placeholder="Search title/author"
               onChange={(e) => setSearch(e.target.value)}
-
             />
             <button type="submit" onClick={handleSearch}>
               Search
@@ -429,6 +428,7 @@ const Navigation = (props) => {
                         alt="cart"
                         width="24px"
                         height="24px"
+                        onClick={() => setRedirect(false)}
                       />
                     ) : null}
                   </NavLink>
