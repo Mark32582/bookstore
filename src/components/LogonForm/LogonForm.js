@@ -16,7 +16,10 @@ const LogonForm = (props) => {
     users: globalUsers,
     setUsers: setGlobalUsers,
     setRedirect,
+    setUpdatedInfo,
+    setUserProfile,
   } = props;
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -90,6 +93,24 @@ const LogonForm = (props) => {
       setError("Confirm Email to Complete Registration");
     }
   }, []);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userProfileRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(userProfileRef);
+        if (docSnap.exists()) {
+          setUserProfile(docSnap.data());
+          setUpdatedInfo(docSnap.data()); // Initialize form with current data
+        } else {
+          console.log("No such document!");
+        }
+      }
+    };
+
+    fetchUserProfile();
+  }, [setUpdatedInfo, setUserProfile, globalUsers]);
 
   return (
     <div className={classNames({ "hide-logon": !signOn })}>

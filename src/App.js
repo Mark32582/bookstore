@@ -41,6 +41,12 @@ function App() {
     expiryDate: "",
     cvv: "",
   });
+  const [updatedInfo, setUpdatedInfo] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+    address: "",
+  });
 
   return (
     <FirestoreCacheProvider>
@@ -75,6 +81,8 @@ function App() {
             users={users}
             setUsers={setUsers}
             setRedirect={setRedirect}
+            setUserProfile={setUserProfile}
+            setUpdatedInfo={setUpdatedInfo}
           />
           <Cart
             cart={displayCart}
@@ -151,6 +159,8 @@ function App() {
                 <UserProfile
                   userProfile={userProfile}
                   setUserProfile={setUserProfile}
+                  updatedInfo={updatedInfo}
+                  setUpdatedInfo={setUpdatedInfo}
                 />
               }
             />

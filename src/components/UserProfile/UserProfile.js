@@ -9,10 +9,10 @@ import { auth } from '../../config/fireBaseConfig'; // Make sure to import auth 
 import './styles/userprofile.scss';
 
 
-const UserProfile = ({userProfile, setUserProfile}) => {
+const UserProfile = ({userProfile, setUserProfile, updatedInfo, setUpdatedInfo}) => {
 
   const [isEditing, setIsEditing] = useState(false);
-  const [updatedInfo, setUpdatedInfo] = useState({ fName: '', lName: '', email: '', address: '' });
+ 
 
   useEffect(() => {
     const fetchUserProfile = async () => {
