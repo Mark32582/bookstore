@@ -305,6 +305,7 @@ const RegisterForm = (props) => {
                       <div key={user.id}>
                         <p>{user.username}</p>
                         <p>{user.email}</p>
+                        <p>{user.type}</p>
                         <button onClick={() => deleteUser(user.id)}>
                           Delete
                         </button>
