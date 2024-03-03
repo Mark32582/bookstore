@@ -39,6 +39,7 @@ const Verification = ({
           <h1>Order Confirmation</h1>
           <h2>Items Purchased:</h2>
         </div>
+
         {purchasedItems?.length > 0 ? (
           <ul>
             {purchasedItems.map((item, index) => (
