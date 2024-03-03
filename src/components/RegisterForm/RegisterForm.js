@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
@@ -27,11 +30,7 @@ const RegisterForm = (props) => {
   const [success, setSuccess] = useState();
   const [isVerified, setIsVerified] = useState(false);
 
-  const {
-    employee,
-    verified,
-    setVerified,
-  } = props;
+  const { employee } = props;
   const fetchPost = async () => {
     await getDocs(collection(db, "users")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
@@ -66,14 +65,14 @@ const RegisterForm = (props) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-  
+
       // Signed in
       const docRef = setDoc(doc(db, "users", userCredential.user.uid), {
         fName: fName,
@@ -89,16 +88,16 @@ const RegisterForm = (props) => {
         rewards: 0,
         type: type,
       });
-  
+
       if (employee) {
         setSuccess("Registration Successful!");
         docRef();
       } else {
-         // Set initial verification status to true
+        // Set initial verification status to true
         await sendEmailVerification(auth.currentUser);
         setSuccess("Please Verify your Email to Complete Registration.");
       }
-  
+
       setTimeout(() => {
         navigate("/");
       }, 4000);
@@ -106,7 +105,7 @@ const RegisterForm = (props) => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode, errorMessage);
-  
+
       if (errorMessage !== "docRef is not a function") {
         setError(
           "Email has already been used. Please login or use another email."

@@ -41,6 +41,12 @@ function App() {
     expiryDate: "",
     cvv: "",
   });
+  const [updatedInfo, setUpdatedInfo] = useState({
+    fName: "",
+    lName: "",
+    email: "",
+    address: "",
+  });
 
   return (
     <FirestoreCacheProvider>
@@ -70,16 +76,15 @@ function App() {
             signOn={signOn}
             setSignOn={setSignOn}
             setVerified={setVerified}
-            employee={employee}
             setEmployee={setEmployee}
             users={users}
             setUsers={setUsers}
             setRedirect={setRedirect}
+            setUserProfile={setUserProfile}
+            setUpdatedInfo={setUpdatedInfo}
           />
           <Cart
             cart={displayCart}
-            books={books}
-            setBooks={setBooks}
             cartItems={cartItems}
             setCartItems={setCartItems}
             setDisplayCart={setDisplayCart}
@@ -92,24 +97,7 @@ function App() {
               path="/"
               element={
                 <HomePage
-                  name={name}
-                  setName={setName}
-                  verified={verified}
-                  setVerified={setVerified}
                   employee={employee}
-                  setEmployee={setEmployee}
-                  signOn={signOn}
-                  setSignOn={setSignOn}
-                  displayCart={displayCart}
-                  setDisplayCart={setDisplayCart}
-                  users={users}
-                  setUsers={setUsers}
-                  search={search}
-                  setSearch={setSearch}
-                  books={books}
-                  setBooks={setBooks}
-                  bookCategory={bookCategory}
-                  setBookCategory={setBookCategory}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
                   setRedirect={setRedirect}
@@ -121,24 +109,6 @@ function App() {
               path="/book/:bookId"
               element={
                 <Book
-                  name={name}
-                  setName={setName}
-                  verified={verified}
-                  setVerified={setVerified}
-                  employee={employee}
-                  setEmployee={setEmployee}
-                  displayCart={displayCart}
-                  setDisplayCart={setDisplayCart}
-                  signOn={signOn}
-                  setSignOn={setSignOn}
-                  users={users}
-                  setUsers={setUsers}
-                  search={search}
-                  setSearch={setSearch}
-                  books={books}
-                  setBooks={setBooks}
-                  bookCategory={bookCategory}
-                  setBookCategory={setBookCategory}
                   cartItems={cartItems}
                   setCartItems={setCartItems}
                   setRedirect={setRedirect}
@@ -151,91 +121,28 @@ function App() {
                 <UserProfile
                   userProfile={userProfile}
                   setUserProfile={setUserProfile}
+                  updatedInfo={updatedInfo}
+                  setUpdatedInfo={setUpdatedInfo}
                 />
               }
             />
             <Route
               path="/signup"
-              element={
-                <Registration
-                  name={name}
-                  setName={setName}
-                  verified={verified}
-                  setVerified={setVerified}
-                  displayCart={displayCart}
-                  setDisplayCart={setDisplayCart}
-                  signOn={signOn}
-                  setSignOn={setSignOn}
-                  employee={employee}
-                  setEmployee={setEmployee}
-                  users={users}
-                  setUsers={setUsers}
-                  search={search}
-                  setSearch={setSearch}
-                  books={books}
-                  setBooks={setBooks}
-                  bookCategory={bookCategory}
-                  setBookCategory={setBookCategory}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              }
+              element={<Registration employee={employee} />}
             />
 
             <Route
               path="/order"
               element={
                 <AddBooks
-                  name={name}
-                  setName={setName}
-                  verified={verified}
-                  setVerified={setVerified}
-                  displayCart={displayCart}
-                  setDisplayCart={setDisplayCart}
-                  signOn={signOn}
-                  setSignOn={setSignOn}
-                  employee={employee}
-                  setEmployee={setEmployee}
-                  users={users}
-                  setUsers={setUsers}
                   search={search}
                   setSearch={setSearch}
                   books={books}
                   setBooks={setBooks}
-                  bookCategory={bookCategory}
-                  setBookCategory={setBookCategory}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
                 />
               }
             />
-            <Route
-              path="/deletebooks"
-              element={
-                <DeleteBooks
-                  name={name}
-                  setName={setName}
-                  verified={verified}
-                  setVerified={setVerified}
-                  displayCart={displayCart}
-                  setDisplayCart={setDisplayCart}
-                  signOn={signOn}
-                  setSignOn={setSignOn}
-                  employee={employee}
-                  setEmployee={setEmployee}
-                  users={users}
-                  setUsers={setUsers}
-                  search={search}
-                  setSearch={setSearch}
-                  books={books}
-                  setBooks={setBooks}
-                  bookCategory={bookCategory}
-                  setBookCategory={setBookCategory}
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              }
-            />
+            <Route path="/deletebooks" element={<DeleteBooks />} />
             <Route
               path="/browse"
               element={
@@ -276,7 +183,6 @@ function App() {
                   setCartItems={setCartItems}
                   paymentInfo={paymentInfo}
                   setPaymentInfo={setPaymentInfo}
-                  purchasedItems={purchasedItems}
                   setPurchasedItems={setPurchasedItems}
                   userProfile={userProfile}
                   setUserProfile={setUserProfile}
@@ -288,11 +194,8 @@ function App() {
               path="/verification"
               element={
                 <Verification
-                  verified={verified}
                   purchasedItems={purchasedItems}
                   paymentInfo={paymentInfo}
-                  setPaymentInfo={setPaymentInfo}
-                  setUserProfile={setUserProfile}
                   userProfile={userProfile}
                   totalCost={totalCost}
                 />

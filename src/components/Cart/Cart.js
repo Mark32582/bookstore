@@ -7,8 +7,6 @@ const Cart = (props) => {
     cartItems,
     setCartItems,
     setDisplayCart,
-    location,
-    userInfo,
     setRedirect,
     totalCost,
     setTotalCost,
