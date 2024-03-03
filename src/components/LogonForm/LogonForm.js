@@ -70,9 +70,7 @@ const LogonForm = (props) => {
           "A link to reset your password has been emailed to the provided email address."
         );
 
-        setTimeout(() => {
-          setResetPasswordMessage(null);
-        }, 5000);
+        
       })
       .catch((error) => {
         setResetPasswordSent(false);
@@ -80,6 +78,23 @@ const LogonForm = (props) => {
         setResetPasswordMessage(null);
       });
   };
+  useEffect(() => {
+    if (globalUsers?.type === "employee") {
+      setEmployee(true);
+    }
+  }, [globalUsers?.type, setEmployee]);
+
+  useEffect(() => {
+    if (userId !== undefined) {
+      fetchPost();
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (auth.currentUser && !auth.currentUser.emailVerified) {
+      setError("Confirm Email to Complete Registration");
+    }
+  }, []);
 
   return (
     <div className={classNames({ "hide-logon": !signOn })}>
