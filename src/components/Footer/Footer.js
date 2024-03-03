@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-const Footer = () => {
+const Footer = ({ setRedirect }) => {
   const navigate = useNavigate();
 
   const contactOnClick = () => {
+    setRedirect(false);
     navigate("/contact");
   };
 
@@ -54,21 +55,21 @@ const Footer = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={process.env.PUBLIC_URL + "/facebook.png"} alt="FB"/>
+              <img src={process.env.PUBLIC_URL + "/facebook.png"} alt="FB" />
             </a>
             <a
               href="https://twitter.com/group3bookstore"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={process.env.PUBLIC_URL + "/twitter.png"} alt="TW"/>
+              <img src={process.env.PUBLIC_URL + "/twitter.png"} alt="TW" />
             </a>
             <a
               href="https://www.linkedin.com/company/group3bookstore/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={process.env.PUBLIC_URL + "/linkedin.png"} alt="IN"/>
+              <img src={process.env.PUBLIC_URL + "/linkedin.png"} alt="IN" />
             </a>
             {/* Add more social media links as needed */}
           </div>

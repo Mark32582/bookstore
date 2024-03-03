@@ -306,7 +306,7 @@ function App() {
               element={<PrivacyPolicy />}
             />
           </Routes>
-          <Footer />
+          <Footer setRedirect={setRedirect} />
         </BrowserRouter>
       </div>
     </FirestoreCacheProvider>

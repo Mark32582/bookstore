@@ -1,9 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
   const [isUserSignedIn] = useState(!!userProfile);
-
-
 
   const handleConfirmOrder = () => {
     const orderDetails = {
@@ -14,21 +12,17 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
     };
   };
 
-  console.log(purchasedItems);
-  console.log(userProfile)
-
-
   const calculateTotalCost = (cartItems) => {
     let subtotal = 0;
-  
+
     cartItems.forEach((item) => {
       subtotal += item.price;
     });
-  
+
     const taxPercent = 0.06;
     const taxAmount = subtotal * taxPercent;
     const deliveryFee = 4.99;
-  
+
     const total = subtotal + taxAmount + deliveryFee;
     return total.toFixed(2);
   };
@@ -69,17 +63,23 @@ const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
       {isUserSignedIn && userProfile && userProfile.name ? (
         <>
           <p>Name: {userProfile.name}</p>
-          <p>Shipping Address: {userProfile?.streetNumber}{" "}{userProfile?.address} </p>
-          <p>{userProfile?.city}{" "}{userProfile?.state}{" "}{userProfile?.zip}</p>
+          <p>
+            Shipping Address: {userProfile?.streetNumber} {userProfile?.address}{" "}
+          </p>
+          <p>
+            {userProfile?.city} {userProfile?.state} {userProfile?.zip}
+          </p>
         </>
       ) : (
         <p>
-        {isUserSignedIn
-          ? "No user information available."
-          : "Loading user information..."}
-      </p>
+          {isUserSignedIn
+            ? "No user information available."
+            : "Loading user information..."}
+        </p>
       )}
-            <div><span>Thank you for shopping with us!</span></div>
+      <div>
+        <span>Thank you for shopping with us!</span>
+      </div>
       <button onClick={handleConfirmOrder}>Continue Shopping</button>
     </div>
   );

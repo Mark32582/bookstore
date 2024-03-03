@@ -14,8 +14,6 @@ const Checkout = ({
   const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
 
-
-  console.log(userProfile);
   const handleCheckout = () => {
     if (
       cartItems.length > 0 &&
