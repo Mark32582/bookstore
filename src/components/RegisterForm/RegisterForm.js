@@ -5,7 +5,7 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { collection, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const RegisterForm = (props) => {
@@ -24,6 +24,7 @@ const RegisterForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState();
+  const [showUsers, setShowUsers] = useState(false);
   const [type, setType] = useState("customer");
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState();
@@ -62,6 +63,16 @@ const RegisterForm = (props) => {
       }
     }
   }, [isVerified, navigate, employee]);
+
+  const deleteUser = async (userId) => {
+    setShowUsers(true);
+    try {
+      await deleteDoc(doc(db, "users", userId));
+      fetchPost();
+    } catch (error) {
+      console.error("Error deleting user:", error);
+    }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -118,7 +129,11 @@ const RegisterForm = (props) => {
     setChecked(!checked);
   };
 
-  return (
+  const toggleUserList = () => {
+    setShowUsers(!showUsers);
+  };
+
+    return (
     <div>
       <main>
         <section>
@@ -266,7 +281,7 @@ const RegisterForm = (props) => {
                   <button
                     type="submit"
                     onClick={onSubmit}
-                    className="signup-button "
+                    className="signup-button"
                   >
                     Sign up
                   </button>
@@ -274,18 +289,37 @@ const RegisterForm = (props) => {
                   <button
                     type="submit"
                     onClick={onSubmit}
-                    className="signup-button "
+                    className="signup-button"
                   >
                     Register Customer/Employee
                   </button>
                 )}
               </form>
+              {users && (
+                <div>
+                  <button onClick={toggleUserList}>
+                    {showUsers ? "Hide Users" : "Show Users"}
+                  </button>
+                  {showUsers &&
+                    users.map((user) => (
+                      <div key={user.id}>
+                        <p>{user.username}</p>
+                        <p>{user.email}</p>
+                        <button onClick={() => deleteUser(user.id)}>
+                          Delete
+                        </button>
+                      </div>
+                    ))}
+                </div>
+              )}
             </div>
           </div>
         </section>
       </main>
     </div>
-  );
-};
+  )};
 
 export default RegisterForm;
+      
+        
+     
