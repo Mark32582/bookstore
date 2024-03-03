@@ -43,9 +43,6 @@ const LogonForm = (props) => {
         setTimeout(() => {
           setSignOn(!signOn);
         }, 750);
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -69,8 +66,6 @@ const LogonForm = (props) => {
         setResetPasswordMessage(
           "A link to reset your password has been emailed to the provided email address."
         );
-
-        
       })
       .catch((error) => {
         setResetPasswordSent(false);
@@ -102,9 +97,7 @@ const LogonForm = (props) => {
         <form className="logon-form">
           {error ? <div className="error"> {error} </div> : null}
           {resetPasswordMessage && (
-            <div className="reset-password-message">
-              {resetPasswordMessage}
-            </div>
+            <div className="reset-password-message">{resetPasswordMessage}</div>
           )}
           <input
             id="email"
