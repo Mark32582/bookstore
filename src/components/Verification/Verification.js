@@ -69,24 +69,17 @@ const Verification = ({
         )}
 
         <h2>Shipping Information:</h2>
-        {isUserSignedIn && userProfile && userProfile.name ? (
-          <>
-            <p>Name: {userProfile.name}</p>
-            <p>
-              Shipping Address: {userProfile?.streetNumber}{" "}
-              {userProfile?.address}{" "}
-            </p>
-            <p>
-              {userProfile?.city} {userProfile?.state} {userProfile?.zip}
-            </p>
-          </>
-        ) : (
-          <p>
-            {isUserSignedIn
-              ? "No user information available."
-              : "Loading user information..."}
-          </p>
-        )}
+
+        <p>
+          Name:{userProfile.fName} {userProfile.lName}
+        </p>
+        <p>
+          Shipping Address: {userProfile?.streetNumber} {userProfile?.address}{" "}
+        </p>
+        <p>
+          {userProfile?.city} {userProfile?.state} {userProfile?.zip}
+        </p>
+
         <div>
           <span>Thank you for shopping with us!</span>
         </div>

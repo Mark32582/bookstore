@@ -78,10 +78,18 @@ const Checkout = ({
                     <label>Name:</label>
                     <input
                       type="text"
-                      name="name"
-                      value={userProfile?.name || ""}
+                      name="fname"
+                      value={userProfile?.fName || ""}
                       onChange={(e) =>
-                        setUserProfile({ ...userProfile, name: e.target.value })
+                        setUserProfile({ ...userProfile, fName: e.target.value })
+                      }
+                      required
+                    /><input
+                      type="text"
+                      name="lname"
+                      value={userProfile?.lName || ""}
+                      onChange={(e) =>
+                        setUserProfile({ ...userProfile, lName: e.target.value })
                       }
                       required
                     />
