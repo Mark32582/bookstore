@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Verification = ({ purchasedItems, paymentInfo, userProfile }) => {
+const Verification = ({ purchasedItems, paymentInfo, userProfile, totalCost }) => {
   const [isUserSignedIn] = useState(!!userProfile);
 
   const handleConfirmOrder = () => {

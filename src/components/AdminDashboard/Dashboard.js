@@ -1,6 +1,6 @@
 import Grid from "../Grid/Grid";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   return <Grid />;
 };
 export default Dashboard;

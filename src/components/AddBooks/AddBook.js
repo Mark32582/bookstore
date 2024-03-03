@@ -8,7 +8,6 @@ const AddBooks = (props) => {
   const [author, setAuthor] = useState("");
   const [quantity, setQuantity] = useState("");
   const [selectedBook, setSelectedBook] = useState(null);
-  const [collection, setCollection] = useState("null");
   const selectedCollections = [
     "Best Seller",
     "New Releases",

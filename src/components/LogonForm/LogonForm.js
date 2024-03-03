@@ -2,7 +2,6 @@ import classNames from "classnames";
 import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
-import { useNavigate } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 import { sendPasswordResetEmail } from "firebase/auth";
@@ -20,7 +19,6 @@ const LogonForm = (props) => {
     setUserProfile,
   } = props;
 
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [resetPasswordSent, setResetPasswordSent] = useState(false);
