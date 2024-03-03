@@ -75,24 +75,36 @@ const Checkout = ({
               ) : (
                 <div className="guest-form">
                   <form>
-                    <label>Name:</label>
-                    <input
-                      type="text"
-                      name="fname"
-                      value={userProfile?.fName || ""}
-                      onChange={(e) =>
-                        setUserProfile({ ...userProfile, fName: e.target.value })
-                      }
-                      required
-                    /><input
-                      type="text"
-                      name="lname"
-                      value={userProfile?.lName || ""}
-                      onChange={(e) =>
-                        setUserProfile({ ...userProfile, lName: e.target.value })
-                      }
-                      required
-                    />
+                    <label>
+                      First Name:
+                      <input
+                        type="text"
+                        name="fname"
+                        value={userProfile?.fName || ""}
+                        onChange={(e) =>
+                          setUserProfile({
+                            ...userProfile,
+                            fName: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </label>
+                    <label>
+                      Last Name:
+                      <input
+                        type="text"
+                        name="lname"
+                        value={userProfile?.lName || ""}
+                        onChange={(e) =>
+                          setUserProfile({
+                            ...userProfile,
+                            lName: e.target.value,
+                          })
+                        }
+                        required
+                      />
+                    </label>
                     <label>Shipping Address:</label>
                     <input
                       type="text"

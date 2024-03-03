@@ -71,7 +71,7 @@ const Verification = ({
         <h2>Shipping Information:</h2>
 
         <p>
-          Name:{userProfile.fName} {userProfile.lName}
+          Name:{userProfile?.fName} {userProfile?.lName}
         </p>
         <p>
           Shipping Address: {userProfile?.streetNumber} {userProfile?.address}{" "}
