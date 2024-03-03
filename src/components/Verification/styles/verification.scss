@@ -1,0 +1,15 @@
+.verification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 16px 24px;
+  padding: 16px;
+
+  &--inner-container {
+    background-color: blanchedalmond;
+    border-radius: 12px;
+    width: max-content;
+    padding: 24px;
+  }
+}
