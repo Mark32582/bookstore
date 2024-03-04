@@ -19,6 +19,33 @@ body {
 .page{
     position: relative;
 }
+.image-alt{
+    border:1px inset black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:blanchedalmond;
+    font-size: 14px;
+    background-color: darkslategray;
+    opacity:.7;
+    display: grid;
+    place-items: center;
+    height:112px;
+    width: 72px;
+    padding:4px;
+}
+
+.image-alt2{
+    border:1px inset blanchedalmond;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:darkslategray;
+    font-size: 14px;
+    background-color: blanchedalmond;
+    opacity: 0.7;
+    display: grid;
+    place-items: center;
+    height:112px;
+    width: 72px;
+    padding:4px;
+}
 
 @import "./components/Accounting/styles/accounting.scss";
 @import "./components/AddBooks/styles/addbooks.scss";

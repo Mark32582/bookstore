@@ -20,7 +20,7 @@ const BookTile = (props) => {
   return (
     <div className="tile">
       <div className="tile--image">
-        <img src={url} height="120px" alt="" />
+        {url ? <img src={url} height="120px" alt="" /> : <div className="image-alt">{title}</div>}
       </div>
       <div className="tile--text">
         <span>

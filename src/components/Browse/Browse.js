@@ -48,11 +48,17 @@ const Browse = (props) => {
               return (
                 <div className="row" id="search" key={`${i}-search`}>
                   <div className="row--image">
-                    <img
-                      src={book?.volumeInfo?.imageLinks?.thumbnail}
-                      height="120px"
-                      alt=""
-                    />
+                    {book?.volumeInfo?.imageLinks?.thumbnail ? (
+                      <img
+                        src={book?.volumeInfo?.imageLinks?.thumbnail}
+                        height="120px"
+                        alt=""
+                      />
+                    ) : (
+                      <div className="image-alt2">
+                        {book?.volumeInfo?.title}
+                      </div>
+                    )}
                   </div>
                   <div className="row--text">
                     <span>
