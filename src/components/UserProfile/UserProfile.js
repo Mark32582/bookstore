@@ -73,12 +73,12 @@ const UserProfile = ({userProfile, setUserProfile, updatedInfo, setUpdatedInfo})
           <div>
             
             <label>First Name:</label>
-            <input type="text" name="name" value={updatedInfo.fName || ''} onChange={handleInputChange} />
+            <input type="text" name="fName" value={updatedInfo.fName || ''} onChange={handleInputChange} />
           </div>
           <div>
             
             <label>Last Name:</label>
-            <input type="text" name="name" value={updatedInfo.lName || ''} onChange={handleInputChange} />
+            <input type="text" name="lName" value={updatedInfo.lName || ''} onChange={handleInputChange} />
           </div>
           <div>
             <label>Email:</label>
