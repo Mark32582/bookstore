@@ -34,10 +34,10 @@ const Grid = () => {
           height="120px"
         />
         <span>
-          <h2>Add Customer/Employee</h2>
+          <h2>Manage Customers/Employees</h2>
         </span>
 
-        <button onClick={handleRegisterClick}>Register Users</button>
+        <button onClick={handleRegisterClick}>Manage Users</button>
       </div>
       <div className="grid-tiles">
         <img
