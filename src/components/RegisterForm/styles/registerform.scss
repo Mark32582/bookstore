@@ -54,6 +54,11 @@ p.signupMsg{
   
 }
 
+.name-container {
+  display: flex;
+  gap: 10px;
+}
+
 div.error{
   font-size: 15px;
 }

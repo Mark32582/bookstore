@@ -297,6 +297,7 @@ const RegisterForm = (props) => {
               </form>
               {users && (
                 <div>
+                  <h3>Remove Users</h3>
                   <button onClick={toggleUserList}>
                     {showUsers ? "Hide Users" : "Show Users"}
                   </button>
@@ -304,6 +305,11 @@ const RegisterForm = (props) => {
                     users.map((user) => (
                       <div key={user.id}>
                         <p>{user.username}</p>
+                        <div className="name-container">
+                        <p>{user.fName}</p>
+                        <p>{user.lName}</p>
+                      </div>
+
                         <p>{user.email}</p>
                         <p>{user.type}</p>
                         <button onClick={() => deleteUser(user.id)}>
