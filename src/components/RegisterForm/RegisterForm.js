@@ -5,7 +5,13 @@ import {
   sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "../../config/fireBaseConfig";
-import { collection, getDocs, setDoc, doc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "../../config/fireBaseConfig";
 
 const RegisterForm = (props) => {
@@ -133,7 +139,7 @@ const RegisterForm = (props) => {
     setShowUsers(!showUsers);
   };
 
-    return (
+  return (
     <div>
       <main>
         <section>
@@ -305,13 +311,12 @@ const RegisterForm = (props) => {
                     users.map((user) => (
                       <div key={user.id}>
                         <p>{user.username}</p>
-                        <div className="name-container">
-                        <p>{user.fName}</p>
-                        <p>{user.lName}</p>
-                      </div>
 
-                        <p>{user.email}</p>
-                        <p>{user.type}</p>
+                        <p><b>Name:</b> {user.fName} {user.lName}</p>
+                        
+
+                        <p><b>Email:</b> {user.email}</p>
+                        <p><b>User Type:</b> {user.type}</p>
                         <button onClick={() => deleteUser(user.id)}>
                           Delete
                         </button>
@@ -324,9 +329,7 @@ const RegisterForm = (props) => {
         </section>
       </main>
     </div>
-  )};
+  );
+};
 
 export default RegisterForm;
-      
-        
-     
