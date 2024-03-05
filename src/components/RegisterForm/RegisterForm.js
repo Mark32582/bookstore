@@ -35,7 +35,6 @@ const RegisterForm = (props) => {
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
-  const [isVerified, setIsVerified] = useState(false);
 
   const { employee } = props;
   const fetchPost = async () => {
@@ -61,14 +60,6 @@ const RegisterForm = (props) => {
       setType("customer");
     }
   }, [checked]);
-
-  useEffect(() => {
-    if (!employee) {
-      if (isVerified) {
-        navigate("/");
-      }
-    }
-  }, [isVerified, navigate, employee]);
 
   const deleteUser = async (userId) => {
     setShowUsers(true);
@@ -301,7 +292,7 @@ const RegisterForm = (props) => {
                   </button>
                 )}
               </form>
-              {users && (
+              {users && employee && (
                 <div>
                   <h3>Remove Users</h3>
                   <button onClick={toggleUserList}>
@@ -312,11 +303,16 @@ const RegisterForm = (props) => {
                       <div key={user.id}>
                         <p>{user.username}</p>
 
-                        <p><b>Name:</b> {user.fName} {user.lName}</p>
-                        
+                        <p>
+                          <b>Name:</b> {user.fName} {user.lName}
+                        </p>
 
-                        <p><b>Email:</b> {user.email}</p>
-                        <p><b>User Type:</b> {user.type}</p>
+                        <p>
+                          <b>Email:</b> {user.email}
+                        </p>
+                        <p>
+                          <b>User Type:</b> {user.type}
+                        </p>
                         <button onClick={() => deleteUser(user.id)}>
                           Delete
                         </button>
