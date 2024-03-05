@@ -140,7 +140,7 @@ const DeleteBooks = () => {
                           type="radio"
                           name="collection"
                           value={collectionName}
-                          onChange={() => fetchCollection(collectionName)}
+                          onChange={() => fetchCollection(collectionName, setSearchResults)}
                         />
                         {collectionName}
                       </label>
