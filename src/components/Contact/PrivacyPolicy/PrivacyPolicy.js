@@ -30,12 +30,12 @@ const PrivacyPolicy = () => {
               {" "}
               Information You Provide to Us May Include:{" "}
             </span>
-            <br></br>- Your name, email address, postal address, phone number,
+            <br></br>• Your name, email address, postal address, phone number,
             and other contact information.
-            <br></br>- Payment information, such as your credit card numbers and
+            <br></br>• Payment information, such as your credit card numbers and
             billing address, which is processed by our PCI DSS-compliant payment
             processing partners.
-            <br></br>- Any other information you choose to provide, such as
+            <br></br>• Any other information you choose to provide, such as
             reviews, preferences, or feedback.
           </p>
         </li>
@@ -45,9 +45,9 @@ const PrivacyPolicy = () => {
               {" "}
               Information Collected Automatically May Include:{" "}
             </span>
-            <br></br>- Your browser type, operating system, IP address, and
+            <br></br>• Your browser type, operating system, IP address, and
             device information.
-            <br></br>- Information collected through cookies and similar
+            <br></br>• Information collected through cookies and similar
             technologies to remember your preferences and facilitate effective
             site administration.
           </p>
@@ -60,16 +60,16 @@ const PrivacyPolicy = () => {
             <span className="bold">
               We may use the information we collect to:
             </span>
-            <br></br>- Process and fulfill your orders, including sending you
+            <br></br>• Process and fulfill your orders, including sending you
             emails to confirm your order status and shipment.
-            <br></br>- Communicate with you about products, services, offers,
+            <br></br>• Communicate with you about products, services, offers,
             promotions, and events.
-            <br></br>- Provide customer support and respond to your requests,
+            <br></br>• Provide customer support and respond to your requests,
             comments, and inquiries.
-            <br></br>- Enhance and improve our services, including
+            <br></br>• Enhance and improve our services, including
             troubleshooting, data analysis, testing, research, and service
             improvement.
-            <br></br>- Comply with legal obligations, including PCI DSS, GLBA,
+            <br></br>• Comply with legal obligations, including PCI DSS, GLBA,
             and FTC regulations.
           </p>
         </li>
@@ -83,15 +83,15 @@ const PrivacyPolicy = () => {
               {" "}
               We may share your information as follows:{" "}
             </span>
-            <br></br>- With third-party service providers who perform services
+            <br></br>• With third-party service providers who perform services
             on our behalf, such as payment processing, order fulfillment, and
             data analysis. These service providers are bound by contractual
             obligations to keep personal information confidential and use it
             only for the purposes for which we disclose it to them.
-            <br></br>- To comply with legal obligations, including responding to
+            <br></br>• To comply with legal obligations, including responding to
             a subpoena or court order, or in connection with a legal
             investigation.
-            <br></br>- With your consent or at your direction.
+            <br></br>• With your consent or at your direction.
           </p>
         </li>
       </ul>
@@ -100,12 +100,12 @@ const PrivacyPolicy = () => {
         <li>
           <p>
             <span className="bold"> You have rights to: </span>
-            <br></br>- Opt-out of receiving marketing communications from us by
+            <br></br>• Opt-out of receiving marketing communications from us by
             following the unsubscribe link or instructions provided in any email
             we send.
-            <br></br>- Access, correct, update, or request deletion of your
+            <br></br>• Access, correct, update, or request deletion of your
             personal information.
-            <br></br>- Object to the processing of your personal information,
+            <br></br>• Object to the processing of your personal information,
             ask us to restrict processing of your personal information, or
             request portability of your personal information.
           </p>
