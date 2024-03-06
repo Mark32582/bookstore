@@ -142,6 +142,7 @@ const Navigation = (props) => {
                   alt="cart"
                   width="50px"
                   height="50px"
+                  onClick={() => setRedirect(false)}
                 />
               ) : null}
             </NavLink>
