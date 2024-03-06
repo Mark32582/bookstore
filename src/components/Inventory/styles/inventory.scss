@@ -1,35 +1,46 @@
 .inventory {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background:none;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: none;
+}
 .inventory-container {
-    font-family: "Courier New", Courier, monospace;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    padding:12px 24px;
-    z-index: 10;
-    border-radius: 10px;
-    background-color: rgb(200, 181, 153);
-    margin:24px auto;
-    }
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 12px 24px;
+  z-index: 10;
+  border-radius: 10px;
+  background-color: rgb(200, 181, 153);
+  margin: 24px auto;
+}
 
 .inventory-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
 
 .collection-buttons {
-    margin: 20px 20px;
-    font-family: "Courier New", Courier, monospace;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    padding: 25px;
-    }
+  margin: 20px 20px;
+  font-family: "Courier New", Courier, monospace;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 25px;
+}
+.no-image {
+  height: 184px;
+  width: 111px;
+  background-color: darkslategray;
+  color: blanchedalmond;
+  border: 1px solid blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:8px
+}

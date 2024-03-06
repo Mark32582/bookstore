@@ -1,31 +1,37 @@
-
-
-.add{
+.add-container {
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: rgb(200, 181, 153);
+  margin: 24px auto;
+}
+.add-book {
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: fit-content;
+}
+.heading{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background:none;
-    }
-  
-    .add-container {
-    font-family: "Courier New", Courier, monospace;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    padding:12px 24px;
-    z-index: 10;
-    border-radius: 10px;
-    background-color: rgb(200, 181, 153);
-    margin:24px auto;
-    }
-    .add-book {
-        margin: 20px 20px;
-        font-family: "Courier New", Courier, monospace;
-        justify-content: center;
-        align-items: center;
-        width: fit-content;
-        padding: 25px;
-      }
+    justify-content: space-evenly;
+    
+}
+.title{
+    margin:0;
+    padding:0;
+}
+.list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px
+}
+.ling{
+    border: 2px solid black;
+}
