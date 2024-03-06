@@ -45,13 +45,6 @@ const AddBooks = (props) => {
       .catch((err) => console.log(err));
   };
 
-  const handleBookClick = (book, orderQuantity) => {
-    console.log("---------" + book, orderQuantity);
-    // setSelectedBook(book);
-    // setOrderQuantity(orderQuantity);
-    // console.log(selectedBook)
-  };
-
   const handleSubmit = (selectedBook) => {
     if (selectedBook) {
       const newBook = {
@@ -89,7 +82,6 @@ const AddBooks = (props) => {
     }
   };
 
-  console.log(selectedBook);
   return (
     <div className="add-container">
       {orderSuccess && (
