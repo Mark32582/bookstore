@@ -10,7 +10,7 @@ const Book = (props) => {
   const { bookId } = useParams();
   const [currentBook, setCurrentBook] = useState();
   const [pageData, setPageData] = useState();
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(13.99);
   const carousel = useLiveQuery(() => db.carousel?.toArray());
   const newBooks = useLiveQuery(() => db.newReleases?.toArray());
   const bestBooks = useLiveQuery(() => db.bestSeller?.toArray());
@@ -20,27 +20,6 @@ const Book = (props) => {
     setPageData({ carousel, newBooks, bestBooks, employee });
   }, [bestBooks, employee, newBooks, carousel]);
 
-  //     return obj.contains(currentBook?.volumeInfo?.title);
-  //   });
-  //   console.log(firebaseItem)
-  //   const priceCheck = () => {
-  //     console.log(pageData?.carousel?.title, currentBook?.volumeInfo?.title);
-  //     if (pageData?.carousel?.title === currentBook?.volumeInfo?.title) {
-  //       setPrice(pageData?.carousel?.title);
-  //     } else if (currentBook?.volumeInfo?.title === pageData?.newBooks?.title) {
-  //       setPrice(pageData?.carousel?.title);
-  //     } else if (currentBook?.volumeInfo?.title === pageData?.bestBooks?.title) {
-  //       setPrice(pageData?.carousel?.title);
-  //     } else if (currentBook?.volumeInfo?.title === pageData?.employee?.title) {
-  //       setPrice(pageData?.carousel?.title);
-  //     } else {
-  //       setPrice(currentBook?.saleInfo?.price);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     priceCheck();
-  //   }, [fetchBooks]);
 
   useEffect(() => {
     fetchBooks();
@@ -50,7 +29,7 @@ const Book = (props) => {
     currentBook?.id &&
       pageData?.carousel?.map((obj) => {
         if (obj?.googleId === currentBook?.id) {
-          setPrice(obj?.retailPrice);
+          setPrice(obj?.retailPrice || 13.99);
           return true;
         }
         return null;
@@ -59,7 +38,7 @@ const Book = (props) => {
     pageData?.bestBooks?.map((obj) => {
       
       if (obj?.googleId === currentBook?.id) {
-        setPrice(obj?.retailPrice);
+        setPrice(obj?.retailPrice || 13.99);
         return true;
       }
       return null;
@@ -67,7 +46,7 @@ const Book = (props) => {
 
     pageData?.newBooks?.map((obj) => {
       if (obj?.googleId === currentBook?.id) {
-        setPrice(obj?.retailPrice);
+        setPrice(obj?.retailPrice || 13.99);
         return true;
       }
       return null;
@@ -75,7 +54,7 @@ const Book = (props) => {
 
     pageData?.employee?.map((obj) => {
       if (obj?.googleId === currentBook?.id) {
-        setPrice(obj?.retailPrice);
+        setPrice(obj?.retailPrice || 13.99);
         return true;
       }
       return null;
@@ -148,6 +127,8 @@ const Book = (props) => {
         </div>
         <Author
           author={currentBook?.volumeInfo?.authors}
+          cartItems={cartItems}
+          setCartItems={setCartItems}
           setRedirect={setRedirect}
           price={price}
         />

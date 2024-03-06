@@ -44,6 +44,7 @@ const Browse = (props) => {
           )}
           {books &&
             books.map((book, i) => {
+              const price = book?.saleInfo?.listPrice?.amount || 13.99;
               const bookId = book?.id;
               return (
                 <div className="row" id="search" key={`${i}-search`}>
@@ -79,17 +80,12 @@ const Browse = (props) => {
                           More Info
                         </span>
                       </NavLink>
-                      {book?.saleInfo?.listPrice?.amount ? (
+                      {price ? (
                         <>
-                          <span className="row--text__info">
-                            ${book?.saleInfo?.listPrice?.amount}
-                          </span>{" "}
+                          <span className="row--text__info">${price}</span>{" "}
                           <button
                             onClick={() =>
-                              onAddToCart(
-                                book?.volumeInfo?.title,
-                                book?.saleInfo?.listPrice?.amount
-                              )
+                              onAddToCart(book?.volumeInfo?.title, price)
                             }
                           >
                             Add to Cart

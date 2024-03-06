@@ -37,7 +37,7 @@ const BookTile = (props) => {
         </Link>
 
         <div className="row--text__actions">
-          {books?.retailPrice ? (
+          {price ? (
             <>
               <span className="row--text__info">${price}</span>{" "}
               <button onClick={() => onAddToCart()}>Add to Cart</button>
