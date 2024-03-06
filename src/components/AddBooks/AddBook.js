@@ -5,10 +5,6 @@ import { db } from "../../config/fireBaseConfig";
 
 const AddBooks = (props) => {
   const { search, setSearch, books, setBooks } = props;
-
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-
   const [selectedBook, setSelectedBook] = useState(null);
   const selectedCollections = [
     "bestSeller",
@@ -32,7 +28,6 @@ const AddBooks = (props) => {
       thumbnail: doc.data().thumbnail,
       cost: doc.data().cost,
     }));
-    console.log(results);
     setBooks(results);
   };
 
