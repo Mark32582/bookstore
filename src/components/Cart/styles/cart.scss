@@ -24,6 +24,10 @@
 
   &-headline {
     padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
   &-contents {
     display: grid;
@@ -32,7 +36,9 @@
   }
   &-items {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: .1fr 2.25fr 1fr 1fr;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom:8px;
     gap: 16px;
     width: 100%;

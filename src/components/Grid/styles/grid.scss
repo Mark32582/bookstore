@@ -1,6 +1,5 @@
 .grid-container {
   margin: 24px;
-
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -33,4 +32,5 @@
   align-items: center;
   background-color: rgb(200, 181, 153);
   min-width: 305px;
+  text-align: center;
 }

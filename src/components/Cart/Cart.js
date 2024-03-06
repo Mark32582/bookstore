@@ -57,7 +57,14 @@ const Cart = (props) => {
     <div className={`cart-container ${cart ? "" : "hide-cart"}`}>
       <div className={`cart ${cart ? "" : "hide-cart"}`}>
         <div className="cart-headline">
-          <h1>Shopping Cart</h1>
+          <h1>Shopping Cart</h1><img
+                  className="cart-icon"
+                  src={process.env.PUBLIC_URL + "/x-icon.png"}
+                  alt="cart"
+                  onClick={() => setDisplayCart(!cart)}
+                  width="35px"
+                  height="35px"
+                />
         </div>
         <div className="cart-contents">
           <div className="cart-mapped">
@@ -65,19 +72,21 @@ const Cart = (props) => {
               cartItems?.map((item, i) => {
                 return (
                   <div key={`${i}-cartItem`} className="cart-items">
+                    <input
+                      type="checkbox"
+                      checked={selectedItems.includes(i)}
+                      onChange={() => handleCheckboxChange(i)}
+                    />
                     <div>
-                      <input
-                        type="checkbox"
-                        checked={selectedItems.includes(i)}
-                        onChange={() => handleCheckboxChange(i)}
-                      />
-                      <b>Title:</b> {item?.title}
+                      <b>Title:</b> <br />
+                      {item?.title}
                     </div>
                     <div>
-                      <b>Price:</b> {item?.price}
+                      <b>Price:</b> <br />
+                      {item?.price}
                     </div>
                     <div>
-                      <b>Quantity:</b> 1
+                      <b>Quantity:</b> <br />1
                     </div>
                   </div>
                 );

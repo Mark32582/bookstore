@@ -33,10 +33,9 @@ const Grid = () => {
           alt=""
           height="120px"
         />
-        <span>
+        <p>
           <h2>Manage Customers/Employees</h2>
-        </span>
-
+        </p>
         <button onClick={handleRegisterClick}>Manage Users</button>
       </div>
       <div className="grid-tiles">
@@ -84,9 +83,11 @@ const Grid = () => {
         <button onClick={handleAccountingClick}>Accounting</button>
       </div>
       <div className="grid-tiles">
-      <img
-        src={process.env.PUBLIC_URL + "/timeclock.png"}
-        alt="" height="120px" />
+        <img
+          src={process.env.PUBLIC_URL + "/timeclock.png"}
+          alt=""
+          height="120px"
+        />
         <span>
           <h2>Time Clock</h2>
         </span>

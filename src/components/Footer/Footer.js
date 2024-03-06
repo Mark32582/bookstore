@@ -35,6 +35,7 @@ const Footer = ({ setRedirect }) => {
           <button className="contact-btn" onClick={() => contactOnClick()}>
             Contact us
           </button>
+          <span className="copyright">&#169; 2024 The BookStore</span>
         </div>
       </div>
       <div className="hours">
